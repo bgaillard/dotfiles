@@ -1,0 +1,53 @@
+# see https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
+
+alias bc="bc -l"
+
+# Changing directories
+alias cd..="cd .."
+alias ..1="cd .."
+alias ..2="cd ../.."
+alias ..3="cd ../../.."
+alias ..4="cd ../../../.."
+
+# Use exa instead of ls
+alias l='exa'
+alias la='exa -a'
+alias ll='exa -lah'
+alias ls='exa --color=auto'
+
+# GIT
+#
+# Those commands will update the ~/.gitconfig file.
+#
+#   git config --global alias.co checkout
+#   git config --global alias.cob checkout -b
+#   git config --global alias.c commit
+#   git config --global alias.p push
+#   git config --global alias.st status
+#   git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+#
+# see https://codersopinion.com/blog/16-awesome-git-aliases-that-you-will-love/
+alias gacp="git add --all && git commit --amend --no-edit && git push -f"
+alias gco="git checkout"
+alias gcob="git checkout -b"
+alias gc="git commit"
+alias gd="git diff"
+alias gp="git push"
+alias gst="git status"
+alias glg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+# Vim
+alias vi="vim"
+alias v="vim"
+alias v.="vim ."
+
+# If user is not root, pass all commands via sudo #
+if [ $UID -ne 0 ]; then
+    alias halt="sudo halt"
+    alias poweroff="sudo poweroff"
+    alias reboot="sudo reboot"
+    alias shutdown="sudo shutdown"
+
+    # Package manager
+    alias u="sudo apt update && sudo apt upgrade"
+fi

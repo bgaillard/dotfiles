@@ -1,0 +1,11 @@
+# This is a Freedsktop.org desktop entry file, to use it just drag & drop it to you Dock (XFCE, Plank, etc.)
+#
+# see https://specifications.freedesktop.org/desktop-entry-spec/latest/
+
+[Desktop Entry]
+Name=Chrome
+Comment=Google Chrome browser
+Exec=/usr/bin/google-chrome-stable %U
+Type=Application
+Categories=Network
+Icon=google-chrome

@@ -1,0 +1,11 @@
+# This is a Freedsktop.org desktop entry file, to use it just drag & drop it to you Dock (XFCE, Plank, etc.)
+#
+# see https://specifications.freedesktop.org/desktop-entry-spec/latest/
+
+[Desktop Entry]
+Name=Spotify
+Comment=Spotify music player
+Exec=/usr/bin/spotify
+Type=Application
+Categories=Network
+Icon=spotify

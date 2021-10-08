@@ -1,0 +1,11 @@
+# This is a Freedsktop.org desktop entry file, to use it just drag & drop it to you Dock (XFCE, Plank, etc.)
+#
+# see https://specifications.freedesktop.org/desktop-entry-spec/latest/
+
+[Desktop Entry]
+Name=File explorer
+Comment=XFCE Thunar file explorer
+Exec=/usr/bin/thunar
+Type=Application
+Categories=Network
+Icon=system-file-manager

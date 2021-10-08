@@ -1,0 +1,473 @@
+" Documentation
+"  - https://learnvimscriptthehardway.stevelosh.com/
+
+set encoding=UTF-8
+set incsearch
+
+" Change cursor shape in different modes
+"
+" see https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+
+" Define Leader key (use space)
+"
+nnoremap <SPACE> <Nop>
+let mapleader = "\<Space>"
+
+" Speed-up syntax Highlighting
+"
+" see https://vim.fandom.com/wiki/Speed_up_Syntax_Highlighting
+augroup vimrc
+    autocmd!
+    autocmd BufWinEnter,Syntax * syn sync minlines=500 maxlines=500
+augroup END
+
+
+" Set backspace behavior
+"
+" see https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode#answer-2163
+set backspace=indent,eol,start
+
+
+" Do not miss to correctly configure your XFCE Keyboard settings.
+"   Repeat delay: 250
+"   Repeat speed: 35
+"
+" see https://www.johnhawthorn.com/2012/09/vi-escape-delays/
+set timeout ttimeoutlen=50
+
+" Custom shortcuts
+"
+" Tabs
+" see http://vim.wikia.com/wiki/Cycle_through_buffers_including_hidden_buffers
+" see http://vim.wikia.com/wiki/Vim_buffer_FAQ
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+nnoremap <C-w><C-w> :bp\|bd #<CR>
+" Move lines
+" see https://vim.fandom.com/wiki/Moving_lines_up_or_down
+" nnoremap <A-j> :m.+1<CR>==
+" nnoremap <A-k> :m.-2<CR>==
+"inoremap <A-j> <Esc>:m.+1<CR>==gi FIXME: Do not work while entering 'ê'
+"inoremap <A-k> <Esc>:m.-2<CR>==gi FIXME: Do not work while entering 'ê'
+" vnoremap <A-j> :m'>+1<CR>gv=gv
+" vnoremap <A-k> :m'<-2<CR>gv=gv
+
+" nmap <leader>d <plug>(YCMHover)
+
+
+" see :help lazyredraw
+set lazyredraw
+
+" see :help 'ttyfast'
+set ttyfast
+
+" see https://vi.stackexchange.com/questions/514/how-do-i-change-the-current-splits-width-and-height
+set mouse=n
+set ttymouse=xterm2
+
+" see https://codeyarns.com/2011/07/29/vim-chart-of-color-names/
+" see https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
+set number
+set colorcolumn=120
+
+set tabstop=4 softtabstop=4 expandtab shiftwidth=4
+set list
+set listchars=tab:»»
+
+" see :help :filetype-overview
+filetype indent plugin on
+syntax on
+
+"-----------------------------------------------------------------------------------------------------------------------
+" vim-plug
+"-----------------------------------------------------------------------------------------------------------------------
+call plug#begin('~/.vim/plugged')
+
+" Themes
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'morhetz/gruvbox'
+Plug 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'dracula/dracula-theme'
+Plug 'chriskempson/base16-vim'
+Plug 'jnurmine/Zenburn'
+Plug 'gosukiwi/vim-atom-dark'
+Plug 'jacoborus/tender.vim'
+Plug 'sjl/badwolf'
+Plug 'arcticicestudio/nord-vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'sindresorhus/hyper-snazzy'
+Plug 'rakr/vim-one'
+Plug 'mhartington/oceanic-next'
+Plug 'ayu-theme/ayu-vim'
+Plug 'ciaranm/inkpot'
+Plug 'kyoz/purify'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'sainnhe/sonokai'
+Plug 'cocopon/iceberg.vim'
+Plug 'tomasiser/vim-code-dark'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+
+" File formats
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'cespare/vim-toml'
+Plug 'hashivim/vim-terraform'
+Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'plasticboy/vim-markdown'
+Plug 'evidens/vim-twig'
+
+" Languages
+Plug 'fatih/vim-go'
+Plug 'davidhalter/jedi-vim'
+Plug 'shawncplus/phpcomplete.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'arrufat/vala.vim'
+
+" File explorer
+Plug 'lambdalisue/fern.vim', {'branch': 'add-equal-mapping-on-trash'}
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/glyph-palette.vim'
+Plug 'lambdalisue/nerdfont.vim'
+
+Plug 'SirVer/ultisnips'
+Plug 'airblade/vim-gitgutter'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'chrisbra/unicode.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'embear/vim-localvimrc'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'majutsushi/tagbar'
+Plug 'ntpeters/vim-better-whitespace'
+"Plug 'preservim/nerdtree'
+
+" ropevim
+"  - pip3 install --user --uppgrade rope ropemode ropevim
+"  - set PYTHONPATH in in ~/.bashrc
+"    export PYTHONPATH=$PYTHONPATH:~/.local/lib/python3.8/site-packages
+" Plug 'python-rope/ropevim'
+
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'tommcdo/vim-fubitive'
+Plug 'shumphrey/fugitive-gitlab.vim'
+
+Plug 'ryanoasis/vim-devicons'
+Plug 'Valloric/YouCompleteMe'
+Plug 'dense-analysis/ale'
+Plug 'vim-utils/vim-man'
+Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
+call plug#end()
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" Themes
+"
+" Liked
+"  - codedark
+"  - default
+"  - gruvbox
+"  - iceberg
+"  - jellybeans
+"  - material
+"  - OceanicNext
+"  - palenight
+"  - PaperColor
+"  - ron
+"  - tender
+"-----------------------------------------------------------------------------------------------------------------------
+color codedark
+set background=dark
+
+" see https://github.com/lambdalisue/fern.vim/issues/342
+" see https://stackoverflow.com/questions/15277241/changing-vim-gutter-color
+highlight clear SignColumn
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" ALE
+"
+" Python
+"  + fixers
+"    - pip3 install --user --upgrade autopep8
+"    - pip3 install --user --upgrade black
+"    - pip3 install --user --upgrade isort
+"    - pip3 install --user --upgrade reorder-python-imports
+"    - pip3 install --user --upgrade yapf
+"  + linters
+"    - pip3 install --user --upgrade bandit        // Security checks
+"    - pip3 install --user --upgrade flake8        // Code style
+"    - pip3 install --user --upgrade mypy          // Static typing checker
+"    - pip3 install --user --upgrade prospector    // Wrapper for pylint,pep8,mccabe
+"    - pip3 install --user --upgrade pycodestyle   // PEP 8 checker
+"    - pip3 install --user --upgrade pyflakes      // Check errors but not code style (WARNING: prefer 'flake8')
+"    - pip3 install --user --upgrade pylama        // Wrapper for pycodestyle,pydocstyle,pyflakes,mccabe,pylint,radon,
+"                                                  // gjslint,eradicate,mypy
+"    - pip3 install --user --upgrade pylint        // Powerful linter
+"    - pip3 install --user --upgrade pyre-check    // Type checker
+"    - pip3 install --user --upgrade vulture       // Dead code analyzer
+"
+" YAML
+"  + linters
+"    - pip3 install --user yamllint                // Linter is enabled by default when installed
+"
+" https://github.com/w0rp/ale
+" see https://github.com/dense-analysis/ale/issues/44#issuecomment-283252535
+"-----------------------------------------------------------------------------------------------------------------------
+let g:ale_fix_on_save = 1
+let g:ale_fixers_explicit = 1
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['autopep8', 'black', 'isort']
+\}
+
+let g:ale_linters_explicit = 0
+let g:ale_linters = {
+\   'sh': ['shellcheck'],
+\   'python': ['flake8', 'mypy', 'pylint']
+\}
+
+let g:ale_sign_error = ' 𐄂'
+let g:ale_sign_warning = ' ⚠'
+let g:ale_echo_msg_format = '[%severity%] [%linter%] [%code%] %s '
+
+let g:ale_python_bandit_use_config = 1
+
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+
+" nnoremap <silent> <C-k> <Plug>(ale_previous_wrap)
+" nnoremap <silent> <C-j> <Plug>(ale_next_wrap)
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" Vim Better Whitespace
+"
+" https://github.com/ntpeters/vim-better-whitespace
+"-----------------------------------------------------------------------------------------------------------------------
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
+let g:show_spaces_that_precede_tabs=1
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" Vim Dadbod
+"
+" https://github.com/tpope/vim-dadbod
+" https://github.com/kristijanhusak/vim-dadbod-ui
+"-----------------------------------------------------------------------------------------------------------------------
+let g:db_ui_use_nerd_fonts=1
+let g:dbs = {
+\ 'gdc_db - writer (staging)': 'mysql://gdc_user@10.66.33.249:3306/gdc_db',
+\ 'gdc_db - reader (staging)': 'mysql://gdc_user@10.66.33.249:3307/gdc_db',
+\ }
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" Fern
+"
+" see https://github.com/lambdalisue/fern.vim
+""-----------------------------------------------------------------------------------------------------------------------
+
+" TODO: g:fern#default_exclude*
+
+let g:fern#disable_viewer_auto_duplication = 1
+let g:fern#disable_viewer_spinner = 1
+let g:fern#drawer_width = 40
+let g:fern#hide_cursor = 1
+let g:fern#renderer = "nerdfont"
+
+let g:fern_git_status#disable_ignored = 1
+let g:fern_git_status#disable_untracked = 1
+
+nnoremap <silent> <Leader>r :Fern . -drawer -reveal=%<CR>
+
+function! s:init_fern() abort
+  map <nowait><buffer> d <Plug>(fern-action-remove=)y<CR><CR>
+endfunction
+
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
+
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * ++nested if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | set number! | exe 'Fern' argv()[0] '-drawer' '-stay' '-keep' | set number | endif
+
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" fzf.vim
+"
+" https://github.com/junegunn/fzf.vim
+"-----------------------------------------------------------------------------------------------------------------------
+"let $FZF_DEFAULT_COMMAND = 'rg -g ""'
+nnoremap <c-g> :Rg<CR>
+nnoremap <c-p> :Files<CR>
+"nnoremap <SPACE>b :!buku -p -f4 | fzf -m --reverse --preview "buku -p {1}" --preview-window=wrap | cut -f2
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" ropevim
+"
+" https://github.com/python-rope/ropevim
+"-----------------------------------------------------------------------------------------------------------------------
+let g:ropevim_autoimport_modules = ["typing"]
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" vim-gitgutter
+"
+" see https://github.com/airblade/vim-gitgutter
+"-----------------------------------------------------------------------------------------------------------------------
+set updatetime=200
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" vim-gutentags
+"
+" see https://github.com/ludovicchabant/vim-gutentags
+" see https://www.reddit.com/r/vim/comments/d77t6j/guide_how_to_setup_ctags_with_gutentags_properly/
+" see https://robertbasic.com/tags/gutentags/
+"-----------------------------------------------------------------------------------------------------------------------
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:gutentags_ctags_exclude = [
+    \ 'composer.lock',
+    \ 'Makefile',
+    \ 'node_modules',
+    \ 'public',
+    \ 'var',
+    \ '*vendor/*/test*', '*vendor/*/Test*',
+    \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
+    \ '*.cache',
+    \ '*.css', '*.less', '*.sass', '*.scss',
+    \ '*.git', '*.svg', '*.hg',
+    \ '*.html',
+    \ '*.json',
+    \ '*.exe', '*.dll',
+    \ '*.gif', '*.jpg', '*.jpeg', '*.png', '*.svg',
+    \ '*.ini',
+    \ '*-lock.json',
+    \ '*.lock',
+    \ '*.md',
+    \ '*.min.*',
+    \ '*.mp3', '*.ogg', '*.flac',
+    \ '*.phar',
+    \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+    \ '*.pyc',
+    \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+    \ '*.rst',
+    \ '*.sh',
+    \ '*.tmp',
+    \ '*.swp', '*.swo',
+    \ '*.xlf',
+    \ '*.xml',
+\ ]
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" vim-jedi
+"
+" see https://github.com/davidhalter/jedi-vim
+"-----------------------------------------------------------------------------------------------------------------------
+let g:jedi#popup_on_dot = 0
+set completeopt-=preview
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" Localvimrc
+"
+" https://github.com/embear/vim-localvimrc
+"-----------------------------------------------------------------------------------------------------------------------
+let g:localvimrc_whitelist = [
+    \$HOME + '/workspace/infra/',
+\]
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" Shfmt
+"
+" see https://github.com/z0mbix/vim-shfmt
+"-----------------------------------------------------------------------------------------------------------------------
+let g:shfmt_extra_args = '-i 4'
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" Tagbar
+"
+" see https://majutsushi.github.io/tagbar/
+"-----------------------------------------------------------------------------------------------------------------------
+nmap <F8> :TagbarToggle<CR>
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" vim-airline
+"
+" see https://github.com/vim-airline/vim-airline
+"-----------------------------------------------------------------------------------------------------------------------
+let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'simple'
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" Vim Markdown
+"
+" see https://github.com/plasticboy/vim-markdown
+"-----------------------------------------------------------------------------------------------------------------------
+let g:vim_markdown_folding_disabled = 1
+
+"autocmd BufReadPost * :redraw
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" vim-terraform
+"
+" see http://hashivim.github.io/vim-terraform/
+"-----------------------------------------------------------------------------------------------------------------------
+let g:terraform_fmt_on_save=1
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" UltiSnips
+"
+" see https://github.com/sirver/ultisnips
+"-----------------------------------------------------------------------------------------------------------------------
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsEditSplit="vertical"
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" YouCompleteMe
+"
+" see https://valloric.github.io/YouCompleteMe/
+"-----------------------------------------------------------------------------------------------------------------------
+let g:ycm_auto_hover = ''
+let g:ycm_error_symbol = '𐄂'
+let g:ycm_open_loclist_on_ycm_diags = 1
+let g:ycm_warning_sym = '⚠'

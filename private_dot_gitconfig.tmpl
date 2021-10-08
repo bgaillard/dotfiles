@@ -1,0 +1,13 @@
+[user]
+	name = {{ (bitwardenFields "item" "chezmoi").firstName.value }} {{ (bitwardenFields "item" "chezmoi").lastName.value }}
+	email = {{ (bitwardenFields "item" "chezmoi").email.value }}
+[core]
+	editor = vim
+[alias]
+	co = checkout
+	cob = checkout -b
+	c = commit
+	pl = pull
+	pu = push
+	st = status
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
