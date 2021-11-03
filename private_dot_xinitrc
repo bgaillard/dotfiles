@@ -1,0 +1,2 @@
+feh --bg-scale /home/baptiste/Downloads/homeworld_desktop.png &
+exec dwm

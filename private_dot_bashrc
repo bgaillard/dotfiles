@@ -42,17 +42,6 @@ fi
 
 
 ########################################################################################################################
-# Aliases
-########################################################################################################################
-
-# You may want to put all your additions into a separate file like  ~/.bash_aliases, instead of adding them here
-# directly. See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-
-########################################################################################################################
 # Bash-it
 ########################################################################################################################
 
@@ -195,6 +184,19 @@ export SCM_CHECK=true
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
+
+
+########################################################################################################################
+# Aliases
+########################################################################################################################
+
+# WARNING: This must be placed after sourcing bash-it to work!
+#
+# You may want to put all your additions into a separate file like  ~/.bash_aliases, instead of adding them here
+# directly. See /usr/share/doc/bash-doc/examples in the bash-doc package.
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
 
 ########################################################################################################################
