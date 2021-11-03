@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# shellcheck disable=SC1090,SC1091
-
 # WARNING: rights to this file should be 600, by default most Linux distributions use 644 instead which is not ideal.
 #
 # see https://steflan-security.com/linux-privilege-escalation-exploiting-bashrc/
@@ -11,6 +9,16 @@ case $- in
   *i*) ;;
     *) return;;
 esac
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 # Don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -129,6 +137,10 @@ export BASH_IT_THEME='pure'
 # cloned bash-it with a remote other than origin such as `bash-it`.
 # export BASH_IT_REMOTE='bash-it'
 
+# (Advanced): Change this to the name of the main development branch if
+# you renamed it or if it was changed for some reason
+# export BASH_IT_DEVELOPMENT_BRANCH='master'
+
 # Your place for hosting Git repos. I use this for private repos.
 export GIT_HOSTING='git@git.domain.com'
 
@@ -144,6 +156,10 @@ export TODO="t"
 
 # Set this to false to turn off version control status checking within the prompt for all themes
 export SCM_CHECK=true
+# Set to actual location of gitstatus directory if installed
+#export SCM_GIT_GITSTATUS_DIR="$HOME/gitstatus"
+# per default gitstatus uses 2 times as many threads as CPU cores, you can change this here if you must
+#export GITSTATUS_NUM_THREADS=8
 
 # Set Xterm/screen/Tmux title with only a short hostname.
 # Uncomment this (or set SHORT_HOSTNAME to something else),
@@ -154,6 +170,13 @@ export SCM_CHECK=true
 # Uncomment this (or set SHORT_USER to something else),
 # Will otherwise fall back on $USER.
 #export SHORT_USER=${USER:0:8}
+
+# If your theme use command duration, uncomment this to
+# enable display of last command duration.
+#export BASH_IT_COMMAND_DURATION=true
+# You can choose the minimum time in seconds before
+# command duration is displayed.
+#export COMMAND_DURATION_MIN_SECONDS=1
 
 # Set Xterm/screen/Tmux title with shortened command and directory.
 # Uncomment this to set.
@@ -177,10 +200,13 @@ source "$BASH_IT"/bash_it.sh
 ########################################################################################################################
 # fzf
 ########################################################################################################################
-
-# shellcheck disable=SC1091
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-. ~/scripts/z.sh
+
+
+########################################################################################################################
+# z
+########################################################################################################################
+. ~/.local/bin/z.sh
 
 
 ########################################################################################################################
@@ -190,20 +216,15 @@ export PATH=$PATH:/usr/local/go/bin
 
 
 ########################################################################################################################
-# Node.js
+# Node
 ########################################################################################################################
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
-# Configure NPM only for the user (prevent to use root access for global installs).
-#
-# see https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md
-mkdir -p "${HOME}/.npm-packages"
-NPM_PACKAGES="${HOME}/.npm-packages"
 
-export PATH="$PATH:$NPM_PACKAGES/bin"
-
-# Preserve MANPATH if you already defined it somewhere in your config. Otherwise, fall back to `manpath` so we can
-# inherit from `/etc/manpath`.
-export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+########################################################################################################################
+# Rust
+########################################################################################################################
+. "$HOME/.cargo/env"
 
 
 ########################################################################################################################
@@ -218,9 +239,9 @@ complete -C ~/.local/bin/terraform terraform
 export PATH="$HOME/.serverless/bin:$PATH"
 
 
-########################################################################################################################
+#######################################################################################################################
 # Utility functions
-########################################################################################################################
+#######################################################################################################################
 
 # Generate a random password
 gpw() {
@@ -228,9 +249,9 @@ gpw() {
 }
 
 
-########################################################################################################################
+#######################################################################################################################
 # Various tricks
-########################################################################################################################
+#######################################################################################################################
 
 # Allow Ctrl+Z to work for 'bg' too.
 #

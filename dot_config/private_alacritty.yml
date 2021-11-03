@@ -595,13 +595,12 @@ debug:
   # Log level
   #
   # Values for `log_level`:
-  #   - None
   #   - Error
   #   - Warn
   #   - Info
   #   - Debug
   #   - Trace
-  log_level: None
+  log_level: Info
 
   # Print all received window events.
   print_events: false
