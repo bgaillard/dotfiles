@@ -260,3 +260,8 @@ gpw() {
 # see https://serverfault.com/questions/283678/whats-the-short-cut-for-fg-in-linux#answer-705440
 stty susp undef
 bind '"\C-z":"fg\015"'
+
+# Fix Tmux with powerline initialization
+#
+# see https://github.com/powerline/powerline/issues/1566#issuecomment-206996590
+powerline-config tmux setup
