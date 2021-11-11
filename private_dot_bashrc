@@ -10,6 +10,11 @@ case $- in
     *) return;;
 esac
 
+
+#########################################################################################################################
+# PATH
+#########################################################################################################################
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] && ! echo "$PATH" | grep "$HOME/bin" ; then
     PATH="$HOME/bin:$PATH"
@@ -19,6 +24,11 @@ fi
 if [ -d "$HOME/.local/bin" ] && ! echo "$PATH" | grep "$HOME/.local/bin" ; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
+
+
+#########################################################################################################################
+# HISTORY
+#########################################################################################################################
 
 # Don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -196,6 +206,24 @@ source "$BASH_IT"/bash_it.sh
 # directly. See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+
+#########################################################################################################################
+# Dropbox
+#########################################################################################################################
+
+# The 'dropbox' script is created by fresh install in '~/.local/bin"
+if which dropbox >/dev/null ; then
+    status=$(dropbox status)
+
+    if [ "${status}" == "Dropbox isn't running!" ] ; then
+        dropbox start
+    elif [ "${status}" != "Up to date" ] ; then
+        echo "Failed to start Dropbox!"
+        # TODO: Find a clean way to notify and log
+        #       see https://wiki.archlinux.org/title/Desktop_notifications
+    fi
 fi
 
 
