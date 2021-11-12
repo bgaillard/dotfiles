@@ -1,2 +1,30 @@
-feh --bg-scale /home/baptiste/Downloads/homeworld_desktop.png &
+# We use default Freedesktop.org user directories
+#
+# See '/etc/xdg/user-dirs.conf' and '/etc/xdg/user-dirs.defaults'.
+#
+# https://www.freedesktop.org/wiki/Software/xdg-user-dirs/
+test -f ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs && source ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs
+XDG_PICTURES_DIR=${XDG_CONFIG_HOME:-$HOME/Pictures}
+
+# Desktop wallpaper
+#
+# WARNING: As we keep our wallpapers in GIT we should take care about images licenses
+#  - https://www.gnome-look.org
+feh --bg-scale ${XDG_PICTURES_DIR}/Wallpapers/pexels-valiphotos-589840.jpg &
+
+# Screen locker
+#
+# Warning, the 'slock' executable requires root rights to be executed, otherwise the following error will be returned.
+#
+#    slock: unable to disable OOM killer. Make sure to suid or sgid slock.
+#
+# To prevent this change the rights of the 'slock' executable to have the 'suid' the following way.
+#
+#    chown root:root slock
+#    chmod +s slock
+xautolock -time 1 -locker slock -nowlocker slock -detectsleep -corners 000+ -cornerdelay 3 &
+
+# TODO: Also use 'vlock'
+
+# Execute dwm
 exec dwm
