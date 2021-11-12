@@ -1,3 +1,14 @@
+# Monitors
+#
+# Get detailed monitor descriptions with 'sudo hwinfo --monitor'
+#
+# TODO: Use 'autorandr' to speed-up configuration
+xrandr --auto --output eDP-1 --mode 1920x1080 --rate 60 --below DP-2 --primary # Home - XPS-13  - 06VG6 B133HAN LCD Monitor
+xrandr --auto --output DP-2  --mode 3840x2160 --rate 30 --above DP-1           # Home - Samsung - U32R59x
+
+# see https://wiki.archlinux.org/title/Cursor_themes
+xrdb ~/.Xresources
+
 # We use default Freedesktop.org user directories
 #
 # See '/etc/xdg/user-dirs.conf' and '/etc/xdg/user-dirs.defaults'.
