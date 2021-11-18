@@ -1,0 +1,6 @@
+.editorconfig
+.gitignore
+.pre-commit-config.yaml
+Makefile
+README.md
+scan.sh

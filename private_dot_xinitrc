@@ -1,10 +1,11 @@
 # Monitors
 #
-# Get detailed monitor descriptions with 'sudo hwinfo --monitor'
+# - Use 'arandr' to configure display with UI
+# - Get detailed monitor descriptions with 'sudo hwinfo --monitor'
 #
 # TODO: Use 'autorandr' to speed-up configuration
-xrandr --auto --output eDP-1 --mode 1920x1080 --rate 60 --below DP-2 --primary # Home - XPS-13  - 06VG6 B133HAN LCD Monitor
 xrandr --auto --output DP-2  --mode 3840x2160 --rate 30 --above DP-1           # Home - Samsung - U32R59x
+xrandr --auto --output eDP-1 --mode 1920x1080 --rate 60 --below DP-2 --primary # Home - XPS-13  - 06VG6 B133HAN LCD Monitor
 
 # see https://wiki.archlinux.org/title/Cursor_themes
 xrdb ~/.Xresources
@@ -21,7 +22,9 @@ XDG_PICTURES_DIR=${XDG_CONFIG_HOME:-$HOME/Pictures}
 #
 # WARNING: As we keep our wallpapers in GIT we should take care about images licenses
 #  - https://www.gnome-look.org
-feh --bg-scale ${XDG_PICTURES_DIR}/Wallpapers/pexels-valiphotos-589840.jpg &
+#
+# https://wiki.archlinux.org/title/feh
+feh --bg-fill --randomize ${XDG_PICTURES_DIR}/Wallpapers/* &
 
 # Screen locker
 #
@@ -34,6 +37,9 @@ feh --bg-scale ${XDG_PICTURES_DIR}/Wallpapers/pexels-valiphotos-589840.jpg &
 #    chown root:root slock
 #    chmod +s slock
 xautolock -time 1 -locker slock -nowlocker slock -detectsleep -corners 000+ -cornerdelay 3 &
+
+# Custom dwn status bar
+~/.local/bin/statusbar.sh &
 
 # TODO: Also use 'vlock'
 
