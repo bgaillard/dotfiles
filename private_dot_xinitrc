@@ -7,6 +7,11 @@
 xrandr --auto --output DP-2  --mode 3840x2160 --rate 30 --above DP-1           # Home - Samsung - U32R59x
 xrandr --auto --output eDP-1 --mode 1920x1080 --rate 60 --below DP-2 --primary # Home - XPS-13  - 06VG6 B133HAN LCD Monitor
 
+# Typematic delay and rate
+#
+# see https://wiki.archlinux.org/title/Xorg/Keyboard_configuration
+xset r rate 150 40
+
 # see https://wiki.archlinux.org/title/Cursor_themes
 xrdb ~/.Xresources
 
