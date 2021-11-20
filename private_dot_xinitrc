@@ -43,8 +43,11 @@ feh --bg-fill --randomize ${XDG_PICTURES_DIR}/Wallpapers/* &
 #    chmod +s slock
 xautolock -time 1 -locker slock -nowlocker slock -detectsleep -corners 000+ -cornerdelay 3 &
 
+# Dunst notification deamon
+dunst &
+
 # Custom dwn status bar
-~/.local/bin/statusbar.sh &
+~/.local/bin/statusbar.sh --loop &
 
 # TODO: Also use 'vlock'
 

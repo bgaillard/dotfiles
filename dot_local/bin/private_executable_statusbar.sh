@@ -33,21 +33,27 @@ function volume() {
 
     front_left=$(echo "${master}"| grep 'Front Left:' | sed 's/.*\[\(.*\)%\].*/\1/g')
     on_off=$(echo "${master}" | grep 'Front Left:' | sed 's/.*\[.*\%] \[\(.*\)\].*/\1/g')
+    message="${icon} ${front_left}%"
 
     if [ "${on_off}" == "off" ] ; then
         icon="${off_icon}"
+        message="${icon} muted"
     elif [ "${front_left}" -gt 80 ] ; then
         icon="${high_icon}"
     fi
 
-    echo -e "${icon} ${front_left}%"
+    echo -e "${message}"
 }
 
 function wifi_essid() {
     iwgetid | sed 's/.*ESSID:"\(.*\)"/\1/g'
 }
 
-while true; do
+if [ "${1}" == "--loop" ] ; then
+    while true; do
+        xsetroot -name " $(wifi_essid) | $(volume) | $(battery) | $(date --rfc-3339=seconds)"
+        sleep 1
+    done
+else
     xsetroot -name " $(wifi_essid) | $(volume) | $(battery) | $(date --rfc-3339=seconds)"
-    sleep 1
-done
+fi
