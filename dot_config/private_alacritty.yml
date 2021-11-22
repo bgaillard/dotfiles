@@ -16,6 +16,9 @@
 #    TERM: xterm-256color-italic
 
 window:
+  # Background opacity
+  opacity: 1
+
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels. If both are zero this
@@ -337,9 +340,6 @@ schemes:
       white: '0xFFFAFA'
 
 colors: *blood_moon
-
-# Background opacity
-background_opacity: 1
 
 # Key bindings
 #
