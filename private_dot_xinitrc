@@ -41,7 +41,7 @@ feh --bg-fill --randomize ${XDG_PICTURES_DIR}/Wallpapers/* &
 #
 #    chown root:root slock
 #    chmod +s slock
-xautolock -time 1 -locker slock -nowlocker slock -detectsleep -corners 000+ -cornerdelay 3 &
+xautolock -time 1 -locker slock -nowlocker slock -detectsleep -corners 00-+ -cornerdelay 3 &
 
 # Dunst notification deamon
 dunst &
