@@ -6,3 +6,6 @@ fi
 if [[ ! ${DISPLAY} && ${XDG_VTNR} == 1 ]] ; then
     exec startx
 fi
+
+# Ruby
+which rbenv >/dev/null && eval "$(rbenv init - bash)"
