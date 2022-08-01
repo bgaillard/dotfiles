@@ -9,3 +9,4 @@ Exec=/usr/bin/google-chrome-stable %U
 Type=Application
 Categories=Network
 Icon=google-chrome
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;

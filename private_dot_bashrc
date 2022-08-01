@@ -287,6 +287,12 @@ complete -C ~/.local/bin/terraform terraform
 export PATH="$HOME/.serverless/bin:$PATH"
 
 
+########################################################################################################################
+# Texlive
+########################################################################################################################
+export PATH="$PATH:/usr/local/texlive/2022/bin/x86_64-linux"
+
+
 #######################################################################################################################
 # Utility functions
 #######################################################################################################################
@@ -310,4 +316,4 @@ bind '"\C-z":"fg\015"'
 # Fix Tmux with powerline initialization
 #
 # see https://github.com/powerline/powerline/issues/1566#issuecomment-206996590
-powerline-config tmux setup
+powerline-config tmux setup &> /dev/null

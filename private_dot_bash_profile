@@ -9,3 +9,5 @@ fi
 
 # Ruby
 which rbenv >/dev/null && eval "$(rbenv init - bash)"
+
+export PATH="$HOME/.poetry/bin:$PATH"

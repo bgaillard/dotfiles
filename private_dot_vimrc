@@ -16,6 +16,45 @@ let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 nnoremap <SPACE> <Nop>
 let mapleader = "\<Space>"
 
+function! AFWOpen()
+    let l:cfile = expand("<cfile>")
+    execute "silent !curl --max-time 1 -sX POST http://localhost:8080/actions -H 'Content-Type: application/json' -d'{\"name\": \"OPEN\", \"text\": \"" .. l:cfile .. "\"}'"
+    redraw!
+endfunction
+
+function! AFWYank()
+    let l:i = 0
+    let l:text = ""
+    let l:line = ""
+    for s in v:event.regcontents
+        let l:i += 1
+        let l:line = s
+        let l:line = substitute(l:line, '\', '\\\', "g")     " Escape backslash (required for JSON)
+        let l:line = substitute(l:line, '\t', "\\\\t", "g")  " Escape \t (required for JSON)
+        let l:line = substitute(l:line, '"', '\\"', "g")     " Escape double quotes (required for JSON)
+        let l:line = substitute(l:line, "!", "\\\\\!", "g")  " Escape exclamation mark (required by vim command)
+        let l:line = substitute(l:line, "'", "'\\\\''", "g") " Escape simple quotes (required for the curl -d arg)
+        let l:text = l:text . l:line
+
+        if l:i < len(v:event.regcontents)
+            let l:text .= "\\n"
+        endif
+    endfor
+    let l:action = '{"name": "COPY_TO_CLIPBOARD", "text": "' . l:text . '"}'
+    echom l:action
+    let l:command = "silent !curl --max-time 1 -sX POST http://localhost:8080/actions -H 'Content-Type: application/json' -d'" . l:action . "'"
+    execute l:command
+    redraw!
+endfunction
+
+nnoremap <silent> gx :call AFWOpen()<cr>
+"vnoremap <silent> "+y :call Paste()<cr>
+
+augroup AFW
+    autocmd!
+    autocmd TextYankPost * if v:event.operator ==# 'y' | call AFWYank() | endif
+augroup END
+
 " Speed-up syntax Highlighting
 "
 " see https://vim.fandom.com/wiki/Speed_up_Syntax_Highlighting
@@ -121,7 +160,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'cespare/vim-toml'
 Plug 'hashivim/vim-terraform'
 Plug 'martinda/Jenkinsfile-vim-syntax'
-Plug 'plasticboy/vim-markdown'
+"Plug 'plasticboy/vim-markdown'
 Plug 'evidens/vim-twig'
 
 " Languages
@@ -250,7 +289,7 @@ highlight SpecialKey ctermfg=236 ctermbg=234:w
 let g:ale_fix_on_save = 1
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   '*': ['remove_trailing_lines', 'trim_whitespace' ],
 \   'python': ['autopep8', 'black', 'isort']
 \}
 
@@ -457,7 +496,8 @@ let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 "
 " see https://github.com/plasticboy/vim-markdown
 "-----------------------------------------------------------------------------------------------------------------------
-let g:vim_markdown_folding_disabled = 1
+"let g:vim_markdown_folding_disabled = 1
+"let g:vim_markdown_no_default_key_mappings = 1
 
 "autocmd BufReadPost * :redraw
 

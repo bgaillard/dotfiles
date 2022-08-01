@@ -44,6 +44,12 @@ alias vi="vim"
 alias v="vim"
 alias v.="vim ."
 
+# Neovim
+alias neovim="nvim.appimage"
+alias nvim="nvim.appimage"
+alias nv="neovim"
+alias nv.="neovim ."
+
 # If user is not root, pass all commands via sudo #
 if [ $UID -ne 0 ]; then
     alias halt="sudo halt"

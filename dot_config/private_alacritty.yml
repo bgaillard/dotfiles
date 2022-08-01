@@ -74,10 +74,12 @@ font:
   # The normal (roman) font face to use.
   # Style can be specified to pick a specific face.
   normal:
+    family: "Cousine NF"
+    # family: "Droid Sans Mono for Powerline Nerd Font Complete"
     # family: "Anonymous Pro"
     # family: "Bitstream Vera Sans Mono"
     # family: Consolas
-    family: "DejaVu Sans Mono"
+    # family: "DejaVu Sans Mono"
     # family: "Envy Code R"
     # family: Inconsolata
     # family: Monaco
@@ -91,10 +93,12 @@ font:
 
   # The bold font face
   bold:
+    family: "Cousine NF"
+    # family: "Droid Sans Mono for Powerline Nerd Font Complete"
     # family: "Anonymous Pro"
     # family: "Bitstream Vera Sans Mono"
     # family: Consolas
-    family: "DejaVu Sans Mono"
+    # family: "DejaVu Sans Mono"
     # family: "Envy Code R"
     # family: Inconsolata
     # family: Monaco
@@ -108,10 +112,12 @@ font:
 
   # The italic font face
   italic:
+    family: "Cousine NF"
+    # family: "Droid Sans Mono for Powerline Nerd Font Complete"
     # family: "Anonymous Pro"
     # family: "Bitstream Vera Sans Mono"
     # family: Consolas
-    family: "DejaVu Sans Mono"
+    # family: "DejaVu Sans Mono"
     # family: "Envy Code R"
     # family: Inconsolata
     # family: Monaco
