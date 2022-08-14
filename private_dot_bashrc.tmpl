@@ -229,7 +229,7 @@ if which dropbox >/dev/null ; then
         #       see https://wiki.archlinux.org/title/Desktop_notifications
     fi
 fi
-{{ end }}
+{{- end }}
 
 
 ########################################################################################################################
@@ -319,3 +319,30 @@ bind '"\C-z":"fg\015"'
 #
 # see https://github.com/powerline/powerline/issues/1566#issuecomment-206996590
 powerline-config tmux setup &> /dev/null
+
+
+{{ if eq .chezmoi.username "vagrant" -}}
+#######################################################################################################################
+# My Money Bank
+#######################################################################################################################
+TERM=screen-256color-s
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Asdf
+. /home/vagrant/.asdf/asdf.sh
+. /home/vagrant/.asdf/completions/asdf.bash
+export ASDF_DIR=~/.asdf
+export PATH=$PATH:${ASDF_DIR}/bin
+
+# Poetry
+export PATH=$PATH:$HOME/.poetry/bin
+
+# Krew
+export PATH=$PATH:$HOME/.krew/bin
+
+# Maven
+export PATH=$PATH:/opt/apache-maven-3.8.6/bin
+{{- end }}
