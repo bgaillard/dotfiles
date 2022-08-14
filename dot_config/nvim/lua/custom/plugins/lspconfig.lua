@@ -48,8 +48,8 @@ local servers = {
   "marksman",
 
   -- Python
-  "jedi_language_server",
-  "pylsp",
+  "jedi_language_server", -- pip install --user python-language-server
+  "pylsp",                -- pip install --user python-lsp-server
   "pyre",
   "pyright",
 
