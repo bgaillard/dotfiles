@@ -19,13 +19,14 @@ auto_view text/html
 alternative_order text/plain text/enriched text/html
 
 # General email settings
-set realname='{{ (bitwardenFields "item" "chezmoi").firstName.value }} {{ (bitwardenFields "item" "chezmoi").lastName.value }}'
+set realname='{{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").firstName.value }} {{ (bitwardenFields
+"item" "40322edd-657a-49f2-b509-adbb0135e41d").lastName.value }}'
 set ssl_starttls=yes
 set ssl_force_tls=yes
 
 # Hotmail
-set imap_user = '{{ (bitwardenFields "item" "chezmoi").hotmailEmail.value }}'
-set imap_pass = '{{ (bitwardenFields "item" "chezmoi").hotmailPassword.value }}'
+set imap_user = '{{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").hotmailEmail.value }}'
+set imap_pass = '{{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").hotmailPassword.value }}'
 set from= $imap_user
 set use_from=yes
 set folder = imaps://imap-mail.outlook.com:993
