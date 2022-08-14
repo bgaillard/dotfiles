@@ -48,10 +48,10 @@ local servers = {
   "marksman",
 
   -- Python
-  "jedi_language_server",
-  "pylsp",
-  "pyre",
-  "pyright",
+  "jedi_language_server", -- pip install --user python-language-server
+  "pylsp",                -- pip install --user python-lsp-server
+  "pyre",                 -- sudo apt install watchman
+  "pyright",              -- pip install --user pyright
 
   -- SQL
   "sqlls",
