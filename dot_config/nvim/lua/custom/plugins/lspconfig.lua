@@ -50,8 +50,8 @@ local servers = {
   -- Python
   "jedi_language_server", -- pip install --user python-language-server
   "pylsp",                -- pip install --user python-lsp-server
-  "pyre",
-  "pyright",
+  "pyre",                 -- sudo apt install watchman
+  "pyright",              -- pip install --user pyright
 
   -- SQL
   "sqlls",
