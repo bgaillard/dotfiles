@@ -1,33 +1,32 @@
 [user]
-	name = {{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").firstName.value }} {{ (bitwardenFields
-    "item" "40322edd-657a-49f2-b509-adbb0135e41d").lastName.value }}
-	email = {{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").email.value }}
+  name = {{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").firstName.value }} {{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").lastName.value }}
+  email = {{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").email.value }}
 [core]
-	editor = vim
-    excludesfile = /home/vagrant/.gitignore_global
-    autocrlf = input
+  editor = {{ .chezmoi.homeDir }}/.local/bin/nvim.appimage
+  excludesfile = /home/vagrant/.gitignore_global
+  autocrlf = input
 [alias]
-	co = checkout
-	cob = checkout -b
-	c = commit
-	pl = pull
-	pu = push
-	st = status
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  co = checkout
+  cob = checkout -b
+  c = commit
+  pl = pull
+  pu = push
+  st = status
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 {{ if eq .chezmoi.username "vagrant" -}}
 #######################################################################################################################
 # My Money Bank
 #######################################################################################################################
 [http]
-    sslcainfo = {{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").sslcainfo.value }}
-    postBuffer = 1048576000
+   sslcainfo = {{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").sslcainfo.value }}
+   postBuffer = 1048576000
 [url "https://{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHttpsUsername.value }}:{{
 (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHttpsPassword.value }}@{{ (bitwardenFields "item"
 "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHost1.value }}"]
-    insteadOf = https://{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHost1.value }}
+  insteadOf = https://{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHost1.value }}
 [url "https://{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHttpsUsername.value }}:{{
 (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHttpsPassword.value }}@{{ (bitwardenFields "item"
 "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHost1.value }}"]
-   insteadOf = https://{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHost2.value }}
+  insteadOf = https://{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHost2.value }}
 {{- end }}
