@@ -155,6 +155,23 @@ M.plugins = {
       }
     },
 
+    -- telescope
+    --
+    -- https://github.com/nvim-telescope/telescope.nvim
+    -- https://github.com/nvim-telescope/telescope-media-files.nvim
+    ["nvim-telescope/telescope.nvim"] = {
+      extensions = {
+        media_files = {
+          find_cmd = "rg"
+        }
+      },
+      extensions_list = {
+        "media_files",
+        "themes",
+        "terms"
+      },
+    },
+
     -- treesitter
     --
     -- https://github.com/nvim-treesitter/nvim-treesitter

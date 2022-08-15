@@ -82,6 +82,11 @@ return {
     end,
   },
 
+  -- popup.nvim
+  --
+  -- https://github.com/nvim-telescope/telescope-media-files.nvim
+  ["nvim-lua/popup.nvim"] = {},
+
   -- spellsitter
   --
   -- https://github.com/lewis6991/spellsitter.nvim
@@ -90,6 +95,11 @@ return {
       require('spellsitter').setup()
     end
   },
+
+  -- telescope
+  --
+  -- https://github.com/nvim-telescope/telescope-media-files.nvim
+  ["nvim-telescope/telescope-media-files.nvim"] = {},
 
   -- tmux.nvim
   --
