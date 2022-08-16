@@ -92,6 +92,7 @@ M.plugins = {
         "debugpy",
         "flake8",
         "isort",
+        "jedi-language-server",
         "mypy",
         "pylint",
         "python-lsp-server",
@@ -166,7 +167,7 @@ M.plugins = {
         }
       },
       extensions_list = {
-        "media_files",
+        "fzy_native",
         "themes",
         "terms"
       },

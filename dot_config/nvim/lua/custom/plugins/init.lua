@@ -96,11 +96,6 @@ return {
     end
   },
 
-  -- telescope
-  --
-  -- https://github.com/nvim-telescope/telescope-media-files.nvim
-  ["nvim-telescope/telescope-media-files.nvim"] = {},
-
   -- tmux.nvim
   --
   -- https://github.com/aserowy/tmux.nvim
