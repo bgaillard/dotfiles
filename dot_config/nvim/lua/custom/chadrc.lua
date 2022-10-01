@@ -1,6 +1,5 @@
 local M = {}
 
-
 M.plugins = {
   user = require "custom.plugins",
 
@@ -167,7 +166,12 @@ M.plugins = {
         }
       },
       extensions_list = {
-        "fzy_native",
+
+        -- Added extensions
+        "emoji",
+        "fzf",
+
+        -- Default NvChad configuration from 'lua/plugins/configs/telescope.lua'
         "themes",
         "terms"
       },

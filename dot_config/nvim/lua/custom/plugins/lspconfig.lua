@@ -80,8 +80,40 @@ local servers = {
 }
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+
+  -- Specific "ltex" setup
+  if lsp == "ltex" then
+    lspconfig[lsp].setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        ltex = {
+          dictionary = {
+            ["en-US"] = {
+              "Javascript", "Python",
+              "SLI", "SLIs"
+            }
+          },
+          latex = {
+            commands = {
+              ["\\setbeamercolor{}{}"] = "ignore",
+              ["\\setbeamertemplate{}"] = "ignore",
+              ["\\thesection"] = "ignore",
+              ["\\thesubsection"] = "ignore",
+              ["\\usefonttheme{}"] = "ignore",
+              ["\\usetheme{}"] = "ignore"
+            }
+          }
+        }
+      }
+    }
+
+  -- Generic setup
+  else
+    lspconfig[lsp].setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
+  end
+
 end

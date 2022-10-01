@@ -96,6 +96,19 @@ return {
     end
   },
 
+  -- telescope-emoji.nvim
+  --
+  -- https://github.com/xiyaowong/telescope-emoji.nvim
+  ["xiyaowong/telescope-emoji.nvim"] = {},
+
+  -- telescope-fzf-native.nvim
+  --
+  -- https://github.com/nvim-telescope/telescope-fzf-native.nvim#telescope-fzf-nativenvim
+  ["nvim-telescope/telescope-fzf-native.nvim"] = {
+    after = "telescope.nvim",
+    run   = "make"
+  },
+
   -- tmux.nvim
   --
   -- https://github.com/aserowy/tmux.nvim
