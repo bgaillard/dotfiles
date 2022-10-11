@@ -96,6 +96,11 @@ return {
     end
   },
 
+  -- vim-fugitive
+  --
+  -- https://github.com/tpope/vim-fugitive
+  ["tpope/vim-fugitive"] = {},
+
   -- telescope-emoji.nvim
   --
   -- https://github.com/xiyaowong/telescope-emoji.nvim
