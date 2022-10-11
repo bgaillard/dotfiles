@@ -1,7 +1,21 @@
 -- https://alpha2phi.medium.com/learn-neovim-the-practical-way-8818fcf4830f
 -- https://github.com/rockerBOO/awesome-neovim
 
+local overrides = require "custom.plugins.overrides"
+
 return {
+
+  -- nvim-neoclip.lua
+  --
+  -- https://github.com/AckslD/nvim-neoclip.lua
+  ["AckslD/nvim-neoclip.lua"] = {
+    requires = {
+      "nvim-telescope/telescope.nvim"
+    },
+    config = function()
+      require("neoclip").setup()
+    end,
+  },
 
   -- auto-save
   --
@@ -36,6 +50,7 @@ return {
   --
   -- https://github.com/neovim/nvim-lspconfig
   ["neovim/nvim-lspconfig"] = {
+    override_options = overrides.lspconfig,
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.plugins.lspconfig"
@@ -82,6 +97,20 @@ return {
     end,
   },
 
+  -- nvim-tree
+  --
+  -- https://github.com/kyazdani42/nvim-tree.lua
+  ["kyazdani42/nvim-tree.lua"] = {
+    override_options = overrides.nvimtree
+  },
+
+  -- treesitter
+  --
+  -- https://github.com/nvim-treesitter/nvim-treesitter
+  ["nvim-treesitter/nvim-treesitter"] = {
+    override_options = overrides.treesitter
+  },
+
   -- popup.nvim
   --
   -- https://github.com/nvim-telescope/telescope-media-files.nvim
@@ -101,16 +130,28 @@ return {
   -- https://github.com/tpope/vim-fugitive
   ["tpope/vim-fugitive"] = {},
 
+  -- vim-surround
+  --
+  -- https://github.com/tpope/vim-surround
+  ["tpope/vim-surround"] = {},
+
   -- telescope-emoji.nvim
   --
   -- https://github.com/xiyaowong/telescope-emoji.nvim
   ["xiyaowong/telescope-emoji.nvim"] = {},
 
+  -- telescope
+  --
+  -- https://github.com/nvim-telescope/telescope.nvim
+  -- https://github.com/nvim-telescope/telescope-media-files.nvim
+  ["nvim-telescope/telescope.nvim"] = {
+    override_options = overrides.telescope
+  },
+
   -- telescope-fzf-native.nvim
   --
   -- https://github.com/nvim-telescope/telescope-fzf-native.nvim#telescope-fzf-nativenvim
   ["nvim-telescope/telescope-fzf-native.nvim"] = {
-    after = "telescope.nvim",
     run   = "make"
   },
 
@@ -141,4 +182,11 @@ return {
       }
     end
   },
+
+  -- mason
+  --
+  -- https://github.com/williamboman/mason.nvim
+  ["williamboman/mason.nvim"] = {
+    override_options = overrides.mason
+  }
 }
