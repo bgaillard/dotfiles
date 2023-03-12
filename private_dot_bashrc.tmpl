@@ -222,7 +222,12 @@ source "$BASH_IT"/bash_it.sh
 # You may want to put all your additions into a separate file like  ~/.bash_aliases, instead of adding them here
 # directly. See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
+fi
+
+# Specific computer aliases
+if [ -f /home/vagrant/workspace/baptiste.gaillard/.bash_aliases ] ; then
+  . /home/vagrant/workspace/baptiste.gaillard/.bash_aliases
 fi
 
 
@@ -315,9 +320,9 @@ export PATH="$HOME/.serverless/bin:$PATH"
 export PATH="$PATH:/usr/local/texlive/2022/bin/x86_64-linux"
 
 
-#######################################################################################################################
+########################################################################################################################
 # Utility functions
-#######################################################################################################################
+########################################################################################################################
 
 # Generate a random password
 gpw() {
@@ -325,9 +330,9 @@ gpw() {
 }
 
 
-#######################################################################################################################
+########################################################################################################################
 # Various tricks
-#######################################################################################################################
+########################################################################################################################
 
 # Allow Ctrl+Z to work for 'bg' too.
 #
@@ -341,30 +346,9 @@ bind '"\C-z":"fg\015"'
 powerline-config tmux setup &> /dev/null
 
 
-{{ if eq .chezmoi.username "vagrant" -}}
-#######################################################################################################################
-# My Money Bank
-#######################################################################################################################
-TERM=screen-256color-s
-
-export NODE_EXTRA_CA_CERTS=/home/vagrant/zscaler_root_CA.cer
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Asdf
-. /home/vagrant/.asdf/asdf.sh
-. /home/vagrant/.asdf/completions/asdf.bash
-export ASDF_DIR=~/.asdf
-export PATH=$PATH:${ASDF_DIR}/bin
-
-# Poetry
-export PATH=$PATH:$HOME/.poetry/bin
-
-# Krew
-export PATH=$PATH:$HOME/.krew/bin
-
-# Maven
-export PATH=$PATH:/opt/apache-maven-3.8.6/bin
-{{- end }}
+########################################################################################################################
+# Specific computer bashrc files
+########################################################################################################################
+if [ -f /home/vagrant/workspace/baptiste.gaillard/.bashrc ] ; then
+  . /home/vagrant/workspace/baptiste.gaillard/.bashrc
+fi

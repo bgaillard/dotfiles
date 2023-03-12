@@ -60,9 +60,3 @@ if [ $UID -ne 0 ]; then
     # Package manager
     alias u="sudo apt update && sudo apt upgrade"
 fi
-
-# My Money bank
-{{ if eq .chezmoi.username "vagrant" -}}
-alias aws-azure-login='docker run --rm -it -e http_proxy="$http_proxy" -e https_proxy="$https_proxy" -e HTTP_PROXY="$http_proxy" -e HTTPS_PROXY="$http_proxy" -v ~/.aws:/root/.aws sportradar/aws-azure-login'
-alias antora='npx antora'
-{{- end }}
