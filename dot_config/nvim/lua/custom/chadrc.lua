@@ -1,20 +1,11 @@
 -- see https://github.com/NvChad/example_config
 local M = {}
 
-M.plugins = require "custom.plugins"
+M.plugins = "custom.plugins"
 
 M.ui = {
-  theme = "dark_horizon",
+  theme = "gatekeeper",
   transparency = true
 }
-
--- M.plugins = {
---   user = require "custom.plugins",
---
---   override = {
---
---
---   }
--- }
 
 return M

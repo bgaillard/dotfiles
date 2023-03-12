@@ -1,20 +1,31 @@
-local present, null_ls = pcall(require, "null-ls")
+ -- null-ls
+ --
+ -- https://github.com/jose-elias-alvarez/null-ls.nvim
+return {
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    after = "nvim-lspconfig",
+    config = function()
+      local present, null_ls = pcall(require, "null-ls")
 
-if not present then
-   return
-end
+      if not present then
+         return
+      end
 
-local sources = {
+      local sources = {
 
-   -- Python
-   -- null_ls.builtins.formatting.pylint,
+         -- Python
+         -- null_ls.builtins.formatting.pylint,
 
-   -- Shell
-   -- b.formatting.shfmt,
-   -- b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
-}
+         -- Shell
+         -- b.formatting.shfmt,
+         -- b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
+      }
 
-null_ls.setup {
-   debug = true,
-   sources = sources,
+      null_ls.setup {
+         debug = true,
+         sources = sources,
+      }
+    end,
+  },
 }
