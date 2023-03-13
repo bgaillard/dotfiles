@@ -19,9 +19,10 @@ return {
   -- https://github.com/sindrets/diffview.nvim
   {
     "sindrets/diffview.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    after = "plenary.nvim",
-    opt = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    },
+    lazy = false,
     config = function()
       require("diffview").setup {}
     end,
@@ -48,7 +49,7 @@ return {
     "ggandor/leap.nvim",
     lazy = false,
     config = function ()
-      require('leap').add_default_mappings()  
+      require('leap').add_default_mappings()
     end
   },
 
@@ -57,7 +58,7 @@ return {
   -- https://github.com/nvim-neotest/neotest
   {
     "nvim-neotest/neotest",
-    requires = {
+    dependencies = {
 
       -- required dependencies
       "nvim-lua/plenary.nvim",
@@ -88,7 +89,7 @@ return {
   -- https://github.com/AckslD/nvim-neoclip.lua
   {
     "AckslD/nvim-neoclip.lua",
-    requires = {
+    dependencies = {
       "nvim-telescope/telescope.nvim"
     },
     config = function()
@@ -123,7 +124,9 @@ return {
   -- https://github.com/folke/trouble.nvim
   {
     "folke/trouble.nvim",
-    after = "nvim-web-devicons",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
     config = function()
       require("trouble").setup {
         -- your configuration comes here

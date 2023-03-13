@@ -4,7 +4,9 @@
 return {
   {
     "jose-elias-alvarez/null-ls.nvim",
-    after = "nvim-lspconfig",
+    dependencies = {
+       "neovim/nvim-lspconfig",
+    },
     config = function()
       local present, null_ls = pcall(require, "null-ls")
 

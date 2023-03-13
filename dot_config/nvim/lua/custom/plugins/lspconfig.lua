@@ -125,6 +125,18 @@ return {
             }
           }
 
+        -- Specific "yamlls" setup
+        elseif lsp == "yamlls" then
+          lspconfig[lsp].setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+            settings = {
+              yaml = {
+                keyOrdering = false,
+              }
+            }
+          }
+
         -- Generic setup
         else
           lspconfig[lsp].setup {
