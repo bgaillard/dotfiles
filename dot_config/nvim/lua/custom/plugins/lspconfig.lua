@@ -4,6 +4,15 @@
 return {
   {
     "neovim/nvim-lspconfig",
+
+    -- https://nvchad.com/docs/config/format_lint
+    dependencies = {
+      "jose-elias-alvarez/null-ls.nvim",
+      config = function()
+        require "custom.configs.null-ls"
+      end,
+    },
+
     opts = {
       settings = {
         lua = {
@@ -75,7 +84,7 @@ return {
         "sqls",
 
         -- Terraform
-        "terraform_lsp",
+        --"terraform_lsp",
         "terraformls",
         "tflint",
 
@@ -99,10 +108,24 @@ return {
       for _, lsp in ipairs(servers) do
 
         -- Specific "ltex" setup
+        --
+        -- see https://valentjn.github.io/ltex/index.html
         if lsp == "ltex" then
           lspconfig[lsp].setup {
             on_attach = on_attach,
             capabilities = capabilities,
+
+            -- Default file types configured are documented at the bellow link.
+            --
+            -- see https://valentjn.github.io/ltex/supported-languages.html#markup-languages
+            --
+            -- You can enter the following command to get a list of all file types known by Neovim
+            --
+            --     :echo getcompletion('', 'filetype')
+            --
+            filetypes = {
+              "tex"
+            },
             settings = {
               ltex = {
                 dictionary = {

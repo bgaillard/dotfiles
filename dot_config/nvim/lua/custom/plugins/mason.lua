@@ -36,10 +36,10 @@ return {
         "jdtls",
 
         -- Javascript / Typescript
-        "chrome-debug-adapter",
+        --"chrome-debug-adapter",
         "eslint-lsp",
         "eslint_d",
-        "firefox-debug-adapter",
+        --"firefox-debug-adapter",
         "node-debug2-adapter",
         "quick-lint-js",
         "rome",

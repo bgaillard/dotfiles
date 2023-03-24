@@ -4,11 +4,17 @@ return {
   --
   -- https://github.com/Pocco81/auto-save.nvim
   {
-    "Pocco81/auto-save.nvim",
+    -- see https://github.com/Pocco81/auto-save.nvim/issues/56
+    --"Pocco81/auto-save.nvim",
+    "zoriya/auto-save.nvim",
     config = function()
       require("auto-save").setup {
-        -- your config goes here
-        -- or just leave it empty :)
+        enabled = true,
+        callbacks = {
+          before_saving = function()
+            return vim.lsp.buf.formatting_sync()
+          end
+        }
       }
     end,
     lazy = false
@@ -28,13 +34,6 @@ return {
     end,
   },
 
-  -- FixCursorHold.nvim
-  --
-  -- https://github.com/antoinemadec/FixCursorHold.nvim
-  {
-    "antoinemadec/FixCursorHold.nvim",
-  },
-
   -- Fugitive
   --
   -- https://github.com/tpope/vim-fugitive
@@ -45,13 +44,16 @@ return {
   -- Leap
   --
   -- https://github.com/ggandor/leap.nvim
-  {
-    "ggandor/leap.nvim",
-    lazy = false,
-    config = function ()
-      require('leap').add_default_mappings()
-    end
-  },
+  --
+  -- FIXME: Disabled because the 'x' character does not work to delete when we are in selection mode.
+  --
+  -- {
+  --   "ggandor/leap.nvim",
+  --   lazy = false,
+  --   config = function ()
+  --     require('leap').add_default_mappings()
+  --   end
+  -- },
 
   -- neotest
   --
@@ -114,6 +116,21 @@ return {
       require('tmux').setup({
         copy_sync = {
           enable = true
+        }
+      })
+    end,
+  },
+
+  -- Tokyo Night
+  --
+  -- see https://github.com/folke/tokyonight.nvim
+  {
+    "folke/tokyonight.nvim",
+    config = function()
+      require("lualine").setup({
+        options = {
+          theme = "tokyonight",
+          style = "night"
         }
       })
     end,

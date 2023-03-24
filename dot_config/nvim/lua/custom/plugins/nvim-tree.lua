@@ -6,6 +6,7 @@ return {
   opts = {
     git = {
       enable = true,
+      ignore = false
     },
     renderer = {
       icons = {
@@ -13,6 +14,9 @@ return {
           git = true,
         }
       }
-    }
+    },
+    view = {
+       width = 60
+     }
   },
 }
