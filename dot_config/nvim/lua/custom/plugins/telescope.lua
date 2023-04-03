@@ -14,6 +14,26 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     opts = {
+      defaults = {
+        file_ignore_patterns = {
+          ".git/",
+          ".mypy_cache/",
+          ".venv/",
+          "node_modules",
+        },
+        vimgrep_arguments = {
+          "rg",
+          "-L",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+          "--hidden",
+        },
+      },
+
       extensions = {
         media_files = {
           find_cmd = "rg"
@@ -31,6 +51,7 @@ return {
         "fzf",
 
       },
+
     }
   },
 
