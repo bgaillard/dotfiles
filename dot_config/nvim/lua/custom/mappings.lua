@@ -1,5 +1,17 @@
 local M = {}
 
+local function save_all_and_exit()
+
+  -- Close all nvterm terminals
+  local nvterm = require("nvterm.terminal")
+  nvterm.close_all_terms()
+
+  -- Save all and exit
+  vim.api.nvim_input('<ESC>')
+  vim.cmd(":wqa!<CR>")
+
+end
+
 M.general = {
   i = {
     -- Neovim Terminal emulator mappings
@@ -11,7 +23,13 @@ M.general = {
     ["<A-l>"] = { "<C-\\><C-N><C-w>l", "Navigate to right Window" },
 
     -- Save all and exit
-    ["<A-z>z"] = { "<ESC> :wqa!<CR>", "Save all and exit" },
+    ["<A-z>z"] = {
+      save_all_and_exit,
+      "Save all and exit",
+      opts = {
+        nowait = true
+      }
+    },
 
     -- Copilot
     --
@@ -23,7 +41,8 @@ M.general = {
         expr = true,
         script = true,
         silent = true,
-        nowait = true
+        nowait = true,
+        replace_keycodes = false
       }
     },
   },
@@ -38,7 +57,10 @@ M.general = {
     ["<A-l>"] = { "<C-w>l", "Navigate to right Window" },
 
     -- Save all and exit
-    ["<A-z>z"] = { ":wqa!<CR>", "Save all and exit" },
+    ["<A-z>z"] = {
+      save_all_and_exit,
+      "Save all and exit"
+    },
 
   }
 }
@@ -51,6 +73,15 @@ M.nvterm = {
     ["<A-j>"] = { "<C-\\><C-N><C-w>j", "Navigate to bottom Window" },
     ["<A-k>"] = { "<C-\\><C-N><C-w>k", "Navigate to top Window" },
     ["<A-l>"] = { "<C-\\><C-N><C-w>l", "Navigate to right Window" },
+
+    -- Save all and exit
+    ["<A-z>z"] = {
+      save_all_and_exit,
+      "Save all and exit",
+      opts = {
+        nowait = true
+      }
+    },
   }
 }
 
