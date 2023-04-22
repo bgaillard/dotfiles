@@ -9,7 +9,6 @@ return {
      --
      -- see https://github.com/nvim-tree/nvim-tree.lua
      disable_netrw = false,
-     hijack_netrw = false,
 
      git = {
        enable = true,
