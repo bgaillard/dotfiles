@@ -14,7 +14,7 @@ esac
 #########################################################################################################################
 # EDITOR
 #########################################################################################################################
-EDITOR=vi
+EDITOR="vi"
 
 if which nvim.appimage >/dev/null ; then
   EDITOR=nvim.appimage
@@ -147,7 +147,7 @@ export BASH_IT="${HOME}/.bash_it"
 #  - wanelo
 #  - zitron
 #  - zork
-export BASH_IT_THEME='pure'
+export BASH_IT_THEME="${HOME}/bash_it.theme.bash"
 
 # (Advanced): Change this to the name of your remote repo if you
 # cloned bash-it with a remote other than origin such as `bash-it`.
@@ -210,7 +210,7 @@ export SCM_CHECK=true
 # export BASH_IT_RELOAD_LEGACY=1
 
 # Load Bash It
-source "$BASH_IT"/bash_it.sh
+source "${BASH_IT}/bash_it.sh"
 
 
 ########################################################################################################################
@@ -222,12 +222,26 @@ source "$BASH_IT"/bash_it.sh
 # You may want to put all your additions into a separate file like  ~/.bash_aliases, instead of adding them here
 # directly. See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
+  . "${HOME}/.bash_aliases"
 fi
 
 # Specific computer aliases
 if [ -f /home/vagrant/workspace/baptiste.gaillard/.bash_aliases ] ; then
   . /home/vagrant/workspace/baptiste.gaillard/.bash_aliases
+fi
+
+
+########################################################################################################################
+# Google Cloud
+########################################################################################################################
+if [ -d "${HOME}/google-cloud-sdk" ] ; then
+
+  # The next line updates PATH for the Google Cloud SDK.
+  if [ -f "${HOME}/google-cloud-sdk/path.bash.inc" ]; then . "${HOME}/google-cloud-sdk/path.bash.inc"; fi
+
+  # The next line enables shell command completion for gcloud.
+  if [ -f "${HOME}/google-cloud-sdk/completion.bash.inc" ]; then . "${HOME}/google-cloud-sdk/completion.bash.inc"; fi
+
 fi
 
 
@@ -254,7 +268,7 @@ fi
 ########################################################################################################################
 # fzf
 ########################################################################################################################
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source "${HOME}/.fzf.bash"
 
 
 ########################################################################################################################
@@ -295,12 +309,18 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 #########################################################################################################################
 # Kubernetes
+#
+# - kube-ps1.sh is configured in ~/bash_it.theme.bash
 #########################################################################################################################
 if which kubectl >/dev/null ; then
     source <(kubectl completion bash)
 
     complete -F __start_kubectl k
 fi
+if [ -f "${HOME}/scripts/kube-ps1.sh" ] ; then
+  source "${HOME}/scripts/kube-ps1.sh"
+fi
+
 
 ########################################################################################################################
 # Terraform
