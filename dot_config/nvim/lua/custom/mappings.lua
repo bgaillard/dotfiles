@@ -12,6 +12,20 @@ M.general = {
 
     -- Save all and exit
     ["<A-z>z"] = { "<ESC> :wqa!<CR>", "Save all and exit" },
+
+    -- Copilot
+    --
+    -- https://github.com/github/copilot.vim
+    ["<A-a>"] = {
+      "copilot#Accept()",
+      "Accept Copilot suggestion",
+      opts = {
+        expr = true,
+        script = true,
+        silent = true,
+        nowait = true
+      }
+    },
   },
 
   n = {
@@ -25,6 +39,7 @@ M.general = {
 
     -- Save all and exit
     ["<A-z>z"] = { ":wqa!<CR>", "Save all and exit" },
+
   }
 }
 M.nvterm = {
