@@ -129,8 +129,10 @@ return {
               ltex = {
                 dictionary = {
                   ["en-US"] = {
-                    "Javascript", "Python",
-                    "SLI", "SLIs"
+                    "Javascript",
+                    "Python",
+                    "SLI",
+                    "SLIs"
                   }
                 },
                 latex = {

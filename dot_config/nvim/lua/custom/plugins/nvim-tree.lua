@@ -22,7 +22,7 @@ return {
        }
      },
      view = {
-       width = 60
+       width = 40
      }
    },
 }

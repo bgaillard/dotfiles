@@ -21,6 +21,9 @@ vim.opt.termguicolors = true
 --
 -- see https://github.com/neovim/neovim/issues/2102
 -- see https://neovim.io/doc/user/spell.html
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
+vim.opt.spellfile = vim.fn.expand("$HOME/.config/nvim/spell/en.utf-8.add")
 
 
 -- Do not open Netrw at startup, we only need Netrw for the 'gx' shortcut to still work
@@ -39,7 +42,7 @@ vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]
 vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
 vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
 
+
 -- Jinja highlight and linting
 --vim.cmd([[autocmd BufRead,BufNewFile *.yaml.j2 set filetype=yaml.ansible]])
 --vim.cmd([[autocmd BufRead,BufNewFile *.yml.j2 set filetype=yaml.ansible]])
-
