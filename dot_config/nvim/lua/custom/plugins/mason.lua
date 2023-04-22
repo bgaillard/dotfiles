@@ -90,7 +90,6 @@ return {
         "sql-formatter",
         "sqlfluff",
         "sqlls",
-        "sqls",
 
         -- Terraform
         "terraform-ls",

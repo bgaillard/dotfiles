@@ -81,7 +81,6 @@ return {
 
         -- SQL
         "sqlls",
-        "sqls",
 
         -- Terraform
         --"terraform_lsp",

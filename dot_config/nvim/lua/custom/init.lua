@@ -3,12 +3,9 @@ vim.wo.relativenumber = true
 
 -- nvim-tree
 --
--- see https://github.com/nvim-tree/nvim-tree.lua
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- set termguicolors to enable highlight groups
+--
+-- see https://github.com/nvim-tree/nvim-tree.lua
 vim.opt.termguicolors = true
 
 
@@ -26,6 +23,13 @@ vim.opt.termguicolors = true
 -- see https://neovim.io/doc/user/spell.html
 
 
+-- Do not open Netrw at startup, we only need Netrw for the 'gx' shortcut to still work
+--
+-- see https://github.com/nvim-tree/nvim-tree.lua/commit/ce2420b9dab282703fb08e72009f0787b1a7b097
+-- see https://www.reddit.com/r/vim/comments/3d4cpf/prevent_netrw_or_nerdtree_from_opening_when/
+vim.cmd([[autocmd VimEnter * silent! au! FileExplorer *]])
+
+
 -- Terraform highlight and linting
 --
 -- see https://www.mukeshsharma.dev/2022/02/08/neovim-workflow-for-terraform.html
@@ -38,3 +42,4 @@ vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=jso
 -- Jinja highlight and linting
 --vim.cmd([[autocmd BufRead,BufNewFile *.yaml.j2 set filetype=yaml.ansible]])
 --vim.cmd([[autocmd BufRead,BufNewFile *.yml.j2 set filetype=yaml.ansible]])
+
