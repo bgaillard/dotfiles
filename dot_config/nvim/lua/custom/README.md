@@ -1,5 +1,10 @@
 # NvChad configuration
 
+## Updates
+
+- `:NvChadUpdate`
+- `:Mason` and then `U`
+- `:TSUpdate`
 
 ## Shortcuts
 

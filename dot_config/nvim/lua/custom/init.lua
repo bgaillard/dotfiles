@@ -43,6 +43,8 @@ vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
 vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
 
 
+vim.g.python3_host_prog = "/usr/bin/python"
+
 -- Jinja highlight and linting
 --vim.cmd([[autocmd BufRead,BufNewFile *.yaml.j2 set filetype=yaml.ansible]])
 --vim.cmd([[autocmd BufRead,BufNewFile *.yml.j2 set filetype=yaml.ansible]])

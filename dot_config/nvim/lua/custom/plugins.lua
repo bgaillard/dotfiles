@@ -1,5 +1,33 @@
 return {
 
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      background_colour = "#000000",
+    },
+  },
+
+  -- readonly.nvim
+  --
+  -- https://github.com/bgaillard/readonly.nvim
+  {
+    dir = "~/workspace/github/readonly.nvim",
+    dependencies = {
+      "rcarriga/nvim-notify"
+    },
+    config = function()
+      require("readonly").setup {
+
+        -- see https://neovim.io/doc/user/lua.html#vim.fs.normalize()
+        secured_files = {
+          "~/%.aws/config",
+          "~/%.ssh/.",
+        },
+      }
+    end,
+    lazy = false
+  },
+
   -- auto-save
   --
   -- https://github.com/Pocco81/auto-save.nvim
@@ -12,7 +40,7 @@ return {
         enabled = true,
         callbacks = {
           before_saving = function()
-            return vim.lsp.buf.formatting_sync()
+            return vim.lsp.buf.format()
           end
         }
       }
@@ -55,6 +83,13 @@ return {
   --     require('leap').add_default_mappings()
   --   end
   -- },
+
+  -- nvim-notify
+  --
+  -- https;//github.com/rcarriga/nvim-notify
+  {
+    "rcarriga/nvim-notify",
+  },
 
   -- neotest
   --
