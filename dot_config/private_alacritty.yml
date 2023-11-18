@@ -589,7 +589,7 @@ shell:
   args:
     - -l
     - -c
-    - "tmux"
+    - ~/.cargo/bin/zellij options --theme molokai-dark
 
 debug:
   # Should display the render timer
