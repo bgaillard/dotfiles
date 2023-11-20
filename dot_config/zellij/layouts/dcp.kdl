@@ -1,0 +1,51 @@
+layout {
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    children
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+  tab name="1.bg" cwd="/home/vagrant/workspace/baptiste.gaillard" {
+    pane {
+      borderless false
+      name "baptiste.gaillard"
+      edit "."
+    }
+
+    floating_panes {
+      pane {
+        cwd "/home/vagrant/workspace/baptiste.gaillard"
+        name "bash"
+        focus false
+        x "5%"
+        y "10%"
+        width "90%"
+        height "60%"
+      }
+    }
+  }
+  tab name="2.infra_aws" cwd="/home/vagrant/workspace/infra_aws" {
+    pane {
+      borderless false
+      name "infra_aws"
+      edit "."
+      focus true
+    }
+
+    floating_panes {
+      pane {
+        command "aws-azure-login"
+        cwd "/home/vagrant/workspace/infra_aws"
+        name "bash"
+        focus false
+        x "5%"
+        y "10%"
+        width "90%"
+        height "60%"
+      }
+    }
+  }
+}

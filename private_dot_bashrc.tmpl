@@ -373,3 +373,19 @@ powerline-config tmux setup &> /dev/null
 if [ -f /home/vagrant/workspace/baptiste.gaillard/.bashrc ] ; then
   . /home/vagrant/workspace/baptiste.gaillard/.bashrc
 fi
+
+
+########################################################################################################################
+# Zellij
+########################################################################################################################
+{{ if eq .chezmoi.username "vagrant" -}}
+
+if ~/.cargo/bin/zellij list-sessions -n | grep "(current)" >/dev/null 2>&1 ; then
+  true # Open shell inside Zellij so do nothing
+elif ~/.cargo/bin/zellij list-sessions -n | grep -E "^d " >/dev/null 2>&1 ; then
+  ~/.cargo/bin/zellij attach d
+else
+  ~/.cargo/bin/zellij --layout dcp --session d
+fi
+
+{{- end }}
