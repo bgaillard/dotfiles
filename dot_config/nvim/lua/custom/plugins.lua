@@ -1,6 +1,16 @@
 return {
 
   {
+    "navarasu/onedark.nvim",
+    config = function()
+      require("onedark").setup {
+        style = "darker",
+      }
+      require('onedark').load()
+    end,
+  },
+
+  {
     "rcarriga/nvim-notify",
     opts = {
       background_colour = "#000000",

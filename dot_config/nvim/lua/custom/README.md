@@ -12,7 +12,6 @@ Display shortcuts with `:NvCheatsheet` or `:Telescope keymaps`.
 
 Edit shortcuts in `lua/core/custom/mappings.lua`, core mappings defined in NvChad and which can be overridden are available in `lua/core/mappings.lua`.
 
-
 ## Plugins
 
 Plugins are defined in 2 locations.

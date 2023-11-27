@@ -18,7 +18,7 @@ M.lazy_nvim = {
 }
 
 M.ui = {
-  theme = "tokyonight",
+  theme = "onedark",
   transparency = true,
 
   hl_override = {
@@ -41,7 +41,7 @@ M.ui = {
     -- see https://textart.sh/
     -- see https://patorjk.com/software/taag/#p=testall&h=0&c=echo&f=Big&t=Type%20Something%20
     -- see https://github.com/NvChad/NvChad/issues/1930#issuecomment-1510511603
-    -- see https://github.com/NvChad/base46/blob/v2.0/lua/base46/themes/tokyonight.lua
+    -- see https://github.com/NvChad/base46/blob/v2.0/lua/base46/themes/onedark.lua
     header = {
 
       -- [[                                                    ]],
