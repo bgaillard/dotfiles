@@ -11,20 +11,17 @@ return {
   --
   -- https://github.com/bgaillard/readonly.nvim
   {
-    dir = "~/workspace/github/readonly.nvim",
+    -- dir = "~/workspace/github/readonly.nvim",
+    "bgaillard/readonly.nvim",
     dependencies = {
       "rcarriga/nvim-notify"
     },
-    config = function()
-      require("readonly").setup {
-
-        -- see https://neovim.io/doc/user/lua.html#vim.fs.normalize()
-        secured_files = {
-          "~/%.aws/config",
-          "~/%.ssh/.",
-        },
-      }
-    end,
+    opts = {
+      secured_files = {
+        "~/%.aws/config",
+        "~/%.ssh/.",
+      },
+    },
     lazy = false
   },
 
