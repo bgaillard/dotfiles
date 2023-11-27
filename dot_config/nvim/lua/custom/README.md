@@ -18,7 +18,7 @@ Edit shortcuts in `lua/core/custom/mappings.lua`, core mappings defined in NvCha
 Plugins are defined in 2 locations.
 
 - `lua/core/custom/plugins.lua` for plugins having very simple configurations ;
-- `lua/core/custom/plugins/` for plugins having more configuration configurations.
+- `lua/core/custom/plugins/` for plugins having more complex configurations.
 
 Currently installed plugins are the following.
 

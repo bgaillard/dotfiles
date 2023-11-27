@@ -70,20 +70,6 @@ return {
     lazy = false
   },
 
-  -- Leap
-  --
-  -- https://github.com/ggandor/leap.nvim
-  --
-  -- FIXME: Disabled because the 'x' character does not work to delete when we are in selection mode.
-  --
-  -- {
-  --   "ggandor/leap.nvim",
-  --   lazy = false,
-  --   config = function ()
-  --     require('leap').add_default_mappings()
-  --   end
-  -- },
-
   -- nvim-notify
   --
   -- https;//github.com/rcarriga/nvim-notify
@@ -172,7 +158,7 @@ return {
     end,
   },
 
-  -- trouble
+  -- Trouble
   --
   -- https://github.com/folke/trouble.nvim
   {
@@ -186,6 +172,7 @@ return {
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
       }
-    end
+    end,
+    lazy = false
   },
 }
