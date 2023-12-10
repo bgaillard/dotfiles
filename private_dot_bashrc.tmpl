@@ -57,6 +57,11 @@ if [ -d /usr/sbin ] && ! echo "$PATH" | grep "/usr/sbin" >/dev/null ; then
     export PATH="$PATH:/usr/sbin"
 fi
 
+if [ -d /usr/local/sbin ] && ! echo "$PATH" | grep "/usr/local/sbin" >/dev/null ; then
+    export PATH="$PATH:/usr/local/sbin"
+fi
+
+
 ########################################################################################################################
 # HISTORY
 ########################################################################################################################
