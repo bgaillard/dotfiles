@@ -28,7 +28,9 @@ export EDITOR=${EDITOR}
 ########################################################################################################################
 # MAN
 ########################################################################################################################
-if which nvim.appimage >/dev/null ; then
+if [ -f "$HOME/.local/bin/squashfs-root/AppRun" ] ; then
+  export MANPAGER="$HOME/.local/bin/squashfs-root/AppRun +Man!"
+elif which nvim.appimage >/dev/null ; then
   export MANPAGER="nvim.appimage +Man!"
 elif which vim >/dev/null ; then
   export MANPAGER="vim +Man!"
