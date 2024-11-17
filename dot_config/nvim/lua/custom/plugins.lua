@@ -21,15 +21,16 @@ return {
   --
   -- https://github.com/bgaillard/readonly.nvim
   {
-    -- dir = "~/workspace/github/readonly.nvim",
-    "bgaillard/readonly.nvim",
+    dir = "~/workspace/github/readonly.nvim",
+    --"bgaillard/readonly.nvim",
     dependencies = {
       "rcarriga/nvim-notify"
     },
     opts = {
-      secured_files = {
-        "~/%.aws/config",
-        "~/%.ssh/.",
+      pattern = {
+        vim.fn.expand("~") .. "/.aws/config",
+        vim.fn.expand("~") .. "/.aws/credentials",
+        vim.fn.expand("~") .. "/.ssh/*",
       },
     },
     lazy = false
@@ -41,7 +42,7 @@ return {
   {
     -- see https://github.com/Pocco81/auto-save.nvim/issues/56
     --"Pocco81/auto-save.nvim",
-    "zoriya/auto-save.nvim",
+    "pocco81/auto-save.nvim",
     config = function()
       require("auto-save").setup {
         enabled = true,

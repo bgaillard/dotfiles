@@ -375,11 +375,6 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [shell]
 program = "/bin/bash"
-args = [
-  "-l", 
-  "-c", 
-  "~/.cargo/bin/zellij list-sessions -n | grep -E \"^d \" && ~/.cargo/bin/zellij attach d || ~/.cargo/bin/zellij --layout baptiste --session d"
-]
 
 [window]
 decorations = "none"

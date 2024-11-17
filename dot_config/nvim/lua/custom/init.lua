@@ -49,15 +49,15 @@ vim.g.python3_host_prog = "/usr/bin/python"
 --vim.cmd([[autocmd BufRead,BufNewFile *.yaml.j2 set filetype=yaml.ansible]])
 --vim.cmd([[autocmd BufRead,BufNewFile *.yml.j2 set filetype=yaml.ansible]])
 
-vim.g.clipboard = {
-    name = "mclip",
-    copy = {
-        ["+"] = "mclip",
-        ["*"] = "mclip",
-    },
-    paste = {
-        ["+"] = "mclip -o",
-        ["*"] = "mclip -o",
-    },
-    cache_enabled = 1,
-}
+-- vim.g.clipboard = {
+--     name = "mclip",
+--     copy = {
+--         ["+"] = "mclip",
+--         ["*"] = "mclip",
+--     },
+--     paste = {
+--         ["+"] = "mclip -o",
+--         ["*"] = "mclip -o",
+--     },
+--     cache_enabled = 1,
+-- }
