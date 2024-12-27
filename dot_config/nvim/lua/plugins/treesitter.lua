@@ -9,12 +9,18 @@ return {
       additional_vim_regex_highlighting = false,
 
       ensure_installed = {
+        "awk",
+        "bash",
         "c",
         "cpp",
         "css",
+        "csv",
         "dockerfile",
         "hcl",
         "go",
+        "gitattributes",
+        "gitignore",
+        "helm",
         "html",
         "java",
         "javascript",

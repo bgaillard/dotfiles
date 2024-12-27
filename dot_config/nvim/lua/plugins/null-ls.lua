@@ -1,4 +1,4 @@
- -- null-ls
+-- null-ls
  --
  -- https://github.com/jose-elias-alvarez/null-ls.nvim
 return {
@@ -12,7 +12,7 @@ return {
 
       if not present then
          return
-      end
+     end
 
       local sources = {
 

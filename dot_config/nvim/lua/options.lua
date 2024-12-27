@@ -1,5 +1,10 @@
+require "nvchad.options"
+
+-- add yours here!
+
 vim.cmd "set colorcolumn=120"
-vim.wo.relativenumber = true
+
+vim.o.relativenumber = true
 
 -- nvim-tree
 --
@@ -7,7 +12,6 @@ vim.wo.relativenumber = true
 --
 -- see https://github.com/nvim-tree/nvim-tree.lua
 vim.opt.termguicolors = true
-
 
 -- Spell
 --
