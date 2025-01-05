@@ -39,7 +39,8 @@ alias glg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d
 # Kubernetes
 alias kubectl=kubecolor
 alias k=kubecolor
-alias k=kubectl
+alias kubectx="kubectl-ctx"
+alias kubens="kubectl-ns"
 
 # Vim
 alias vi="vim"
@@ -47,10 +48,15 @@ alias v="vim"
 alias v.="vim ."
 
 # Neovim
-alias neovim="nvim.appimage"
-alias nvim="nvim.appimage"
-alias nv="neovim"
-alias nv.="neovim ."
+#
+#     cd /tmp
+#     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+#     rm -rf ~/.local/bin/nvim-linux64
+#     tar -C ~/.local/bin -xzf nvim-linux64.tar.gz
+#     export PATH=$PATH:~/.local/bin/nvim-linux64/bin
+#
+# @see https://github.com/neovim/neovim/blob/master/INSTALL.md#pre-built-archives-2
+alias nv="nvim"
 
 # If user is not root, pass all commands via sudo #
 if [ $UID -ne 0 ]; then
