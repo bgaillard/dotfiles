@@ -47,10 +47,8 @@ local servers = {
   "marksman",
 
   -- Python
-  "jedi_language_server",
-  "pylsp",
-  "pyre",
-  "pyright",
+  "basedpyright",
+  "ruff",
 
   -- SQL
   "sqlls",

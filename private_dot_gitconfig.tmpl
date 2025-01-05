@@ -2,7 +2,7 @@
   name = {{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").firstName.value }} {{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").lastName.value }}
   email = {{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").email.value }}
 [core]
-  editor = {{ .chezmoi.homeDir }}/.local/bin/nvim.appimage
+  editor = {{ .chezmoi.homeDir }}/.local/bin/nvim-linux64/bin/nvim
   excludesfile = /home/vagrant/.gitignore_global
   autocrlf = input
   eol = lf

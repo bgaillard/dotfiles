@@ -19,7 +19,7 @@ Plugins are defined in 2 locations.
 - `lua/core/custom/plugins.lua` for plugins having very simple configurations ;
 - `lua/core/custom/plugins/` for plugins having more complex configurations.
 
-Currently installed plugins are the following.
+Curently installed plugins are the following.
 
 - [Pocco81/auto-save.nvim](https://github.com/Pocco81/auto-save.nvim)
 - [sindrets/diffview.nvim](https://github.com/sindrets/diffview.nvim)
