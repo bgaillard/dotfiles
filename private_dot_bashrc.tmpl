@@ -12,34 +12,6 @@ esac
 
 
 ########################################################################################################################
-# EDITOR
-########################################################################################################################
-EDITOR="vi"
-
-if which nvim.appimage >/dev/null ; then
-  EDITOR=nvim.appimage
-elif which vim >/dev/null ; then
-  EDITOR=vim
-fi
-
-export EDITOR=${EDITOR}
-
-
-########################################################################################################################
-# MAN
-########################################################################################################################
-if [ -f "$HOME/.local/bin/squashfs-root/AppRun" ] ; then
-  export MANPAGER="$HOME/.local/bin/squashfs-root/AppRun +Man!"
-elif which nvim.appimage >/dev/null ; then
-  export MANPAGER="nvim.appimage +Man!"
-elif which vim >/dev/null ; then
-  export MANPAGER="vim +Man!"
-elif which vi >/dev/null ; then
-  export MANPAGER="vi +Man!"
-fi
-
-
-########################################################################################################################
 # PATH
 ########################################################################################################################
 
@@ -60,6 +32,46 @@ fi
 if [ -d /usr/local/sbin ] && ! echo "$PATH" | grep "/usr/local/sbin" >/dev/null ; then
     export PATH="$PATH:/usr/local/sbin"
 fi
+
+
+########################################################################################################################
+# EDITOR
+########################################################################################################################
+EDITOR="vi"
+
+if [ -f "$HOME/.local/bin/nvim-linux64/bin/nvim" ] ; then
+  EDITOR="$HOME/.local/bin/nvim-linux64/bin/nvim"
+  export PATH="$PATH:$HOME/.local/bin/nvim-linux64/bin"
+elif which nvim.appimage >/dev/null ; then
+  EDITOR=nvim.appimage
+elif which vim >/dev/null ; then
+  EDITOR=vim
+fi
+
+export EDITOR=${EDITOR}
+
+
+########################################################################################################################
+# MAN
+########################################################################################################################
+if [ -f "$HOME/.local/bin/nvim-linux64/bin/nvim" ] ; then
+  export MANPAGER="$HOME/.local/bin/nvim-linux64/bin/nvim +Man!"
+elif which nvim.appimage >/dev/null ; then
+  export MANPAGER="nvim.appimage +Man!"
+elif which vim >/dev/null ; then
+  export MANPAGER="vim +Man!"
+elif which vi >/dev/null ; then
+  export MANPAGER="vi +Man!"
+fi
+
+
+########################################################################################################################
+# DEBIAN
+#
+# see https://www.debian.org/doc/manuals/maint-guide/first.en.html#dh-make
+########################################################################################################################
+export DEBEMAIL="{{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").email.value }}"
+export DEBFULLNAME="{{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").firstName.value }} {{(bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").lastName.value }}"
 
 
 ########################################################################################################################
@@ -85,15 +97,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-
-########################################################################################################################
-# DEBIAN
-#
-# see https://www.debian.org/doc/manuals/maint-guide/first.en.html#dh-make
-########################################################################################################################
-export DEBEMAIL={{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").email.value }}
-export DEBFULLNAME="{{ (bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").firstName.value }} {{(bitwardenFields "item" "40322edd-657a-49f2-b509-adbb0135e41d").lastName.value }}"
 
 
 ########################################################################################################################
@@ -309,13 +312,22 @@ eval "$(zoxide init bash)"
 ########################################################################################################################
 # Go
 ########################################################################################################################
-export PATH=$PATH:/usr/local/go/bin
+if [ -d "/usr/local/go/bin" ] ; then
+  export PATH=$PATH:/usr/local/go/bin
+fi
+if [ -d "${HOME}/go/bin" ] ; then
+  export PATH=$PATH:"${HOME}/go/bin"
+fi
 
 
 ########################################################################################################################
 # Node
 ########################################################################################################################
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+if [ -d "${HOME}/.npm-packages/bin" ] ; then
+  export PATH=$PATH:$HOME/.npm-packages/bin
+fi
 
 
 ########################################################################################################################
@@ -370,6 +382,14 @@ export PATH="$PATH:/usr/local/texlive/2022/bin/x86_64-linux"
 
 
 ########################################################################################################################
+# Airflow
+########################################################################################################################
+if [ -d "${HOME}/airflow" ] ; then
+  export AIRFLOW_HOME="$HOME/airflow"
+fi
+
+
+########################################################################################################################
 # Utility functions
 ########################################################################################################################
 
@@ -399,7 +419,7 @@ fi
 
 
 ########################################################################################################################
-# Zellij
+# Terminal Multiplexer
 ########################################################################################################################
 {{ if eq .chezmoi.username "vagrant" -}}
 
@@ -409,6 +429,31 @@ elif ~/.cargo/bin/zellij list-sessions -n | grep -E "^d " >/dev/null 2>&1 ; then
   ~/.cargo/bin/zellij attach d
 else
   ~/.cargo/bin/zellij --layout dcp --session d
+fi
+
+{{- else }}
+
+if [[ -z "$ZELLIJ" ]]; then
+
+    # @see https://zellij.dev/documentation/integration
+    ZELLIJ_AUTO_ATTACH=true
+    ZELLIJ_AUTO_EXIT=true
+
+    if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
+        if ! zellij list-sessions -n >> /dev/null; then
+          zellij --new-session-with-layout baptiste --session d
+        elif zellij list-sessions -n | grep -E "^d "; then
+          zellij attach d
+        else
+          zellij --new-session-with-layout baptiste --session d
+        fi
+    else
+        zellij --layout baptiste --session d
+    fi
+
+    if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+        exit
+    fi
 fi
 
 {{- end }}
