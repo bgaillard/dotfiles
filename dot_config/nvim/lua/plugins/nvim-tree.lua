@@ -1,6 +1,8 @@
  -- nvim-tree
  --
- -- https://github.com/kyazdani42/nvim-tree.lua
+ -- A File Explorer for Neovim written in Lua
+ --
+ -- https://github.com/nvim-tree/nvim-tree.lua
 return {
   "nvim-tree/nvim-tree.lua",
    opts = {
