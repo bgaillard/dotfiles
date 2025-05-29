@@ -6,7 +6,7 @@ return {
   event = "VeryLazy",
   config = function()
     require("chatgpt").setup({
-      api_key_cmd = "cat ~/.openai_api_key", -- Command to get the OpenAI API key
+      api_key_cmd = "cat " .. vim.fn.expand("$HOME/.openai_api_key"),
     })
   end,
   dependencies = {
