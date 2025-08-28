@@ -1,0 +1,10 @@
+---
+- name: Install apt packages
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - bat
+      - fzf
+      - python3-pip
+      - ripgrep
+      - silversearcher-ag
