@@ -1,0 +1,26 @@
+---
+# @see https://blog.stephane-robert.info/docs/infra-as-code/gestion-de-configuration/ansible/modules/packages/
+
+- name: Install Linux distribution packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - apt-transport-https
+      - bat
+      - ca-certificates
+      - curl
+      - fzf
+      - gnupg
+      - python3-pip
+      - ripgrep
+      - silversearcher-ag
+    state: latest
+
+
+# @see https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html
+- name: Install Python packages
+  ansible.builtin.pip:
+    name:
+      - buku
+    break_system_packages: true
+    state: present
