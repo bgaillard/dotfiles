@@ -1,0 +1,9 @@
+---
+- name: "Install asdf"
+  import_tasks: "install.yml"
+
+- name: "Install asdf plugins"
+  import_tasks: "plugins.yml"
+
+- name: "Install asdf tools"
+  import_tasks: "tools.yml"

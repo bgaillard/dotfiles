@@ -1,0 +1,43 @@
+---
+- name: Install asdf plugins
+  ansible.builtin.command:
+    cmd: asdf plugin add {{ item }}
+  loop:
+    - bat
+    - boundary
+    - checkov
+    - cookiecutter
+    - dagger
+    - dive
+    - dust
+    - eksctl
+    - eza
+    - flyway
+    - fzf
+    - gradle
+    - hadolint
+    - helm
+    - java
+    - jq
+    - k9s
+    - kubectl
+    - maven
+    - neovim
+    - nodejs
+    - packer
+    - pipx
+    - pluto
+    - poetry
+    - pre-commit
+    - python
+    - regal
+    - ripgrep
+    - ruff
+    - shellcheck
+    - terraform
+    - terraform-docs
+    - trivy
+    - uv
+    - vault
+    - yq
+    - zellij

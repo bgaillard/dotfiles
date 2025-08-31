@@ -35,7 +35,7 @@
   ansible.builtin.copy:
     src: "{{ kubectl_tmp_dir.path }}/kubectl"
     dest: "{{ ansible_env.HOME }}/.local/bin/kubectl"
-    mode: "0755"
+    mode: "0700"
 
 - name: Remove temporary directory
   ansible.builtin.file:

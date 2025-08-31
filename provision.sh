@@ -8,4 +8,4 @@ python3 -m pip install --user ansible
 # Run Ansible playbook
 ansible-playbook \
     --inventory ansible/hosts.yml \
-    --ask-become-pass ansible/site.yml
+    ansible/site.yml

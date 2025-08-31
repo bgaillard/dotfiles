@@ -1,19 +1,63 @@
 ---
 # @see https://blog.stephane-robert.info/docs/infra-as-code/gestion-de-configuration/ansible/modules/packages/
 
-- name: Install Linux distribution packages
+- name: Install Linux packages
   become: true
   ansible.builtin.package:
     name:
+      - alsa-utils
       - apt-transport-https
-      - bat
+      - autoconf
+      - automake
+      - bash-completion
+      - bat                # https://github.com/sharkdp/bat
+      - bison              # Linux Kernel compilation
+      - build-essential
       - ca-certificates
+      - calibre
+      - clang
+      - cmake
+      - cups
       - curl
-      - fzf
+      - devscripts         # Linux Kernel compilation
+      - evince
+      - exa                # https://the.exa.website/
+      - fakeroot           # Linux Kernel compilation
+      - feh                # Lightweight image viewer
+      - flex               # Linux Kernel compilation
+      - fzf                # https://github.com/junegunn/fzf
+      - fzy                # https://github.com/jhawthorn/fzy
+      - gcc
+      - git
       - gnupg
+      - gparted
+      - gvfs-backends      # Required for Thunar trash, removable media and remote fil systems support
+      - gvfs-fuse          # Required for Thunar trash, removable media and remote fil systems support
+      - hwinfo
+      - jq
+      - libarchive-tools
+      - libelf-dev         # Linux kernel compilation
+      - libnotify-bin      # For the 'notify-send' command
+      - libssl-dev         # Linux kernel compilation
+      - lshw               # HardWare Lister for Linux
+      - make
+      - network-manager
+      - pkg-config
+      - podman
+      - printer-driver-all
+      - psmisc             # Required for the 'killall' command for example
       - python3-pip
       - ripgrep
-      - silversearcher-ag
+      - ristretto          # XFCE image viewer
+      - rsync
+      - shellcheck         # https://github.com/koalaman/shellcheck
+      - thunar                # XFCE file manager
+      - thunar-archive-plugin # Archive support for Thunar
+      - thunar-dropbox-plugin # Dropbox support for Thunar
+      - unzip
+      - vlc
+      - wget
+      - zip
     state: latest
 
 
@@ -21,6 +65,6 @@
 - name: Install Python packages
   ansible.builtin.pip:
     name:
-      - buku
+      - buku  # CLI Bookmark Manager - https://github.com/jarun/buku
     break_system_packages: true
     state: present
