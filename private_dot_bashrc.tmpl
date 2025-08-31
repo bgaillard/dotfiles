@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# FIXME: The CIS (Center for Internet Security) and ANSSI (Agence Nationale de la Sécurité des Systèmes d'Information)
+#        recommend a umask of 027 or 077 for better security.
+#
+# @see https://www.debian.org/doc/manuals/debian-reference/ch01.en.html#_control_of_permissions_for_newly_created_files_umask
+# @see https://www.it-connect.fr/gestion-de-lumask-sous-linux/
+# @see https://cyber.gouv.fr/publications/recommandations-de-securite-relatives-un-systeme-gnulinux
+umask 022
+
 # WARNING: rights to this file should be 600, by default most Linux distributions use 644 instead which is not ideal.
 #
 # see https://steflan-security.com/linux-privilege-escalation-exploiting-bashrc/
@@ -39,7 +47,10 @@ fi
 ########################################################################################################################
 EDITOR="vi"
 
-if [ -f "$HOME/.local/bin/nvim-linux64/bin/nvim" ] ; then
+if [ -f "$HOME/.local/bin/nvim-linux-x86_64/bin/nvim" ] ; then
+  EDITOR="$HOME/.local/bin/nvim-linux-x86_64/bin/nvim"
+  export PATH="$PATH:$HOME/.local/bin/nvim-linux-x86_64/bin"
+elif [ -f "$HOME/.local/bin/nvim-linux64/bin/nvim" ] ; then
   EDITOR="$HOME/.local/bin/nvim-linux64/bin/nvim"
   export PATH="$PATH:$HOME/.local/bin/nvim-linux64/bin"
 elif which nvim.appimage >/dev/null ; then
@@ -54,7 +65,9 @@ export EDITOR=${EDITOR}
 ########################################################################################################################
 # MAN
 ########################################################################################################################
-if [ -f "$HOME/.local/bin/nvim-linux64/bin/nvim" ] ; then
+if [ -f "$HOME/.local/bin/nvim-linux-x86_64/bin/nvim" ] ; then
+  export MANPAGER="$HOME/.local/bin/nvim-linux-x86_64/bin/nvim +Man!"
+elif [ -f "$HOME/.local/bin/nvim-linux64/bin/nvim" ] ; then
   export MANPAGER="$HOME/.local/bin/nvim-linux64/bin/nvim +Man!"
 elif which nvim.appimage >/dev/null ; then
   export MANPAGER="nvim.appimage +Man!"
