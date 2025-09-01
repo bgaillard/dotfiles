@@ -41,20 +41,19 @@ if [ -d /usr/local/sbin ] && ! echo "$PATH" | grep "/usr/local/sbin" >/dev/null 
     export PATH="$PATH:/usr/local/sbin"
 fi
 
+# asdf
+#
+# @see https://asdf-vm.com/guide/getting-started.html#_2-configure-asdf
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
 
 ########################################################################################################################
 # EDITOR
 ########################################################################################################################
 EDITOR="vi"
 
-if [ -f "$HOME/.local/bin/nvim-linux-x86_64/bin/nvim" ] ; then
-  EDITOR="$HOME/.local/bin/nvim-linux-x86_64/bin/nvim"
-  export PATH="$PATH:$HOME/.local/bin/nvim-linux-x86_64/bin"
-elif [ -f "$HOME/.local/bin/nvim-linux64/bin/nvim" ] ; then
-  EDITOR="$HOME/.local/bin/nvim-linux64/bin/nvim"
-  export PATH="$PATH:$HOME/.local/bin/nvim-linux64/bin"
-elif which nvim.appimage >/dev/null ; then
-  EDITOR=nvim.appimage
+if which nvim >/dev/null ; then
+  EDITOR=nvim
 elif which vim >/dev/null ; then
   EDITOR=vim
 fi
@@ -65,17 +64,7 @@ export EDITOR=${EDITOR}
 ########################################################################################################################
 # MAN
 ########################################################################################################################
-if [ -f "$HOME/.local/bin/nvim-linux-x86_64/bin/nvim" ] ; then
-  export MANPAGER="$HOME/.local/bin/nvim-linux-x86_64/bin/nvim +Man!"
-elif [ -f "$HOME/.local/bin/nvim-linux64/bin/nvim" ] ; then
-  export MANPAGER="$HOME/.local/bin/nvim-linux64/bin/nvim +Man!"
-elif which nvim.appimage >/dev/null ; then
-  export MANPAGER="nvim.appimage +Man!"
-elif which vim >/dev/null ; then
-  export MANPAGER="vim +Man!"
-elif which vi >/dev/null ; then
-  export MANPAGER="vi +Man!"
-fi
+export MANPAGER="${EDITOR} +Man!"
 
 
 ########################################################################################################################
@@ -110,6 +99,14 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+
+########################################################################################################################
+# asdf
+#
+# see https://asdf-vm.com/guide/getting-started.html#_2-add-asdf-to-your-shell
+########################################################################################################################
+. <(asdf completion bash)
 
 
 ########################################################################################################################
@@ -379,7 +376,7 @@ fi
 ########################################################################################################################
 # Terraform
 ########################################################################################################################
-complete -C ~/.local/bin/terraform terraform
+complete -C ~/.asdf/shims/terraform terraform
 
 
 ########################################################################################################################
