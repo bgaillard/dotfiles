@@ -1,2 +1,15 @@
+# A cat clone with wings
+#
+# @see https://github.com/sharkdp/bat
+bat 0.25.0
+
+# Fuzzy finder
+#
+# @see https://github.com/junegunn/fzf
+fzf 0.65.2
+
+# Neovim
 neovim 0.11.4
+
+# Terraform
 terraform 1.13.1

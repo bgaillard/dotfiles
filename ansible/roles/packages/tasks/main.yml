@@ -5,12 +5,13 @@
   become: true
   ansible.builtin.package:
     name:
+      # If a tool is supported by asdf, prefer installing it using asdf because it allows to always use the latest
+      # version.
       - alsa-utils
       - apt-transport-https
       - autoconf
       - automake
       - bash-completion
-      - bat                # https://github.com/sharkdp/bat
       - bison              # Linux Kernel compilation
       - build-essential
       - ca-certificates
@@ -25,7 +26,6 @@
       - fakeroot           # Linux Kernel compilation
       - feh                # Lightweight image viewer
       - flex               # Linux Kernel compilation
-      - fzf                # https://github.com/junegunn/fzf
       - fzy                # https://github.com/jhawthorn/fzy
       - gcc
       - git
