@@ -3,6 +3,11 @@
 # @see https://github.com/sharkdp/bat
 bat 0.25.0
 
+# A modern alternative to ls
+#
+# @see https://github.com/eza-community/eza
+eza 0.23.1
+
 # Fuzzy finder
 #
 # @see https://github.com/junegunn/fzf
