@@ -13,8 +13,18 @@ eza 0.23.1
 # @see https://github.com/junegunn/fzf
 fzf 0.65.2
 
+# Command-line JSON processor
+#
+# @see https://github.com/jqlang/jq
+jq 1.8.1
+
 # Neovim
 neovim 0.11.4
+
+# Recursively search directories for a regex pattern
+#
+# @see https://github.com/BurntSushi/ripgrep
+ripgrep 14.1.1
 
 # Terraform
 terraform 1.13.1

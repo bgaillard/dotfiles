@@ -32,7 +32,6 @@
       - gvfs-backends      # Required for Thunar trash, removable media and remote fil systems support
       - gvfs-fuse          # Required for Thunar trash, removable media and remote fil systems support
       - hwinfo
-      - jq
       - libarchive-tools
       - libelf-dev         # Linux kernel compilation
       - libnotify-bin      # For the 'notify-send' command
@@ -45,7 +44,6 @@
       - printer-driver-all
       - psmisc             # Required for the 'killall' command for example
       - python3-pip
-      - ripgrep
       - ristretto          # XFCE image viewer
       - rsync
       - shellcheck         # https://github.com/koalaman/shellcheck
