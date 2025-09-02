@@ -3,15 +3,70 @@
 # @see https://github.com/sharkdp/bat
 bat 0.25.0
 
+# Static code analysis tool for infrastructure-as-code
+#
+# @see https://github.com/bridgecrewio/checkov
+checkov 3.2.469
+
+# Better project templates
+#
+# @see https://cookiecutter.readthedocs.io
+cookiecutter 2.6.0
+
+# A tool for exploring a Docker image
+#
+# @see https://github.com/wagoodman/dive
+dive 0.13.1
+
+# Container Image Linter for Security
+#
+# @see https://github.com/goodwithtech/dockle
+dockle 0.4.15
+
+# A more intuitive version of du in rust
+#
+# @see https://github.com/bootandy/dust
+dust 1.2.3
+
+# The official CLI for Amazon EKS !
+#
+# @see https://eksctl.io/
+eksctl 0.214.0
+
 # A modern alternative to ls
 #
 # @see https://github.com/eza-community/eza
 eza 0.23.1
 
+# Database Migrations Made Easy
+#
+# @see https://flywaydb.org/
+flyway 11.8.2
+
 # Fuzzy finder
 #
 # @see https://github.com/junegunn/fzf
 fzf 0.65.2
+
+# Haskell Dockerfile Linter
+#
+# @see https://github.com/hadolint/hadolint
+hadolint 2.13.1
+
+# The package manager for Kubernetes
+#
+# @see https://helm.sh/
+helm 3.18.6
+
+# Kubernetes CLI To Manage Your Clusters In Style!
+#
+# @see https://github.com/derailed/k9s
+k9s 0.50.9
+
+# Kubectl
+#
+# @see https://kubernetes.io/docs/reference/kubectl/
+kubectl 1.34.0
 
 # Command-line JSON processor
 #
@@ -19,7 +74,14 @@ fzf 0.65.2
 jq 1.8.1
 
 # Neovim
+#
+# @see https://neovim.io/
 neovim 0.11.4
+
+# Poetry
+#
+# @see https://python-poetry.org/
+poetry 2.1.4
 
 # Recursively search directories for a regex pattern
 #
@@ -28,3 +90,13 @@ ripgrep 14.1.1
 
 # Terraform
 terraform 1.13.1
+
+# An extremely fast Python package and project manager, written in Rust.
+#
+# @see https://github.com/astral-sh/uv
+uv 0.8.14
+
+# Zellij
+#
+# @see https://github.com/zellij-org/zellij
+zellij 0.43.1

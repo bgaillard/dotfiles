@@ -62,5 +62,8 @@
   ansible.builtin.pip:
     name:
       - buku  # CLI Bookmark Manager - https://github.com/jarun/buku
+      - cryptography
+      - pyopenssl
+      - yubikey-manager
     break_system_packages: true
     state: present
