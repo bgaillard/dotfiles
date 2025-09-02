@@ -4,6 +4,11 @@
     cmd: asdf plugin add {{ item }}
   loop:
     - bat
+    # WARNING: Do never install Bitwarden this way because it's too risky. If somebody successfully does a supply chain
+    #          attach on the associated asdf plugin repository it could lead to secret leakage.
+    #
+    #          Always install Bitwarden via the official site and using checksum verification!
+    - bitwarden
     - boundary
     - checkov
     - cookiecutter
@@ -19,7 +24,9 @@
     - helm
     - jq
     - k9s
+    - krew
     - kubectl
+    - kubecolor
     - neovim
     - nodejs
     - packer

@@ -63,6 +63,16 @@ helm 3.18.6
 # @see https://github.com/derailed/k9s
 k9s 0.50.9
 
+# Krew is the package manager for kubectl plugins.
+#
+# @see https://krew.sigs.k8s.io/
+krew 0.4.5
+
+# A kubectl plugin to colorize kubectl output
+#
+# @see https://github.com/kubecolor/kubecolor
+kubecolor 0.5.1
+
 # Kubectl
 #
 # @see https://kubernetes.io/docs/reference/kubectl/
@@ -78,10 +88,35 @@ jq 1.8.1
 # @see https://neovim.io/
 neovim 0.11.4
 
+# Node.js
+#
+# @see https://nodejs.org/
+nodejs 24.7.0
+
+# Packer
+#
+# @see https://www.packer.io/
+packer 1.14.1
+
+# Install and Run Python Applications in Isolated Environments
+#
+# @see https://github.com/pypa/pipx
+pipx 1.7.1
+
+# Find Kubernetes resources that have been deprecated
+#
+# @see https://github.com/FairwindsOps/pluto
+pluto 5.22.5
+
 # Poetry
 #
 # @see https://python-poetry.org/
 poetry 2.1.4
+
+# A framework for managing and maintaining multi-language pre-commit hooks.
+#
+# @see https://pre-commit.com/
+pre-commit 4.3.0
 
 # Recursively search directories for a regex pattern
 #
