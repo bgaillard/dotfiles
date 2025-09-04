@@ -18,26 +18,43 @@
     - dust
     - eksctl
     - eza
+    - ffmpeg
     - flyway
     - fzf
+    - glab
+    - glow
+    - golang
+    - gomplate
     - hadolint
     - helm
+    - helm-docs
+    - hey
+    - jmeter
     - jq
+    - k3s
     - k9s
     - krew
-    - kubectl
     - kubecolor
+    - kubectl
+    - lua
     - neovim
+    - nerdctl
     - nodejs
+    # FIXME: https://github.com/bitfrost/asdf-opencode/issues/4
+    #- opencode https://github.com/bitfrost/asdf-opencode
     - packer
     - pipx
     - pluto
+    - pnpm
     - poetry
+    - popeye
     - pre-commit
     - python
+    - rclone
     - regal
     - ripgrep
     - ruff
+    - rust
     - shellcheck
     - terraform
     - terraform-docs
@@ -46,3 +63,4 @@
     - vault
     - yq
     - zellij
+    - zoxide https://github.com/pauloedurezende/asdf-zoxide

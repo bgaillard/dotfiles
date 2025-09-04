@@ -1,6 +1,7 @@
 ---
 - hosts: 127.0.0.1
   roles:
-    #- packages
+    - packages
     - asdf
     #- fonts
+    - opencode

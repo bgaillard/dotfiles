@@ -38,6 +38,7 @@
       - libssl-dev         # Linux kernel compilation
       - lshw               # HardWare Lister for Linux
       - make
+      - nasm               # Required for FFMpeg (installed with asdf)
       - network-manager
       - pkg-config
       - podman
@@ -57,6 +58,8 @@
     state: latest
 
 
+# FIXME: We install Python with asdf, so this should be executed after the asdf role.
+#
 # @see https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html
 - name: Install Python packages
   ansible.builtin.pip:
@@ -65,5 +68,5 @@
       - cryptography
       - pyopenssl
       - yubikey-manager
-    break_system_packages: true
+    break_system_packages: true  # FIXME: Remove when Python is installed with asdf
     state: present
