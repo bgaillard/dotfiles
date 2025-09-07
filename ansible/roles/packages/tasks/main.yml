@@ -8,11 +8,13 @@
       # If a tool is supported by asdf, prefer installing it using asdf because it allows to always use the latest
       # version.
       - alsa-utils
+      - apt-file
       - apt-transport-https
       - autoconf
       - automake
       - bash-completion
       - bison              # Linux Kernel compilation
+      - bruno
       - build-essential
       - ca-certificates
       - calibre
@@ -20,6 +22,7 @@
       - cmake
       - cups
       - curl
+      - dbeaver-ce
       - devscripts         # Linux Kernel compilation
       - evince
       - fakeroot           # Linux Kernel compilation
@@ -47,11 +50,14 @@
       - python3-pip
       - ristretto          # XFCE image viewer
       - rsync
-      - shellcheck         # https://github.com/koalaman/shellcheck
+      - shfmt
+      - spotify-client
+      - texlive-full          # LaTeX distribution
       - thunar                # XFCE file manager
       - thunar-archive-plugin # Archive support for Thunar
       - thunar-dropbox-plugin # Dropbox support for Thunar
       - unzip
+      - vagrant
       - vlc
       - wget
       - zip

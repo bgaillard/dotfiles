@@ -1,0 +1,312 @@
+[tools]
+
+# Sync, search and backup shell history with Atuin.
+#
+# @see https://atuin.sh
+atuin = "latest"
+
+# A cat clone with wings
+#
+# @see https://github.com/sharkdp/bat
+bat = "latest"
+
+# Password manager for the command line
+#
+# @see https://github.com/bitwarden
+bitwarden = "latest"
+
+# Identity-aware proxy that provides a simple, secure way to access hosts and critical systems on your network.
+#
+# @see https://github.com/hashicorp/boundary
+boundary = "latest"
+
+# Static code analysis tool for infrastructure-as-code
+#
+# @see https://github.com/bridgecrewio/checkov
+checkov = "latest"
+
+# Better project templates
+#
+# @see https://cookiecutter.readthedocs.io
+cookiecutter = "latest"
+
+# Open-source runtime for composable workflows.
+#
+# @see https://github.com/dagger/dagger
+dagger = "latest"
+
+# A tool for exploring a Docker image
+#
+# @see https://github.com/wagoodman/dive
+dive = "latest"
+
+# Container Image Linter for Security
+#
+# @see https://github.com/goodwithtech/dockle
+dockle = "latest"
+
+# A more intuitive version of du in rust
+#
+# @see https://github.com/bootandy/dust
+dust = "latest"
+
+# The official CLI for Amazon EKS !
+#
+# @see https://eksctl.io/
+eksctl = "latest"
+
+# A modern alternative to ls
+#
+# @see https://github.com/eza-community/eza
+eza = "latest"
+
+# Collection of libraries and tools to process multimedia content
+#
+# @see https://ffmpeg.org/
+ffmpeg = "latest"
+
+# Database Migrations Made Easy
+#
+# @see https://flywaydb.org/
+flyway = "11.8.2"
+
+# Fuzzy finder
+#
+# @see https://github.com/junegunn/fzf
+fzf = "latest"
+
+# The official CLI for Google Cloud Platform
+#
+# @see https://cloud.google.com/sdk/docs/install
+gcloud = "latest"
+
+# Tool for detecting secrets like passwords, API keys, and tokens in git repos, files, and whatever else you wanna throw at it via stdin.
+#
+# @see https://github.com/gitleaks/gitleaks
+gitleaks = "latest"
+
+# Open source GitLab CLI tool
+#
+# @see https://docs.gitlab.com/editor_extensions/gitlab_cli/
+glab = "latest"
+
+# Render markdown on the CLI, with pizzazz!
+#
+# @see https://github.com/charmbracelet/glow
+glow = "latest"
+
+# The Go programming language
+#
+# @see https://golang.org/
+go = "latest"
+
+# Template renderer which supports a growing list of datasources
+#
+# @see https://github.com/hairyhenderson/gomplate
+gomplate = "latest"
+
+# Haskell Dockerfile Linter
+#
+# @see https://github.com/hadolint/hadolint
+hadolint = "latest"
+
+# The package manager for Kubernetes
+#
+# @see https://helm.sh/
+helm = "latest"
+
+# A documentation generator for Helm charts.
+#
+# @see https://github.com/norwoodj/helm-docs
+helm-docs = "latest"
+
+# Hey is a tiny program that sends some load to a web application.
+#
+# @see https://github.com/rakyll/hey
+hey = "latest"
+
+# A 100% pure Java application designed to load test functional behavior and measure performance.
+#
+# @see https://jmeter.apache.org/
+jmeter = "latest"
+
+# Lightweight Kubernetes
+#
+# @see https://k3s.io/
+k3s = "latest"
+
+# Kubernetes CLI To Manage Your Clusters In Style!
+#
+# @see https://github.com/derailed/k9s
+k9s = "latest"
+
+# Krew is the package manager for kubectl plugins.
+#
+# @see https://krew.sigs.k8s.io/
+krew = "latest"
+
+# A kubectl plugin to colorize kubectl output
+#
+# @see https://github.com/kubecolor/kubecolor
+kubecolor = "latest"
+
+# Kubectl
+#
+# @see https://kubernetes.io/docs/reference/kubectl/
+kubectl = "latest"
+
+# Command-line JSON processor
+#
+# @see https://github.com/jqlang/jq
+jq = "latest"
+
+# The Lua programming language
+#
+# @see https://www.lua.org/
+lua = "latest"
+
+# A high-performance, S3-compatible object storage solution.
+#
+# @see https://github.com/minio/minio
+# FIXME: Download not working for latest
+#minio = "latest"
+
+# Neovim
+#
+# @see https://neovim.io/
+neovim = "latest"
+
+# A Docker-compatible CLI for containerd
+#
+# @see https://github.com/containerd/nerdctl
+nerdctl = "latest"
+
+# Node.js
+#
+# @see https://nodejs.org/
+node = "latest"
+
+# AI coding agent, built for the terminal.
+#
+# @see https://github.com/sst/opencode
+opencode = "latest"
+
+# Packer
+#
+# @see https://www.packer.io/
+packer = "latest"
+
+# Install and Run Python Applications in Isolated Environments
+#
+# @see https://github.com/pypa/pipx
+pipx = "latest"
+
+# Find Kubernetes resources that have been deprecated
+#
+# @see https://github.com/FairwindsOps/pluto
+pluto = "latest"
+
+# Fast, disk space efficient package manager
+#
+# @see https://pnpm.io/
+pnpm = "latest"
+
+# A tool for managing OCI containers and pods
+#
+# @see https://podman.io/
+podman = "latest"
+
+# Poetry
+#
+# @see https://python-poetry.org/
+poetry = "latest"
+
+# Kubernetes Live Cluster Linter
+#
+# @see https://github.com/derailed/popeye
+popeye = "latest"
+
+# Python
+#
+# @see https://www.python.org/
+python = "latest"
+
+# rsync for cloud storage
+#
+# @see https://rclone.org/
+rclone = "latest"
+
+# A framework for managing and maintaining multi-language pre-commit hooks.
+#
+# @see https://pre-commit.com/
+pre-commit = "latest"
+
+# Linter, debugger, and language server for Rego
+#
+# @see https://github.com/open-policy-agent/regal
+regal = "latest"
+
+# Recursively search directories for a regex pattern
+#
+# @see https://github.com/BurntSushi/ripgrep
+ripgrep = "latest"
+
+# An extremely fast Python linter and code formatter, written in Rust.
+#
+# @see https://github.com/astral-sh/ruff
+ruff = "latest"
+
+# The Rust programming language
+#
+# @see https://www.rust-lang.org/
+rust = "latest"
+
+# A shell parser, formatter, and interpreter.
+#
+# @see https://github.com/mvdan/sh
+shfmt = "latest"
+
+# A shell script static analysis tool
+#
+# @see https://github.com/koalaman/shellcheck
+shellcheck = "latest"
+
+# Terraform
+#
+# @see https://www.terraform.io/
+terraform = "latest"
+
+# A utility to generate documentation from Terraform modules in various output formats.
+#
+# @see https://github.com/terraform-docs/terraform-docs
+terraform-docs = "latest"
+
+# A comprehensive and versatile security scanner
+#
+# @see https://github.com/aquasecurity/trivy
+trivy = "latest"
+
+# An extremely fast Python package and project manager, written in Rust.
+#
+# @see https://github.com/astral-sh/uv
+uv = "latest"
+
+# Manage Secrets & Protect Sensitive Data
+#
+# @see https://www.vaultproject.io/
+vault = "latest"
+
+# A lightweight and portable command-line YAML processor
+#
+# @see https://github.com/mikefarah/yq
+yq = "latest"
+
+# Zellij
+#
+# @see https://github.com/zellij-org/zellij
+zellij = "latest"
+
+# A smarter cd command, inspired by z and autojump
+#
+# @see https://github.com/ajeetdsouza/zoxide
+zoxide = "latest"

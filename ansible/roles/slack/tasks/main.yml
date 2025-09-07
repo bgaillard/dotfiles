@@ -1,0 +1,24 @@
+# https://downloads.slack-edge.com/desktop-releases/linux/x64/4.45.69/slack-desktop-4.45.69-amd64.deb
+
+- name: Create temporary directory to download slack .deb package
+  ansible.builtin.tempfile:
+    state: directory
+  register: slack_tmp_dir
+
+- name: Download Slack download page
+  ansible.builtin.get_url:
+    url: https://slack.com/downloads/instructions/linux?ddl=1&build=deb
+    dest: "{{ slack_tmp_dir.path }}/download.html"
+    mode: "0400"
+
+- name: Extract Slack .deb package URL from download page
+  ansible.builtin.shell:
+    cmd: cat download.html | grep 'downloads.slack-edge.com' | grep '.deb' | sed 's/^.*\(https\:\/\/downloads.slack-edge.com\/desktop-releases\/linux\/x64\/.*amd64.deb\).*$/\1/'
+  args:
+    chdir: "{{ slack_tmp_dir.path }}"
+  register: slack_deb_url
+
+- name: Install Slack .deb package
+  become: true
+  ansible.builtin.apt:
+    deb: "{{ slack_deb_url.stdout }}"

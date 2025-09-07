@@ -1,1 +1,7 @@
 ---
+# https://github.com/ryanoasis/nerd-fonts
+- name: Extract Slack .deb package URL from download page
+  ansible.builtin.shell:
+    cmd: >
+      mkdir -p "{{ ansible_env.HOME }}/.local/share/fonts" &&
+      curl -fLo "{{ ansible_env.HOME }}/.local/share/fonts/Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf

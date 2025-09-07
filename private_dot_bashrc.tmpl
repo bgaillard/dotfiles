@@ -41,11 +41,6 @@ if [ -d /usr/local/sbin ] && ! echo "$PATH" | grep "/usr/local/sbin" >/dev/null 
     export PATH="$PATH:/usr/local/sbin"
 fi
 
-# asdf
-#
-# @see https://asdf-vm.com/guide/getting-started.html#_2-configure-asdf
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-
 
 ########################################################################################################################
 # EDITOR

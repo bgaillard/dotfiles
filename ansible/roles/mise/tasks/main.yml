@@ -1,0 +1,9 @@
+- name: Install mise
+  ansible.builtin.shell:
+    chdir: /tmp
+    cmd: curl https://mise.run | sh
+
+- name: Ensure mise installs versions from '~/.config/mise/config.toml'
+  ansible.builtin.command:
+    cmd: "{{ ansible_env.HOME }}/.local/bin/mise up"
+    chdir: "{{ ansible_env.HOME }}"
