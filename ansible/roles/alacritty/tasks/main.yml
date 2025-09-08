@@ -1,0 +1,4 @@
+---
+- name: Install alacritty with cargo
+  ansible.builtin.shell:
+    cmd: cargo install alacritty

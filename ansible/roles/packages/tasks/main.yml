@@ -28,6 +28,7 @@
       - fakeroot           # Linux Kernel compilation
       - feh                # Lightweight image viewer
       - flex               # Linux Kernel compilation
+      - g++
       - gcc
       - git
       - gnupg
@@ -36,9 +37,12 @@
       - gvfs-fuse          # Required for Thunar trash, removable media and remote fil systems support
       - hwinfo
       - libarchive-tools
+      - libfontconfig1-dev
       - libelf-dev         # Linux kernel compilation
       - libnotify-bin      # For the 'notify-send' command
       - libssl-dev         # Linux kernel compilation
+      - libxcb-xfixes0-dev
+      - libxkbcommon-dev
       - lshw               # HardWare Lister for Linux
       - make
       - nasm               # Required for FFMpeg (installed with asdf)
