@@ -5,6 +5,11 @@
 # @see https://atuin.sh
 atuin = "latest"
 
+# The official CLI for Amazon Web Services
+#
+# @see https://aws.amazon.com/cli/
+aws-cli = "latest"
+
 # A cat clone with wings
 #
 # @see https://github.com/sharkdp/bat

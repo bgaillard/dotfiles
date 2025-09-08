@@ -35,6 +35,7 @@
       - git-secrets        # Prevents you from committing secrets and credentials into git repositories
       - gnupg
       - gparted
+      - groff
       - gvfs-backends      # Required for Thunar trash, removable media and remote fil systems support
       - gvfs-fuse          # Required for Thunar trash, removable media and remote fil systems support
       - hwinfo
