@@ -24,6 +24,7 @@
       - curl
       - dbeaver-ce
       - devscripts         # Linux Kernel compilation
+      - dunst              # Lightweight notification daemon
       - evince
       - fakeroot           # Linux Kernel compilation
       - feh                # Lightweight image viewer
@@ -31,6 +32,7 @@
       - g++
       - gcc
       - git
+      - git-secrets        # Prevents you from committing secrets and credentials into git repositories
       - gnupg
       - gparted
       - gvfs-backends      # Required for Thunar trash, removable media and remote fil systems support
@@ -66,17 +68,3 @@
       - wget
       - zip
     state: latest
-
-
-# FIXME: We install Python with asdf, so this should be executed after the asdf role.
-#
-# @see https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html
-- name: Install Python packages
-  ansible.builtin.pip:
-    name:
-      - buku  # CLI Bookmark Manager - https://github.com/jarun/buku
-      - cryptography
-      - pyopenssl
-      - yubikey-manager
-    break_system_packages: true  # FIXME: Remove when Python is installed with asdf
-    state: present

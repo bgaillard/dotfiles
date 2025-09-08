@@ -3,6 +3,7 @@
   roles:
     - packages
     - mise
+    - python-packages
     #- fonts
     - alacritty
     - slack

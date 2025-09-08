@@ -1,0 +1,14 @@
+# We install Python with mise, so this should be executed after the mise role.
+#
+# @see https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html
+- name: Install Python packages
+  ansible.builtin.pip:
+    name:
+      - aws-shell # Integrated shell for working with the AWS CLI
+      - buku      # CLI Bookmark Manager - https://github.com/jarun/buku
+      - cryptography
+      - pyopenssl
+      - yubikey-manager
+    break_system_packages: true  # FIXME: Remove when Python is installed with asdf
+    state: present
+
