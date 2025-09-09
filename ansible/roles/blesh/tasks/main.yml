@@ -1,0 +1,28 @@
+---
+- name: Create temporary directory to download ble.sh
+  ansible.builtin.tempfile:
+    state: directory
+  register: blesh_tmp_dir
+
+- name: Download ble.sh script
+  ansible.builtin.get_url:
+    url: https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz
+    dest: "{{ blesh_tmp_dir.path }}/blesh.tar.xz"
+    mode: "0400"
+
+- name: Extract ble.sh script
+  ansible.builtin.shell:
+    cmd: "tar -xf blesh.tar.xz"
+  args:
+    chdir: "{{ blesh_tmp_dir.path }}"
+
+- name: Install ble.sh script
+  ansible.builtin.shell:
+    cmd: bash ble-nightly/ble.sh --install {{ ansible_env.HOME }}/.local/share
+  args:
+    chdir: "{{ blesh_tmp_dir.path }}"
+
+- name: Clean up temporary directory
+  ansible.builtin.file:
+    path: "{{ blesh_tmp_dir.path }}"
+    state: absent

@@ -23,3 +23,8 @@
   become: true
   ansible.builtin.apt:
     deb: "{{ slack_deb_url.stdout }}"
+
+- name: Clean up temporary directory
+  ansible.builtin.file:
+    path: "{{ slack_tmp_dir.path }}"
+    state: absent

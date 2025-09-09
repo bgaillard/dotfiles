@@ -4,7 +4,7 @@
     - packages
     - mise
     - python-packages
-    #- fonts
+    - blesh
     - alacritty
     - keybase
     - slack
