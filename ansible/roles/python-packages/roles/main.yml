@@ -4,11 +4,11 @@
 - name: Install Python packages
   ansible.builtin.pip:
     name:
-      - aws-shell # Integrated shell for working with the AWS CLI
-      - buku      # CLI Bookmark Manager - https://github.com/jarun/buku
+      - aws-google-auth       # Tool to generate Google OAuth2 access tokens for AWS STS
+      - aws-google-auth[u2f]
+      - aws-shell             # Integrated shell for working with the AWS CLI
+      - buku                  # CLI Bookmark Manager - https://github.com/jarun/buku
       - cryptography
       - pyopenssl
       - yubikey-manager
-    break_system_packages: true  # FIXME: Remove when Python is installed with asdf
     state: present
-

@@ -44,6 +44,8 @@
       - libelf-dev         # Linux kernel compilation
       - libnotify-bin      # For the 'notify-send' command
       - libssl-dev         # Linux kernel compilation
+      - libudev-dev
+      - libusb-1.0-0-dev
       - libxcb-xfixes0-dev
       - libxkbcommon-dev
       - lshw               # HardWare Lister for Linux

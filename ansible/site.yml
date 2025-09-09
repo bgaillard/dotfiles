@@ -1,10 +1,10 @@
 ---
 - hosts: 127.0.0.1
   roles:
-    #- packages
-    #- mise
-    #- python-packages
+    - packages
+    - mise
+    - python-packages
     #- fonts
-    #- alacritty
+    - alacritty
     - keybase
-    #- slack
+    - slack
