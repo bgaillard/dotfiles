@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+########################################################################################################################
+# ble.sh
+########################################################################################################################
+[[ $- == *i* ]] && source -- ~/.local/share/blesh/ble.sh --attach=none
+
+
 # The CIS (Center for Internet Security) and ANSSI (Agence Nationale de la Sécurité des Systèmes d'Information)
 # recommend a umask of 027 or 077 for better security.
 #
@@ -90,6 +96,7 @@ HISTCONTROL=ignoreboth:erasedups
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -445,3 +452,17 @@ if [[ -z "$ZELLIJ" ]]; then
 fi
 
 {{- end }}
+
+
+########################################################################################################################
+# ble.sh
+########################################################################################################################
+[[ ! ${BLE_VERSION-} ]] || ble-attach
+
+
+########################################################################################################################
+# Atuin
+########################################################################################################################
+export ATUIN_NOBIND="true"
+eval "$(atuin init bash)"
+bind -x '"\C-r": __atuin_history --keymap-mode=vim-insert'

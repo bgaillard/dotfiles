@@ -276,6 +276,11 @@ shfmt = "latest"
 # @see https://github.com/koalaman/shellcheck
 shellcheck = "latest"
 
+# A versatile, feature-rich TOML toolkit.
+#
+# @see https://taplo.tamasfe.dev/
+taplo = "latest"
+
 # Terraform
 #
 # @see https://www.terraform.io/
