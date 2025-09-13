@@ -11,7 +11,20 @@ return {
   build = "make tiktoken",
   opts = {},
   config = function()
-    require("CopilotChat").setup()
+    require("CopilotChat").setup(
+      {
+        -- @see https://docs.mistral.ai/capabilities/code_generation/
+        -- @see https://mistral.ai/news/codestral-25-08
+        model = "devstral-medium-latest",
+
+        prompts = {
+          ToUS = {
+            prompt = "Translate the following text to English:",
+            system_prompt = "You are a helpful assistant that translates French to English.",
+          },
+        },
+      }
+    )
 
     -- @see https://github.com/CopilotC-Nvim/CopilotChat.nvim/discussions/975
     require('CopilotChat.config').providers.mistral = {
