@@ -1,0 +1,16 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Prompt
+format = """
+$directory\
+$git_branch\
+$git_status\
+$character"""
+add_newline = false
+
+[character]
+success_symbol = '[\$](bold fg:215)'
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '

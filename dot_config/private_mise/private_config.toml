@@ -276,6 +276,11 @@ shfmt = "latest"
 # @see https://github.com/koalaman/shellcheck
 shellcheck = "latest"
 
+# Cross-shell prompt
+#
+# @see https://starship.rs
+starship = "latest"
+
 # A versatile, feature-rich TOML toolkit.
 #
 # @see https://taplo.tamasfe.dev/
