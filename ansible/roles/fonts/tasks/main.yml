@@ -1,0 +1,20 @@
+- name: Create temporary directory to download Nerd Fonts
+  ansible.builtin.tempfile:
+    state: directory
+  register: font_tmp_dir
+
+- name: Download JetBrains Mono Nerd Font
+  ansible.builtin.get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
+    dest: "{{ font_tmp_dir.path }}/JetBrainsMono.zip"
+    mode: "0400"
+
+- name: Unzip JetBrains Mono Nerd Font
+  ansible.builtin.unarchive:
+    src: "{{ font_tmp_dir.path }}/JetBrainsMono.zip"
+    dest: "{{ ansible_env.HOME }}/.local/share/fonts"
+
+- name: Clean up temporary directory
+  ansible.builtin.file:
+    path: "{{ font_tmp_dir.path }}"
+    state: absent
