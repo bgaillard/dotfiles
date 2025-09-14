@@ -46,7 +46,32 @@ map(
 -- opencode.nvim
 -- 
 -- @see https://github.com/NickvanDyke/opencode.nvim
-map('n', '<leader>ot', function() require('opencode').toggle() end, { desc = 'Toggle opencode' })
+map(
+  'n',
+  '<leader>ot',
+  function()
+
+    -- Toggle opencode
+    require('opencode').toggle()
+
+    -- Set the focus to the opencode window to be able to enter text immediately
+    local windows = vim.api.nvim_list_wins()
+
+    for _, win_id in ipairs(windows) do
+      local buf_number = vim.api.nvim_win_get_buf(win_id)
+        local buf_name = vim.api.nvim_buf_get_name(buf_number)
+
+        if buf_name:match("term://") and buf_name:match(":opencode") then
+          vim.api.nvim_set_current_win(win_id)
+          break
+        end
+    end
+
+  end,
+  {
+    desc = 'Toggle opencode'
+  }
+)
 map('n', '<leader>op', function() require('opencode').ask() end, { desc = 'Ask' })
 map('n', '<leader>oa', function() require('opencode').ask('@cursor: ') end, { desc = 'Ask opencode about this' })
 map('v', '<leader>oa', function() require('opencode').ask('@selection: ') end, { desc = 'Ask opencode about selection' })

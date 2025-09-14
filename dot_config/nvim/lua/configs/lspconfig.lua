@@ -37,8 +37,9 @@ local servers = {
   "jsonls",
 
   -- LaTex
-  "ltex",
-  "texlab",
+  -- FIXME: Temporary disabled because it covers GIT gutter signs in README.md files
+  --"ltex",
+  --"texlab",
 
   -- Lua
   --"sumneko_lua",
