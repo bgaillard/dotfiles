@@ -1,0 +1,25 @@
+{
+  // @see https://models.dev/
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": true,
+  "provider": {
+    "mistral" : {
+      "options": {
+        "apiKey": "{file:~/.mistral_api_key}"
+      }
+    }
+  },
+  "disabled_providers": [
+    "opencode",
+    "openai"
+  ],
+  "model": "mistral/devstral-medium-2507",
+  "small_model": "mistral/devstral-small-2507",
+  "command": {
+    "fren" : {
+      "agent": "plan",
+      "template": "Translate the following French text to English: $ARGUMENTS",
+      "description": "Translate French to English."
+    }
+  }
+}
