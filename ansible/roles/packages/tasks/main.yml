@@ -52,6 +52,7 @@
       - make
       - nasm               # Required for FFMpeg (installed with asdf)
       - network-manager
+      - peek
       - pgpdump
       - pkg-config
       - podman
