@@ -48,17 +48,17 @@ render_timer = false
 size = 6.0
 
 [font.bold]
-family = "Cousine NF"
+family = "JetBrainsMono Nerd Font"
 
 [font.glyph_offset]
 x = 0
 y = 0
 
 [font.italic]
-family = "Cousine NF"
+family = "JetBrainsMono Nerd Font"
 
 [font.normal]
-family = "Cousine NF"
+family = "JetBrainsMono Nerd Font"
 
 [font.offset]
 x = 0

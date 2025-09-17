@@ -40,6 +40,11 @@ cookiecutter = "latest"
 # @see https://github.com/dagger/dagger
 dagger = "latest"
 
+# A syntax-highlighting pager for git, diff, and grep output
+#
+# @see https://github.com/dandavison/delta
+delta = "latest"
+
 # A tool for exploring a Docker image
 #
 # @see https://github.com/wagoodman/dive
