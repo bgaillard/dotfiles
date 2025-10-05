@@ -1,0 +1,31 @@
+---
+- name: Install mkcert Root CA development certificate
+  ansible.builtin.shell:
+    cmd: mkcert -install
+
+- name: Create temporary directory to create TLS certificates
+  ansible.builtin.tempfile:
+    state: directory
+  register: certs_tmp_dir
+
+# TLS certificate for imap4d
+#
+# FIXME: We should find a way to automate the renewal of this certificate
+- name: Create a TLS certificate for imap4d
+  ansible.builtin.shell:
+    cmd: mkcert -cert-file Baptiste_Gaillard_Imap4d.crt -key-file Baptiste_Gaillard_Imap4d.key mail.localhost imap.localhost smtp.localhost
+    chdir: "{{ certs_tmp_dir.path }}"
+- name: Move TLS certificate for imap4d
+  ansible.builtin.copy:
+    src: "{{ certs_tmp_dir.path }}/Baptiste_Gaillard_Imap4d.crt"
+    dest: "/etc/ssl/certs/Baptiste_Gaillard_Imap4d.crt"
+    mode: "0400"
+    force: true
+  become: true
+- name: Move TLS certificate private key for imap4d
+  ansible.builtin.copy:
+    src: "{{ certs_tmp_dir.path }}/Baptiste_Gaillard_Imap4d.key"
+    dest: "/etc/ssl/private/Baptiste_Gaillard_Imap4d.key"
+    mode: "0400"
+    force: true
+  become: true

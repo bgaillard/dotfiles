@@ -1,0 +1,15 @@
+# We install Pnpm with mise, so this should be executed after the mise role.
+#
+# @see https://docs.ansible.com/ansible/latest/collections/community/general/pnpm_module.html
+
+# @see https://ansible.readthedocs.io/projects/vscode-ansible/als/
+- name: Install 'ansible-language-server' Node.js packages
+  community.general.pnpm:
+    global: true
+    name: "@ansible/ansible-language-server"
+
+# @see https://github.com/Beaglefoot/awk-language-server
+- name: Install 'awk-language-server' Node.js packages
+  community.general.pnpm:
+    global: true
+    name: "awk-language-server"

@@ -4,6 +4,9 @@
     - alacritty
     - fonts
     - mise
+    - mkcert
     - packages
+    - node-packages
     - python-packages
+    - ruby-packages
     - slack

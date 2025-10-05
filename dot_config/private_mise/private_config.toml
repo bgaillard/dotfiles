@@ -181,6 +181,11 @@ lua = "latest"
 # FIXME: Download not working for latest
 #minio = "latest"
 
+# A simple tool to make locally-trusted development certificates.
+#
+# @see https://github.com/FiloSottile/mkcert
+mkcert = "latest"
+
 # Neovim
 #
 # @see https://neovim.io/
@@ -260,6 +265,11 @@ regal = "latest"
 #
 # @see https://github.com/BurntSushi/ripgrep
 ripgrep = "latest"
+
+# The Ruby programming language
+#
+# @see https://www.ruby-lang.org/
+ruby = "latest"
 
 # An extremely fast Python linter and code formatter, written in Rust.
 #

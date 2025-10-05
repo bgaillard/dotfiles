@@ -42,16 +42,21 @@
       - libarchive-tools
       - libfontconfig1-dev
       - libelf-dev         # Linux kernel compilation
+      - libmailutils-dev   # Required to have the 'mailutils' command
       - libnotify-bin      # For the 'notify-send' command
+      - libnss3-tools      # Required by the 'mkcert' tool
       - libssl-dev         # Linux kernel compilation
       - libudev-dev
       - libusb-1.0-0-dev
       - libxcb-xfixes0-dev
       - libxkbcommon-dev
       - lshw               # HardWare Lister for Linux
+      - mailutils
+      - mailutils-imap4d
       - make
       - nasm               # Required for FFMpeg (installed with asdf)
       - network-manager
+      - openssl
       - peek
       - pgpdump
       - pkg-config
@@ -64,12 +69,17 @@
       - shfmt
       - spotify-client
       - texlive-full          # LaTeX distribution
+      - thunderbird
       - thunar                # XFCE file manager
       - thunar-archive-plugin # Archive support for Thunar
       - thunar-dropbox-plugin # Dropbox support for Thunar
       - unzip
       - vagrant
       - vlc
+      - wl-clipboard
       - wget
+      - xclip
+      - xsel
+      - xfce4-mailwatch-plugin
       - zip
     state: latest

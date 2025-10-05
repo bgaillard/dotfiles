@@ -8,6 +8,7 @@
       - aws-google-auth[u2f]
       - aws-shell             # Integrated shell for working with the AWS CLI
       - buku                  # CLI Bookmark Manager - https://github.com/jarun/buku
+      - cmake-language-server # @see https://github.com/regen100/cmake-language-server
       - cryptography
       - pyopenssl
       - yubikey-manager

@@ -1,3 +1,4 @@
+---
 - name: Create temporary directory to download Nerd Fonts
   ansible.builtin.tempfile:
     state: directory
