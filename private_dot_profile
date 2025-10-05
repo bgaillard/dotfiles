@@ -4,9 +4,46 @@
 # see /usr/share/doc/bash/examples/startup-files for examples.
 # the files are located in the bash-doc package.
 
-# the default umask is set in /etc/profile; for setting the umask
-# for ssh logins, install and configure the libpam-umask package.
-#umask 022
+# The CIS (Center for Internet Security) and ANSSI (Agence Nationale de la Sécurité des Systèmes d'Information)
+# recommend a umask of 027 or 077 for better security.
+#
+# @see https://www.debian.org/doc/manuals/debian-reference/ch01.en.html#_control_of_permissions_for_newly_created_files_umask
+# @see https://www.it-connect.fr/gestion-de-lumask-sous-linux/
+# @see https://cyber.gouv.fr/publications/recommandations-de-securite-relatives-un-systeme-gnulinux
+umask 027
+
+
+########################################################################################################################
+# EDITOR
+########################################################################################################################
+EDITOR="vi"
+
+if which nvim >/dev/null ; then
+  EDITOR=nvim
+elif which vim >/dev/null ; then
+  EDITOR=vim
+fi
+
+export EDITOR=${EDITOR}
+
+
+########################################################################################################################
+# MAIL
+#
+# See 'man bash' or 'man zsh' for more information.
+#
+# @see https://bgaillard.github.io/2025/10/05/you-have-mail.html
+# @see https://www.debian.org/releases/bookworm/amd64/ch08s04.en.html
+# @see https://zsh.sourceforge.io/Doc/Release/zsh_6.html#index_split-5_vr_letter-M
+########################################################################################################################
+unset MAILCHECK
+
+
+########################################################################################################################
+# MAN
+########################################################################################################################
+export MANPAGER="${EDITOR} +Man!"
+
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
@@ -25,5 +62,3 @@ fi
 if [ -d "$HOME/.local/bin" ] && ! echo "$PATH" | grep "$HOME/.local/bin" ; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
-
-export PATH="$HOME/.poetry/bin:$PATH"
