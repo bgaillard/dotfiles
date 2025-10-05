@@ -1,17 +1,17 @@
 -- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
-
 -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local servers = {
 
   -- Ansible
+  --
+  -- @see https://ansible.readthedocs.io/projects/vscode-ansible/als/
   "ansiblels",
 
   -- Compilation
   "cmake",
-  "gradle_ls",
+  --"gradle_ls",
 
   -- Docker
   "dockerls",
@@ -80,17 +80,18 @@ local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+  vim.lsp.config[lsp] = {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
   }
+  vim.lsp.enable(lsp)
 end
 
 -- Specific "ltex" setup
 --
 -- see https://valentjn.github.io/ltex/index.html
-lspconfig.ltex.setup {
+vim.lsp.config["ltex"] = {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
@@ -129,8 +130,9 @@ lspconfig.ltex.setup {
     }
   }
 }
+vim.lsp.enable("ltex")
 
-lspconfig.yamlls.setup {
+vim.lsp.config["yamlls"] = {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
@@ -140,3 +142,4 @@ lspconfig.yamlls.setup {
     }
   }
 }
+vim.lsp.enable("yamlls")

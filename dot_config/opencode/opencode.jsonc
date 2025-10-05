@@ -1,11 +1,13 @@
 {
   // @see https://models.dev/
+  // @see https://www.linkedin.com/pulse/faut-il-attribuer-un-r%C3%B4le-dans-prompt-pour-llm-david-lacour-gsv6e/
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": true,
   "provider": {
     "mistral" : {
       "options": {
-        "apiKey": "{file:~/.mistral_api_key}"
+        "apiKey": "{file:~/.mistral_api_key}",
+        "timeout": 60000 // 10 minutes
       }
     }
   },
@@ -16,7 +18,7 @@
   "model": "mistral/devstral-medium-2507",
   "small_model": "mistral/devstral-small-2507",
   "command": {
-    "fren" : {
+    "fr_en" : {
       "agent": "plan",
       "template": "Translate the following French text to English: $ARGUMENTS",
       "description": "Translate French to English."

@@ -6,6 +6,11 @@
 - `:Mason` and then `U`
 - `:TSUpdate`
 
+## Check health
+
+- `:checkhealth`
+- `:checkhealth vim.lsp`
+
 ## Shortcuts
 
 Display shortcuts with `:NvCheatsheet` or `:Telescope keymaps`.
