@@ -9,7 +9,7 @@
 # FIXME: Le fichier 'provision.sh' doit installer le paquets indispensables à chezmoi ainsi qu'à Ansible
 #        Du coup il faut un provisioning Ansible via une commande 'ansible-playbook' à exécuter à la main
 
-- name: Install Linux packages
+- name: Install standard Linux packages
   become: true
   ansible.builtin.package:
     name:
@@ -22,20 +22,16 @@
       - automake
       - bash-completion
       - bison              # Linux Kernel compilation
-      #- bruno             # FIXME: Needs custom apt repository
       - build-essential
       - ca-certificates
-      - calibre
       - cargo
       - clang
       - cmake
       - cpu-checker
       - cups
       - curl
-      #- dbeaver-ce        # FIXME: Install it using custom package
       - devscripts         # Linux Kernel compilation
       - dunst              # Lightweight notification daemon
-      - evince
       - fakeroot           # Linux Kernel compilation
       - feh                # Lightweight image viewer
       - flex               # Linux Kernel compilation
@@ -44,11 +40,10 @@
       - git
       - git-secrets        # Prevents you from committing secrets and credentials into git repositories
       - gnupg
-      - gparted
       - groff
       - guestfs-tools
-      - gvfs-backends      # Required for Thunar trash, removable media and remote fil systems support
-      - gvfs-fuse          # Required for Thunar trash, removable media and remote fil systems support
+      - gvfs-backends      # Required for Thunar trash, removable media and remote file systems support
+      - gvfs-fuse          # Required for Thunar trash, removable media and remote file systems support
       - hwinfo
       - libarchive-tools
       - libelf-dev         # Linux kernel compilation
@@ -57,7 +52,6 @@
       - libnotify-bin      # For the 'notify-send' command
       - libnss3-tools      # Required by the 'mkcert' tool
       - libosinfo-bin
-      - libreoffice
       - libssl-dev         # Linux kernel compilation
       - libudev-dev
       - libusb-1.0-0-dev
@@ -73,7 +67,6 @@
       - network-manager
       - openssl
       - ovmf
-      - peek
       - pgpdump
       - pkg-config
       - podman
@@ -82,15 +75,10 @@
       - python3-pip
       - qemu-system-x86
       - qemu-utils
-      - ristretto          # XFCE image viewer
       - rsync
       - shfmt
-      #- spotify-client       # FIXME: Needs a custom apt repository
       - swtpm
       - texlive-full          # LaTeX distribution
-      - thunar                # XFCE file manager
-      - thunar-archive-plugin # Archive support for Thunar
-      #- thunar-dropbox-plugin # Dropbox support for Thunar FIXME: Requires the 'contrib' Debian repo
       - thunderbird
       - tuned
       - unzip
@@ -102,7 +90,24 @@
       - wget
       - wl-clipboard
       - xclip
-      - xfce4-mailwatch-plugin
       - xsel
       - zip
     state: latest
+
+- name: Install 'gui' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      #- bruno             # FIXME: Needs custom apt repository
+      - calibre
+      #- dbeaver-ce        # FIXME: Install it using custom package
+      - evince
+      - gparted
+      - libreoffice
+      - peek
+      - ristretto             # XFCE image viewer
+      #- spotify-client       # FIXME: Needs a custom apt repository
+      - thunar                # XFCE file manager
+      - thunar-archive-plugin # Archive support for Thunar
+      #- thunar-dropbox-plugin # Dropbox support for Thunar FIXME: Requires the 'contrib' Debian repo
+  when: gui | default(false)

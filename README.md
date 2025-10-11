@@ -4,6 +4,8 @@ Dotfiles managed with [chezmoi](https://github.com/twpayne/chezmoi).
 
 ## Setup
 
+**WARNING**: Requires at least 40 GB for the whole setup.
+
 ```bash
 # Install base packages (Debian)
 #
@@ -31,5 +33,9 @@ chezmoi apply
 ## Provisioning
 
 ```bash
-./provision.sh
+# Without GUI packages
+./p
+
+# With GUI packages
+./p --gui
 ```
