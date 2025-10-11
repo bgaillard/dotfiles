@@ -4,6 +4,20 @@
     chdir: /tmp
     cmd: curl https://mise.run | sh
 
+- name: Create the '~/.config/mise' directory
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/mise"
+    state: directory
+    mode: '0700'
+
+- name: Copy mise config file
+  ansible.builtin.copy:
+    src: config.toml
+    dest: "{{ ansible_env.HOME }}/.config/mise/config.toml"
+    mode: '0600'
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
+
 - name: Ensure mise installs versions from '~/.config/mise/config.toml'
   ansible.builtin.command:
     cmd: "{{ ansible_env.HOME }}/.local/bin/mise up"
