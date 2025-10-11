@@ -9,7 +9,7 @@ Dotfiles managed with [chezmoi](https://github.com/twpayne/chezmoi).
 #
 # After 'adduser' logout and login again to apply sudo group
 su -
-apt install ansible curl sudo unzip
+apt install ansible curl sudo
 adduser baptiste sudo
 
 # Install ~/.local/bin/chezmoi

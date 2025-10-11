@@ -10,6 +10,12 @@
     dest: "{{ font_tmp_dir.path }}/JetBrainsMono.zip"
     mode: "0400"
 
+- name: Create the '~/.local/share/fonts' directory if it does not exist
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.local/share/fonts"
+    state: directory
+    mode: '0700'
+
 - name: Unzip JetBrains Mono Nerd Font
   ansible.builtin.unarchive:
     src: "{{ font_tmp_dir.path }}/JetBrainsMono.zip"
