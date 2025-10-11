@@ -1,7 +1,26 @@
 ---
+- name: Create temporary directory to download mkcert
+  ansible.builtin.tempfile:
+    state: directory
+  register: mkcert_tmp_dir
+
+- name: Download mkcert binary
+  ansible.builtin.get_url:
+    url: "https://dl.filippo.io/mkcert/latest?for=linux/amd64"
+    dest: "{{ mkcert_tmp_dir.path }}/mkcert"
+    mode: "0700"
+
+- name: Move mkcert binary to /usr/local/bin
+  ansible.builtin.shell:
+    cmd: mv mkcert /usr/local/bin/mkcert
+  args:
+    chdir: "{{ mkcert_tmp_dir.path }}"
+  become: true
+
 - name: Install mkcert Root CA development certificate
   ansible.builtin.shell:
     cmd: mkcert -install
+  become: true
 
 - name: Create temporary directory to create TLS certificates
   ansible.builtin.tempfile:
