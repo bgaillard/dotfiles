@@ -20,6 +20,7 @@
       - calibre
       - clang
       - cmake
+      - cpu-checker
       - cups
       - curl
       - dbeaver-ce
@@ -36,27 +37,33 @@
       - gnupg
       - gparted
       - groff
+      - guestfs-tools
       - gvfs-backends      # Required for Thunar trash, removable media and remote fil systems support
       - gvfs-fuse          # Required for Thunar trash, removable media and remote fil systems support
       - hwinfo
       - libarchive-tools
-      - libfontconfig1-dev
       - libelf-dev         # Linux kernel compilation
+      - libfontconfig1-dev
       - libmailutils-dev   # Required to have the 'mailutils' command
       - libnotify-bin      # For the 'notify-send' command
       - libnss3-tools      # Required by the 'mkcert' tool
+      - libosinfo-bin
+      - libreoffice
       - libssl-dev         # Linux kernel compilation
       - libudev-dev
       - libusb-1.0-0-dev
+      - libvirt-daemon-system
       - libxcb-xfixes0-dev
       - libxkbcommon-dev
       - lshw               # HardWare Lister for Linux
       - mailutils
       - mailutils-imap4d
       - make
+      - meson
       - nasm               # Required for FFMpeg (installed with asdf)
       - network-manager
       - openssl
+      - ovmf
       - peek
       - pgpdump
       - pkg-config
@@ -64,22 +71,29 @@
       - printer-driver-all
       - psmisc             # Required for the 'killall' command for example
       - python3-pip
+      - qemu-system-x86
+      - qemu-utils
       - ristretto          # XFCE image viewer
       - rsync
       - shfmt
       - spotify-client
+      - swtpm
       - texlive-full          # LaTeX distribution
-      - thunderbird
       - thunar                # XFCE file manager
       - thunar-archive-plugin # Archive support for Thunar
       - thunar-dropbox-plugin # Dropbox support for Thunar
+      - thunderbird
+      - tuned
       - unzip
       - vagrant
+      - virt-manager
+      - virt-viewer
+      - virtinst
       - vlc
-      - wl-clipboard
       - wget
+      - wl-clipboard
       - xclip
-      - xsel
       - xfce4-mailwatch-plugin
+      - xsel
       - zip
     state: latest

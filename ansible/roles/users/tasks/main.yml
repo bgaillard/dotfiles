@@ -1,0 +1,9 @@
+- name: Add the user 'baptiste' to the right groups
+  ansible.builtin.user:
+    name: baptiste
+    shell: /bin/bash
+    group: baptiste
+    groups: baptiste,cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,lpadmin,docker,libvirt,kvm
+    append: true
+    state: present
+  become: true
