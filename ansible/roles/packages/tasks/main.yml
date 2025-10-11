@@ -26,6 +26,7 @@
       - build-essential
       - ca-certificates
       - calibre
+      - cargo
       - clang
       - cmake
       - cpu-checker
