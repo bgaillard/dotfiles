@@ -1,0 +1,13 @@
+- name: Install 'mail' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - libmailutils-dev   # Required to have the 'mailutils' command
+      - mailutils
+      - mailutils-imap4d
+- name: Install 'mail AND gui' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - thunderbird
+  when: gui | default(false)

@@ -1,0 +1,6 @@
+- name: Install 'print' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - cups
+      - printer-driver-all

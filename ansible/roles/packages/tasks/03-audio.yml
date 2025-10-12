@@ -1,0 +1,12 @@
+---
+- name: Install 'audio' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - alsa-utils
+#- name: Install 'audio AND gui' Linux packages
+#  become: true
+#  ansible.builtin.package:
+#    name:
+#      #- spotify-client       # FIXME: Needs a custom apt repository
+#  when: gui | default(false)

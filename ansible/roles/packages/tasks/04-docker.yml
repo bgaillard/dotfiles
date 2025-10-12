@@ -1,0 +1,46 @@
+# @see https://docs.docker.com/engine/install/debian/
+- name: Add Docker APT repository
+  become: true
+  ansible.builtin.deb822_repository:
+    name: docker
+    types: [deb]
+    uris: "https://download.docker.com/linux/debian"
+    signed_by: "https://download.docker.com/linux/debian/gpg"
+    architectures: amd64
+    suites:
+      - "{{ ansible_distribution_release }}"
+    components:
+      - stable
+    state: present
+    enabled: yes
+
+- name: Update the apt cache (for the new Docker APT repository)
+  become: true
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install 'docker' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-ce
+      - docker-ce-cli
+      - docker-compose-plugin
+
+- name: Create the 'docker' group
+  become: true
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: Add the user '{{ ansible_env.USER }}' to the 'docker' group
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_env.USER }}"
+    shell: /bin/bash
+    group: "{{ ansible_env.USER }}"
+    groups: docker
+    append: true
+    state: present

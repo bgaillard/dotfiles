@@ -1,0 +1,6 @@
+audio: false
+docker: false
+gui: false
+mail: false
+print: false
+video: false

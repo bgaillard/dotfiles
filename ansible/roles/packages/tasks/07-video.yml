@@ -1,0 +1,6 @@
+- name: Install 'video AND gui' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - vlc
+  when: gui | default(false)

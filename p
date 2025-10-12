@@ -1,37 +1,16 @@
 #!/bin/bash
 
-OPTS=$(getopt -o agmpv --long audio,docker,gui,mail,print,video -n 'p' -- "$@")
-
-if [ $? -ne 0 ]; then
-  echo "Failed to parse options" >&2
+if [ ! -d ~/.config ]; then
+  mkdir -p ~/.config
+fi
+if [ ! -f ~/.config/p.yml ]; then
+  echo "The configuration file ~/.config/p.yml does not exist!"
+  echo "Copy it with 'cp ~/.local/share/chezmoi/p.yml ~/.config' and edit it to your needs."
   exit 1
 fi
-
-## Reset the positional parameters to the parsed options
-eval set -- "$OPTS"
-
-AUDIO="false"
-DOCKER="false"
-GUI="false"
-MAIL="false"
-PRINT="false"
-VIDEO="false"
-
-while true; do
-  case "$1" in
-    -a | --audio ) AUDIO="true"; shift ;;
-    -d | --docker ) DOCKER="true"; shift ;;
-    -g | --gui ) GUI="true"; shift ;;
-    -m | --mail ) MAIL="true"; shift ;;
-    -p | --print ) PRINT="true"; shift ;;
-    -v | --video ) VIDEO="true"; shift ;;
-    -- ) shift; break ;;
-    * ) break ;;
-  esac
-done
 
 # Run Ansible playbook
 ansible-playbook \
     --ask-become-pass \
     --inventory ansible/hosts.yml \
-    ansible/site.yml --extra-vars '{"audio":'"$AUDIO"', "docker":'"$DOCKER"', "gui":'"$GUI"', "mail":'"$MAIL"', "print":'"$PRINT"', "video":'"$VIDEO"'}'
+    ansible/site.yml --extra-vars "@~/.config/p.yml"

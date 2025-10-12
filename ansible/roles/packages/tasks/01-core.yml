@@ -1,0 +1,78 @@
+---
+- name: Install 'core' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      # If a tool is supported by asdf, prefer installing it using asdf because it allows to always use the latest
+      # version.
+      - apt-file
+      - apt-transport-https
+      - autoconf
+      - automake
+      - bash-completion
+      - bison              # Linux Kernel compilation
+      - build-essential
+      - ca-certificates
+      - cargo
+      - clang
+      - cmake
+      - cpu-checker
+      - curl
+      - devscripts         # Linux Kernel compilation
+      - dunst              # Lightweight notification daemon
+      - fakeroot           # Linux Kernel compilation
+      - feh                # Lightweight image viewer
+      - flex               # Linux Kernel compilation
+      - g++
+      - gcc
+      - git
+      - git-secrets        # Prevents you from committing secrets and credentials into git repositories
+      - gnupg
+      - groff
+      - guestfs-tools
+      - gvfs-backends      # Required for Thunar trash, removable media and remote file systems support
+      - gvfs-fuse          # Required for Thunar trash, removable media and remote file systems support
+      - hwinfo
+      - libarchive-tools
+      - libcairo2-dev
+      - libelf-dev         # Linux kernel compilation
+      - libfontconfig1-dev
+      - libgirepository-2.0-dev
+      - libnotify-bin      # For the 'notify-send' command
+      - libnss3-tools      # Required by the 'mkcert' tool
+      - libosinfo-bin
+      - libpcsclite-dev
+      - libssl-dev         # Linux kernel compilation
+      - libudev-dev
+      - libusb-1.0-0-dev
+      - libvirt-daemon-system
+      - libxcb-xfixes0-dev
+      - libxkbcommon-dev
+      - libyaml-dev
+      - lshw               # HardWare Lister for Linux
+      - make
+      - meson
+      - nasm               # Required for FFMpeg (installed with asdf)
+      - network-manager
+      - openssl
+      - ovmf
+      - pgpdump
+      - pkg-config
+      - podman
+      - psmisc             # Required for the 'killall' command for example
+      - python3-pip
+      - qemu-system-x86
+      - qemu-utils
+      - rsync
+      - shfmt
+      - swtpm
+      - texlive-full          # LaTeX distribution
+      - tuned
+      - unzip
+      - vagrant
+      - virt-manager
+      - virt-viewer
+      - virtinst
+      - wget
+      - zip
+    state: latest

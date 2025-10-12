@@ -1,0 +1,18 @@
+- name: Install 'gui' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      #- bruno             # FIXME: Needs custom apt repository
+      - calibre
+      #- dbeaver-ce        # FIXME: Install it using custom package
+      - evince
+      - gparted
+      - libreoffice
+      - peek
+      - ristretto             # XFCE image viewer
+      - thunar                # XFCE file manager
+      - thunar-archive-plugin # Archive support for Thunar
+      #- thunar-dropbox-plugin # Dropbox support for Thunar FIXME: Requires the 'contrib' Debian repo
+      - wl-clipboard
+      - xclip
+      - xsel

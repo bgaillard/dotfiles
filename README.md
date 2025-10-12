@@ -11,7 +11,7 @@ Dotfiles managed with [chezmoi](https://github.com/twpayne/chezmoi).
 #
 # After 'adduser' logout and login again to apply sudo group
 su -
-apt install ansible curl gh sudo
+apt install ansible curl git gh sudo
 adduser baptiste sudo
 
 # Get a Github token to prevent Rate Limit problems with 'mise'
@@ -26,7 +26,7 @@ BROWSER=false gh auth login
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
 
 # Initialize ~/.local/share/chezmoi
-chezmoi init bgaillard
+~/.local/bin/chezmoi init bgaillard
 
 # Apply dotfiles to home directory
 chezmoi diff
@@ -36,11 +36,9 @@ chezmoi apply
 ## Provisioning
 
 ```bash
-# Without optional packages
-./p
+# Copy the provisioning configuration file and adapt it to your needs
+cp ~/.local/share/chezmoi/p.yml ~/.config/p.yml
 
-# With optional packages
-#
-# WARNING: Requires at least 50 GB for all packages
-./p --audio --docker --gui --mail --print --video
+# Start the provisioning
+./p
 ```
