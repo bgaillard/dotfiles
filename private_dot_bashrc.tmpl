@@ -12,54 +12,11 @@ esac
 
 
 ########################################################################################################################
-# PATH
-########################################################################################################################
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] && ! echo "$PATH" | grep "$HOME/bin" >/dev/null ; then
-    export PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] && ! echo "$PATH" | grep "$HOME/.local/bin" >/dev/null ; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [ -d /usr/sbin ] && ! echo "$PATH" | grep "/usr/sbin" >/dev/null ; then
-    export PATH="$PATH:/usr/sbin"
-fi
-
-if [ -d /usr/local/sbin ] && ! echo "$PATH" | grep "/usr/local/sbin" >/dev/null ; then
-    export PATH="$PATH:/usr/local/sbin"
-fi
-
-
-########################################################################################################################
 # mise
 #
 # @see https://mise.jdx.dev/
 ########################################################################################################################
 eval "$(~/.local/bin/mise activate bash)"
-
-
-########################################################################################################################
-# EDITOR
-########################################################################################################################
-EDITOR="vi"
-
-if which nvim >/dev/null ; then
-  EDITOR=nvim
-elif which vim >/dev/null ; then
-  EDITOR=vim
-fi
-
-export EDITOR=${EDITOR}
-
-
-########################################################################################################################
-# MAN
-########################################################################################################################
-export MANPAGER="${EDITOR} +Man!"
 
 
 ########################################################################################################################
@@ -88,34 +45,13 @@ HISTFILESIZE=2000
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-
-# Your place for hosting Git repos. I use this for private repos.
-export GIT_HOSTING='git@git.domain.com'
-
-# Don't check mail when opening terminal.
-unset MAILCHECK
-
-# Change this to your console based IRC client of choice.
-# TODO: Use weechat instead
-export IRC_CLIENT='irssi'
-
-# Set this to the command you use for todo.txt-cli
-export TODO="t"
-
-# Set this to false to turn off version control status checking within the prompt for all themes
-export SCM_CHECK=true
-# Set to actual location of gitstatus directory if installed
-#export SCM_GIT_GITSTATUS_DIR="$HOME/gitstatus"
-# per default gitstatus uses 2 times as many threads as CPU cores, you can change this here if you must
-#export GITSTATUS_NUM_THREADS=8
 
 
 ########################################################################################################################
