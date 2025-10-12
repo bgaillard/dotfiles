@@ -42,5 +42,5 @@ chezmoi apply
 # With optional packages
 #
 # WARNING: Requires at least 50 GB for all packages
-./p --audio --gui --mail --print --video
+./p --audio --docker --gui --mail --print --video
 ```

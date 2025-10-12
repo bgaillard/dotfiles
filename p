@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OPTS=$(getopt -o agmpv --long audio,gui,mail,print,video -n 'p' -- "$@")
+OPTS=$(getopt -o agmpv --long audio,docker,gui,mail,print,video -n 'p' -- "$@")
 
 if [ $? -ne 0 ]; then
   echo "Failed to parse options" >&2
@@ -11,6 +11,7 @@ fi
 eval set -- "$OPTS"
 
 AUDIO="false"
+DOCKER="false"
 GUI="false"
 MAIL="false"
 PRINT="false"
@@ -19,6 +20,7 @@ VIDEO="false"
 while true; do
   case "$1" in
     -a | --audio ) AUDIO="true"; shift ;;
+    -d | --docker ) DOCKER="true"; shift ;;
     -g | --gui ) GUI="true"; shift ;;
     -m | --mail ) MAIL="true"; shift ;;
     -p | --print ) PRINT="true"; shift ;;
@@ -32,4 +34,4 @@ done
 ansible-playbook \
     --ask-become-pass \
     --inventory ansible/hosts.yml \
-    ansible/site.yml --extra-vars '{"gui":'"$GUI"',"audio":'"$AUDIO"', "mail":'"$MAIL"', "print":'"$PRINT"', "video":'"$VIDEO"'}'
+    ansible/site.yml --extra-vars '{"audio":'"$AUDIO"', "docker":'"$DOCKER"', "gui":'"$GUI"', "mail":'"$MAIL"', "print":'"$PRINT"', "video":'"$VIDEO"'}'
