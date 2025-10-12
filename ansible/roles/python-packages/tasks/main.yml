@@ -3,7 +3,7 @@
 # @see https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html
 - name: Get pip path
   ansible.builtin.shell:
-    cmd: mise where python
+    cmd: "{{ ansible_env.HOME }}/.local/bin/mise where python"
   register: python_dir
 
 - name: Install Python packages

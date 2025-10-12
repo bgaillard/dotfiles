@@ -4,7 +4,7 @@
 
 - name: Get pnpm path
   ansible.builtin.shell:
-    cmd: mise where pnpm
+    cmd: "{{ ansible_env.HOME }}/.local/bin/mise where pnpm"
   register: pnpm_dir
 
 - name: Create the '~/.local/share/pnpm' directory if it does not exist

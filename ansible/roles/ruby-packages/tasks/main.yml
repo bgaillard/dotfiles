@@ -3,7 +3,7 @@
 # @see https://docs.ansible.com/ansible/latest/collections/community/general/gem_module.html
 - name: Get ruby path
   ansible.builtin.shell:
-    cmd: mise where ruby
+    cmd: "{{ ansible_env.HOME }}/.local/bin/mise where ruby"
   register: ruby_dir
 
 - name: Install Ruby gems
@@ -14,3 +14,5 @@
   loop:
     - bundler
     - jekyll
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.local/bin:{{ ruby_dir.stdout }}/bin"
