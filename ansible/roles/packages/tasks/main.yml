@@ -36,11 +36,14 @@
       - gvfs-fuse          # Required for Thunar trash, removable media and remote file systems support
       - hwinfo
       - libarchive-tools
+      - libcairo2-dev
       - libelf-dev         # Linux kernel compilation
       - libfontconfig1-dev
+      - libgirepository-2.0-dev
       - libnotify-bin      # For the 'notify-send' command
       - libnss3-tools      # Required by the 'mkcert' tool
       - libosinfo-bin
+      - libpcsclite-dev
       - libssl-dev         # Linux kernel compilation
       - libudev-dev
       - libusb-1.0-0-dev
