@@ -1,8 +1,14 @@
 # We install Ruby with mise, so this should be executed after the mise role.
 #
 # @see https://docs.ansible.com/ansible/latest/collections/community/general/gem_module.html
+- name: Get ruby path
+  ansible.builtin.shell:
+    cmd: mise where ruby
+  register: ruby_dir
+
 - name: Install Ruby gems
   community.general.gem:
+    executable: "{{ ruby_dir.stdout }}/bin/gem"
     name: "{{ item }}"
     state: present
   loop:
