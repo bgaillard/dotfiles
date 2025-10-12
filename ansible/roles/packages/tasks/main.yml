@@ -19,7 +19,6 @@
       - clang
       - cmake
       - cpu-checker
-      - cups
       - curl
       - devscripts         # Linux Kernel compilation
       - dunst              # Lightweight notification daemon
@@ -59,7 +58,6 @@
       - pgpdump
       - pkg-config
       - podman
-      - printer-driver-all
       - psmisc             # Required for the 'killall' command for example
       - python3-pip
       - qemu-system-x86
@@ -113,6 +111,18 @@
     name:
       - thunderbird
   when: mail and gui | default(false)
+
+
+########################################################################################################################
+# print
+########################################################################################################################
+- name: Install 'print' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - cups
+      - printer-driver-all
+  when: print | default(false)
 
 
 ########################################################################################################################

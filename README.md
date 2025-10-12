@@ -4,7 +4,7 @@ Dotfiles managed with [chezmoi](https://github.com/twpayne/chezmoi).
 
 ## Setup
 
-**WARNING**: Requires at least 40 GB for the whole setup.
+**WARNING**: Requires at least 50 GB for all packages.
 
 ```bash
 # Install base packages (Debian)
@@ -25,9 +25,6 @@ BROWSER=false gh auth login
 # After installation, logout and login again to apply ~/.local/bin to PATH
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
 
-# Check chezmoi version
-chezmoi --version
-
 # Initialize ~/.local/share/chezmoi
 chezmoi init bgaillard
 
@@ -43,5 +40,7 @@ chezmoi apply
 ./p
 
 # With optional packages
+#
+# WARNING: Requires at least 50 GB for all packages
 ./p --audio --gui --mail --print --video
 ```
