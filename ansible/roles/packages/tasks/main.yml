@@ -14,3 +14,5 @@
   when: print | default(false)
 - import_tasks: 07-video.yml
   when: video | default(false)
+- import_tasks: 08-messaging.yml
+  when: messaging | default(false)

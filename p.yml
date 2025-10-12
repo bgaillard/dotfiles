@@ -1,6 +1,12 @@
+# General features
 audio: false
 docker: false
 gui: false
 mail: false
 print: false
 video: false
+
+# Specific applications
+alacritty: false
+slack: false
+spotify: false

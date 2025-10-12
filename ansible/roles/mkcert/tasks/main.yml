@@ -1,14 +1,21 @@
 ---
+- name: Check if 'mkcert' is already installed
+  ansible.builtin.stat:
+    path: "/usr/local/bin/mkcert"
+  register: mkcert_stat
+
 - name: Create temporary directory to download mkcert
   ansible.builtin.tempfile:
     state: directory
   register: mkcert_tmp_dir
+  when: not mkcert_stat.stat.exists
 
 - name: Download mkcert binary
   ansible.builtin.get_url:
     url: "https://dl.filippo.io/mkcert/latest?for=linux/amd64"
     dest: "{{ mkcert_tmp_dir.path }}/mkcert"
     mode: "0700"
+  when: not mkcert_stat.stat.exists
 
 - name: Move mkcert binary to /usr/local/bin
   ansible.builtin.shell:
@@ -16,6 +23,7 @@
   args:
     chdir: "{{ mkcert_tmp_dir.path }}"
   become: true
+  when: not mkcert_stat.stat.exists
 
 - name: Install mkcert Root CA development certificate
   ansible.builtin.shell:

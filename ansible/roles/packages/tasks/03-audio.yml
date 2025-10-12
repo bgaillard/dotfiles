@@ -4,9 +4,34 @@
   ansible.builtin.package:
     name:
       - alsa-utils
-#- name: Install 'audio AND gui' Linux packages
-#  become: true
-#  ansible.builtin.package:
-#    name:
-#      #- spotify-client       # FIXME: Needs a custom apt repository
-#  when: gui | default(false)
+
+
+########################################################################################################################
+# Spotify
+# @see https://www.spotify.com/us/download/linux/
+########################################################################################################################
+- name: Add Spotify APT repository
+  become: true
+  ansible.builtin.deb822_repository:
+    name: spotify
+    types: [deb]
+    uris: "https://repository.spotify.com"
+    signed_by: "https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg"
+    architectures: amd64
+    suites:
+      - stable
+    components:
+      - non-free
+    state: present
+    enabled: yes
+  when: gui and spotify | default(false)
+- name: Update the apt cache (for the new Spotify APT repository)
+  become: true
+  ansible.builtin.apt:
+    update_cache: yes
+- name: Install 'spotify-client' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - spotify-client
+  when: gui and spotify | default(false)
