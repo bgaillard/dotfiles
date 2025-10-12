@@ -1,27 +1,37 @@
 ---
+- name: Check if JetBrains Mono Nerd Font file exists
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.local/share/fonts/JetBrainsMonoNerdFont-Regular.ttf"
+  register: font_stat
+
 - name: Create temporary directory to download Nerd Fonts
   ansible.builtin.tempfile:
     state: directory
   register: font_tmp_dir
+  when: not font_stat.stat.exists
 
 - name: Download JetBrains Mono Nerd Font
   ansible.builtin.get_url:
     url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
     dest: "{{ font_tmp_dir.path }}/JetBrainsMono.zip"
     mode: "0400"
+  when: not font_stat.stat.exists
 
 - name: Create the '~/.local/share/fonts' directory if it does not exist
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.local/share/fonts"
     state: directory
     mode: '0700'
+  when: not font_stat.stat.exists
 
 - name: Unzip JetBrains Mono Nerd Font
   ansible.builtin.unarchive:
     src: "{{ font_tmp_dir.path }}/JetBrainsMono.zip"
     dest: "{{ ansible_env.HOME }}/.local/share/fonts"
+  when: not font_stat.stat.exists
 
 - name: Clean up temporary directory
   ansible.builtin.file:
     path: "{{ font_tmp_dir.path }}"
     state: absent
+  when: not font_stat.stat.exists
