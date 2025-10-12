@@ -1,21 +1,12 @@
 ---
 # @see https://blog.stephane-robert.info/docs/infra-as-code/gestion-de-configuration/ansible/modules/packages/
 
-# FIXME: Indiquer que le stockage minimum nécessaire pour la totalité est d'au moins 30 Go
-
-# FIXME: La configuration de 'mise' doit vraiment être installée avec Ansible car le provisioning doit être fait avant
-#        l'installation des dotfiles
-#
-# FIXME: Le fichier 'provision.sh' doit installer le paquets indispensables à chezmoi ainsi qu'à Ansible
-#        Du coup il faut un provisioning Ansible via une commande 'ansible-playbook' à exécuter à la main
-
 - name: Install standard Linux packages
   become: true
   ansible.builtin.package:
     name:
       # If a tool is supported by asdf, prefer installing it using asdf because it allows to always use the latest
       # version.
-      - alsa-utils
       - apt-file
       - apt-transport-https
       - autoconf
@@ -48,7 +39,6 @@
       - libarchive-tools
       - libelf-dev         # Linux kernel compilation
       - libfontconfig1-dev
-      - libmailutils-dev   # Required to have the 'mailutils' command
       - libnotify-bin      # For the 'notify-send' command
       - libnss3-tools      # Required by the 'mkcert' tool
       - libosinfo-bin
@@ -58,9 +48,8 @@
       - libvirt-daemon-system
       - libxcb-xfixes0-dev
       - libxkbcommon-dev
+      - libyaml-dev
       - lshw               # HardWare Lister for Linux
-      - mailutils
-      - mailutils-imap4d
       - make
       - meson
       - nasm               # Required for FFMpeg (installed with asdf)
@@ -79,20 +68,63 @@
       - shfmt
       - swtpm
       - texlive-full          # LaTeX distribution
-      - thunderbird
       - tuned
       - unzip
       - vagrant
       - virt-manager
       - virt-viewer
       - virtinst
-      - vlc
       - wget
-      - wl-clipboard
-      - xclip
-      - xsel
       - zip
     state: latest
+
+
+########################################################################################################################
+# audio
+########################################################################################################################
+- name: Install 'audio' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - alsa-utils
+  when: audio | default(false)
+#- name: Install 'audio AND gui' Linux packages
+#  become: true
+#  ansible.builtin.package:
+#    name:
+#      #- spotify-client       # FIXME: Needs a custom apt repository
+#  when: audio | default(false)
+
+
+########################################################################################################################
+# mail
+########################################################################################################################
+- name: Install 'mail' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - libmailutils-dev   # Required to have the 'mailutils' command
+      - mailutils
+      - mailutils-imap4d
+  when: mail | default(false)
+- name: Install 'mail AND gui' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - thunderbird
+  when: mail and gui | default(false)
+
+
+########################################################################################################################
+# video
+########################################################################################################################
+- name: Install 'video AND gui' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - vlc
+  when: video and gui | default(false)
+
 
 - name: Install 'gui' Linux packages
   become: true
@@ -106,8 +138,10 @@
       - libreoffice
       - peek
       - ristretto             # XFCE image viewer
-      #- spotify-client       # FIXME: Needs a custom apt repository
       - thunar                # XFCE file manager
       - thunar-archive-plugin # Archive support for Thunar
       #- thunar-dropbox-plugin # Dropbox support for Thunar FIXME: Requires the 'contrib' Debian repo
+      - wl-clipboard
+      - xclip
+      - xsel
   when: gui | default(false)

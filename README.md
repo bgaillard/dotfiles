@@ -11,8 +11,14 @@ Dotfiles managed with [chezmoi](https://github.com/twpayne/chezmoi).
 #
 # After 'adduser' logout and login again to apply sudo group
 su -
-apt install ansible curl sudo
+apt install ansible curl gh sudo
 adduser baptiste sudo
+
+# Get a Github token to prevent Rate Limit problems with 'mise'
+#
+# @see https://mise.jdx.dev/troubleshooting.html#_403-forbidden-when-installing-a-tool
+# @see https://stackoverflow.com/questions/78890002/how-to-do-gh-auth-login-when-run-in-headless-mode#answer-78890003
+BROWSER=false gh auth login
 
 # Install ~/.local/bin/chezmoi
 #
@@ -33,9 +39,9 @@ chezmoi apply
 ## Provisioning
 
 ```bash
-# Without GUI packages
+# Without optional packages
 ./p
 
-# With GUI packages
-./p --gui
+# With optional packages
+./p --audio --gui --mail --print --video
 ```
