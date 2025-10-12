@@ -2,9 +2,10 @@
 
 Dotfiles managed with [chezmoi](https://github.com/twpayne/chezmoi).
 
-## Setup
+**WARNING**: The full install requires at least 40 GB.
 
-**WARNING**: Requires at least 50 GB for all packages.
+
+## Init
 
 ```bash
 # Install base packages (Debian)
@@ -21,13 +22,10 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
 
 # Initialize ~/.local/share/chezmoi
 ~/.local/bin/chezmoi init bgaillard
-
-# Apply dotfiles to home directory
-chezmoi diff
-chezmoi apply
 ```
 
-## Provisioning
+
+## Provision
 
 ```bash
 # Get a Github token to prevent Rate Limit problems with 'mise'
@@ -43,4 +41,13 @@ cp p.yml ~/.config
 
 # Start the provisioning
 ./p
+```
+
+
+## Copy dotfiles
+
+```bash
+# Apply dotfiles to home directory
+chezmoi diff
+chezmoi apply
 ```

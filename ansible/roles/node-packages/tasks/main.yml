@@ -13,6 +13,16 @@
     state: directory
     mode: '0700'
 
+# @see https://www.npmjs.com/package/tree-sitter-cli
+- name: Install 'tree-sitter-cli' Node.js packages
+  community.general.pnpm:
+    executable: "{{ pnpm_dir.stdout }}/pnpm"
+    global: true
+    name: "tree-sitter-cli"
+  environment:
+    PNPM_HOME: "{{ ansible_env.HOME }}/.local/share/pnpm"
+    PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.local/share/pnpm"
+
 # @see https://ansible.readthedocs.io/projects/vscode-ansible/als/
 - name: Install 'ansible-language-server' Node.js packages
   community.general.pnpm:
