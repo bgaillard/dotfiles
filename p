@@ -32,4 +32,4 @@ done
 ansible-playbook \
     --ask-become-pass \
     --inventory ansible/hosts.yml \
-    ansible/site.yml --extra-vars '{"gui":'"$GUI"',"audio":"'"$AUDIO"'", "mail":"'"$MAIL"'", "print":"'"$PRINT"'", "video":"'"$VIDEO"'"}'
+    ansible/site.yml --extra-vars '{"gui":'"$GUI"',"audio":'"$AUDIO"', "mail":'"$MAIL"', "print":'"$PRINT"', "video":'"$VIDEO"'}'
