@@ -186,6 +186,12 @@ if [ -d "${HOME}/.npm-packages/bin" ] ; then
   export PATH=$PATH:$HOME/.npm-packages/bin
 fi
 
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PATH:$PNPM_HOME"
+if [ ! -d "${PNPM_HOME}" ] ; then
+  mkdir -p "${PNPM_HOME}"
+fi
+
 
 ########################################################################################################################
 # Ruby
