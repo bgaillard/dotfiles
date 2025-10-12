@@ -70,11 +70,6 @@ eksctl = "latest"
 # @see https://github.com/eza-community/eza
 eza = "latest"
 
-# Collection of libraries and tools to process multimedia content
-#
-# @see https://ffmpeg.org/
-ffmpeg = "latest"
-
 # Database Migrations Made Easy
 #
 # @see https://flywaydb.org/

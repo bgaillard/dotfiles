@@ -22,6 +22,7 @@
       - dunst              # Lightweight notification daemon
       - fakeroot           # Linux Kernel compilation
       - feh                # Lightweight image viewer
+      - ffmpeg
       - flex               # Linux Kernel compilation
       - g++
       - gcc
