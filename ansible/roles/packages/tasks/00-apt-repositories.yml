@@ -1,0 +1,35 @@
+---
+
+# @see https://www.usebruno.com/downloads
+- name: Add Bruno APT keyring directory
+  ansible.builtin.shell:
+    cmd: curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9FA6017ECABE0266" | gpg --dearmor | sudo tee /etc/apt/keyrings/bruno.gpg > /dev/null
+  become: true
+- name: Add Bruno APT repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/bruno.gpg] http://debian.usebruno.com/ bruno stable"
+    state: present
+    filename: bruno.list
+    update_cache: no
+
+# @see https://docs.docker.com/engine/install/debian/
+- name: Add Docker APT repository
+  become: true
+  ansible.builtin.deb822_repository:
+    name: docker
+    types: [deb]
+    uris: "https://download.docker.com/linux/debian"
+    signed_by: "https://download.docker.com/linux/debian/gpg"
+    architectures: amd64
+    suites:
+      - "{{ ansible_distribution_release }}"
+    components:
+      - stable
+    state: present
+    enabled: yes
+
+- name: Update the apt cache
+  become: true
+  ansible.builtin.apt:
+    update_cache: yes

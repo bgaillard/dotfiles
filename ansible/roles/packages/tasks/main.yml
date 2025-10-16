@@ -1,6 +1,7 @@
 ---
 # @see https://blog.stephane-robert.info/docs/infra-as-code/gestion-de-configuration/ansible/modules/packages/
 
+- import_tasks: 00-apt-repositories.yml
 - import_tasks: 01-core.yml
 - import_tasks: 02-gui.yml
   when: gui | default(false)

@@ -1,23 +1,5 @@
-# @see https://docs.docker.com/engine/install/debian/
-- name: Add Docker APT repository
-  become: true
-  ansible.builtin.deb822_repository:
-    name: docker
-    types: [deb]
-    uris: "https://download.docker.com/linux/debian"
-    signed_by: "https://download.docker.com/linux/debian/gpg"
-    architectures: amd64
-    suites:
-      - "{{ ansible_distribution_release }}"
-    components:
-      - stable
-    state: present
-    enabled: yes
-
-- name: Update the apt cache (for the new Docker APT repository)
-  become: true
-  ansible.builtin.apt:
-    update_cache: yes
+---
+# The APT repository is configured in the '00-apt-repositories.yml' file
 
 - name: Install 'docker' Linux packages
   become: true

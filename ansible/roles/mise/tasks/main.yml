@@ -10,9 +10,9 @@
     state: directory
     mode: '0700'
 
-- name: Copy mise config file
+- name: Copy '~/.config/mise/config.toml'
   ansible.builtin.copy:
-    src: config.toml
+    src: .config/mise/config.toml
     dest: "{{ ansible_env.HOME }}/.config/mise/config.toml"
     mode: '0600'
     owner: "{{ ansible_env.USER }}"

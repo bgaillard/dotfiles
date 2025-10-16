@@ -2,7 +2,7 @@
   become: true
   ansible.builtin.package:
     name:
-      #- bruno             # FIXME: Needs custom apt repository
+      - bruno
       - calibre
       #- dbeaver-ce        # FIXME: Install it using custom package
       - evince
