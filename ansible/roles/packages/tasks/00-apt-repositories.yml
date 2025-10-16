@@ -13,6 +13,19 @@
     filename: bruno.list
     update_cache: no
 
+# @see https://dbeaver.io/download/#requirements
+- name: Add DBeaver APT keyring directory
+  ansible.builtin.shell:
+    cmd: curl -fsSL "https://dbeaver.io/debs/dbeaver.gpg.key" -o /usr/share/keyrings/dbeaver.gpg.key
+  become: true
+- name: Add DBeaver APT repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/dbeaver.gpg.key] https://dbeaver.io/debs/dbeaver-ce /"
+    state: present
+    filename: dbeaver.list
+    update_cache: no
+
 # @see https://docs.docker.com/engine/install/debian/
 - name: Add Docker APT repository
   become: true

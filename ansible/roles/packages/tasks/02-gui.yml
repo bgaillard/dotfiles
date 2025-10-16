@@ -4,7 +4,7 @@
     name:
       - bruno
       - calibre
-      #- dbeaver-ce        # FIXME: Install it using custom package
+      - dbeaver-ce
       - evince
       - gparted
       - libreoffice
