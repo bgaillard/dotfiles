@@ -10,6 +10,7 @@ video: false
 
 # Specific applications and servers
 alacritty: false
+alertmanager: false
 grafana: false
 prometheus: false
 slack: false

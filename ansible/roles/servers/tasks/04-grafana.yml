@@ -8,10 +8,20 @@
     force: true
   become: true
 
+- name: Copy Grafana Alertmanager data source configuration file to '/etc/grafana/provisioning/datasources/alertmanager.yml'
+  ansible.builtin.copy:
+    src: etc/grafana/provisioning/datasources/alertmanager.yml
+    dest: /etc/grafana/provisioning/datasources/alertmanager.yml
+    group: grafana
+    owner: grafana
+    mode: "0640"
+    force: true
+  become: true
+
 - name: Copy Grafana Prometheus data source configuration file to '/etc/grafana/provisioning/datasources/prometheus.yaml'
   ansible.builtin.copy:
-    src: etc/grafana/provisioning/datasources/prometheus.yaml
-    dest: /etc/grafana/provisioning/datasources/prometheus.yaml
+    src: etc/grafana/provisioning/datasources/prometheus.yml
+    dest: /etc/grafana/provisioning/datasources/prometheus.yml
     group: grafana
     owner: grafana
     mode: "0640"

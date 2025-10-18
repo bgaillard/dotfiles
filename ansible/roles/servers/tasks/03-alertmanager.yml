@@ -1,0 +1,15 @@
+---
+
+# @see https://prometheus-community.github.io/ansible/branch/main/alertmanager_role.html
+- name: Install and configure Prometheus AlertManager
+  no_log: false
+  ansible.builtin.include_role:
+    name: prometheus.prometheus.alertmanager
+  vars:
+    alertmanager_binary_install_dir: /usr/local/bin
+    alertmanager_config_dir: /etc/alertmanager
+    alertmanager_config_file: etc/alertmanager/alertmanager.yml.j2
+    alertmanager_db_dir: /var/lib/alertmanager
+    alertmanager_system_group: alertmanager
+    alertmanager_system_user: alertmanager
+    alertmanager_web_listen_address: 127.0.0.1:9093

@@ -7,6 +7,9 @@ global:
     # Scrape interval aligned to the default scrape interval configured in the Prometheus Grafana data source.
     scrape_interval: 15s
 
+rule_files:
+  - "/etc/prometheus/rules/*.yml"
+
 scrape_configs:
 
   # Make Prometheus scrape itself for metrics.
@@ -25,3 +28,8 @@ scrape_configs:
       - source_labels: [__name__, state]
         regex: "node_systemd_unit_state;(activating|deactivating|inactive)"
         action: drop
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ["localhost:9093"]

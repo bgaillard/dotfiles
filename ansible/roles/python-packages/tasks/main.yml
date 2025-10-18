@@ -16,6 +16,7 @@
       - buku                  # CLI Bookmark Manager - https://github.com/jarun/buku
       - cmake-language-server # @see https://github.com/regen100/cmake-language-server
       - cryptography
+      - dbus-python
       - PyGObject
       - pyopenssl
       - rply

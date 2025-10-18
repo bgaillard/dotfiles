@@ -3,5 +3,7 @@
 #  when: imap4d | default(false)
 - import_tasks: 02-prometheus.yml
   when: monitoring and prometheus | default(false)
-- import_tasks: 03-grafana.yml
+- import_tasks: 03-alertmanager.yml
+  when: monitoring and alertmanager | default(false)
+- import_tasks: 04-grafana.yml
   when: monitoring and grafana | default(false)
