@@ -4,6 +4,11 @@
   ansible.builtin.package:
     name:
       - alsa-utils
+      - libspa-0.2-bluetooth
+      - libspa-0.2-libcamera
+      - pipewire-alsa
+      - pipewire-audio
+      - pipewire-pulse
 
 
 ########################################################################################################################
