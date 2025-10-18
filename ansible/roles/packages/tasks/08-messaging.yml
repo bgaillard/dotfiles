@@ -26,11 +26,23 @@
   register: slack_deb_url
   when: gui and slack | default(false)
 
+- name: Extract Slack .deb package version
+  ansible.builtin.shell:
+    cmd: echo "{{ slack_deb_url.stdout }}" | sed 's/^.*slack-desktop-\(.*\)-amd64\.deb$/\1/'
+  register: slack_deb_version
+  when: gui and slack | default(false)
+
+- name: Get Slack local version
+  ansible.builtin.shell:
+    cmd: slack --version
+  register: slack_local_version
+  when: gui and slack | default(false)
+
 - name: Install Slack .deb package
   become: true
   ansible.builtin.apt:
     deb: "{{ slack_deb_url.stdout }}"
-  when: gui and slack | default(false)
+  when: gui and slack and slack_deb_version.stdout != slack_local_version.stdout | default(false)
 
 - name: Clean up temporary directory
   ansible.builtin.file:
