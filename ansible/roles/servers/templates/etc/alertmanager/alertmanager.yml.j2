@@ -2,8 +2,14 @@
 # @see https://prometheus.io/docs/alerting/latest/alertmanager/
 
 global:
+
+  # By default we use the default Debian Exim4 server which allows sending on localhost
   smtp_from: "alertmanager@localhost"
   smtp_smarthost: "localhost:25"
+  smtp_hello: "localhost"
+
+  # FIXME: This is definitely not good for production use, ok for local testing only
+  smtp_require_tls: false
 
 route:
 
