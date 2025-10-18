@@ -2,6 +2,6 @@
 #- import_tasks: 01-imap4d.yml
 #  when: imap4d | default(false)
 - import_tasks: 02-prometheus.yml
-  when: prometheus | default(false)
+  when: monitoring and prometheus | default(false)
 - import_tasks: 03-grafana.yml
-  when: grafana | default(false)
+  when: monitoring and grafana | default(false)

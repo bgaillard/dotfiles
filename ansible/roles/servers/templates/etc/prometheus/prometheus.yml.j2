@@ -1,7 +1,27 @@
 ---
 # @see https://github.com/prometheus/prometheus/tree/main/documentation/examples
+# @see https://prometheus.io/docs/prometheus/latest/configuration/configuration/
+# @see https://grafana.com/blog/2022/03/21/how-relabeling-in-prometheus-works/
+global:
+
+    # Scrape interval aligned to the default scrape interval configured in the Prometheus Grafana data source.
+    scrape_interval: 15s
+
 scrape_configs:
+
   # Make Prometheus scrape itself for metrics.
   - job_name: "prometheus"
     static_configs:
       - targets: ["localhost:9090"]
+
+  # Node Exporter
+  - job_name: "node_exporter"
+    static_configs:
+      - targets: ["localhost:9100"]
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: "(go_.*|process_.*|promhttp_.*)"
+        action: drop
+      - source_labels: [__name__, state]
+        regex: "node_systemd_unit_state;(activating|deactivating|inactive)"
+        action: drop

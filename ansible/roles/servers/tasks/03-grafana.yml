@@ -1,9 +1,19 @@
 ---
 # @see https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/
-- name: Copy Grafana configuration file to /etc/grafana/grafana.ini
+- name: Copy Grafana configuration file to '/etc/grafana/grafana.ini'
   ansible.builtin.copy:
     src: etc/grafana/grafana.ini
     dest: /etc/grafana/grafana.ini
+    mode: "0640"
+    force: true
+  become: true
+
+- name: Copy Grafana Prometheus data source configuration file to '/etc/grafana/provisioning/datasources/prometheus.yaml'
+  ansible.builtin.copy:
+    src: etc/grafana/provisioning/datasources/prometheus.yaml
+    dest: /etc/grafana/provisioning/datasources/prometheus.yaml
+    group: grafana
+    owner: grafana
     mode: "0640"
     force: true
   become: true
