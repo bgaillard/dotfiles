@@ -1,3 +1,7 @@
 ---
-- import_tasks: 02-grafana.yml
+#- import_tasks: 01-imap4d.yml
+#  when: imap4d | default(false)
+- import_tasks: 02-prometheus.yml
+  when: prometheus | default(false)
+- import_tasks: 03-grafana.yml
   when: grafana | default(false)

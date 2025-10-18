@@ -11,5 +11,6 @@ video: false
 # Specific applications and servers
 alacritty: false
 grafana: false
+prometheus: false
 slack: false
 spotify: false

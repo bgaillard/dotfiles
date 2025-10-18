@@ -1,0 +1,14 @@
+---
+# @see https://prometheus-community.github.io/ansible/branch/main/index.html
+- name: Install and configure Prometheus
+  ansible.builtin.include_role:
+    name: prometheus.prometheus.prometheus
+  vars:
+    prometheus_agent_mode: false
+    prometheus_binary_install_dir: /usr/local/bin
+    prometheus_config_dir: /etc/prometheus
+    prometheus_config_file: etc/prometheus/prometheus.yml.j2
+    prometheus_db_dir: /var/lib/prometheus
+    prometheus_system_group: prometheus
+    prometheus_system_user: prometheus
+    prometheus_web_listen_address: "127.0.0.1:9090"

@@ -15,6 +15,9 @@ su -
 apt install ansible curl git gh sudo -y
 adduser baptiste sudo
 
+# Install required Ansible roles
+ansible-galaxy collection install prometheus.prometheus
+
 # Install ~/.local/bin/chezmoi
 #
 # After installation, logout and login again to apply ~/.local/bin to PATH
