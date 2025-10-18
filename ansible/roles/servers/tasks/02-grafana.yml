@@ -1,0 +1,18 @@
+---
+# @see https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/
+- name: Copy Grafana configuration file to /etc/grafana/grafana.ini
+  ansible.builtin.copy:
+    src: etc/grafana/grafana.ini
+    dest: /etc/grafana/grafana.ini
+    mode: "0640"
+    force: true
+  become: true
+
+# @see https://grafana.com/docs/grafana/latest/setup-grafana/start-restart-grafana/
+- name: Start the Grafana server
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+    enabled: true
+    name: grafana-server
+    state: restarted
+  become: true

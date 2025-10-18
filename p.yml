@@ -3,10 +3,13 @@ audio: false
 docker: false
 gui: false
 mail: false
+messaging: false
+monitoring: false
 print: false
 video: false
 
-# Specific applications
+# Specific applications and servers
 alacritty: false
+grafana: false
 slack: false
 spotify: false

@@ -1,0 +1,3 @@
+---
+- import_tasks: 02-grafana.yml
+  when: grafana | default(false)

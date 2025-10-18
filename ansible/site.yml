@@ -6,8 +6,9 @@
     - fonts
     - mise
     - mkcert
-    - packages
     - node-packages
+    - packages
     - python-packages
     - ruby-packages
+    - servers
     - users

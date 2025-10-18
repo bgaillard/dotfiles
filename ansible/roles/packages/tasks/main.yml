@@ -17,3 +17,5 @@
   when: video | default(false)
 - import_tasks: 08-messaging.yml
   when: messaging | default(false)
+- import_tasks: 09-monitoring.yml
+  when: monitoring | default(false)
