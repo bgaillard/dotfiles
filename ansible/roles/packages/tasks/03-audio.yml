@@ -10,7 +10,6 @@
       - pipewire-audio
       - pipewire-pulse
 
-
 ########################################################################################################################
 # Spotify
 # @see https://www.spotify.com/us/download/linux/
