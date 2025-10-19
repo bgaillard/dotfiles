@@ -1,7 +1,5 @@
 require "nvchad.options"
 
--- add yours here!
-
 vim.cmd "set colorcolumn=120"
 
 vim.o.relativenumber = true
@@ -35,7 +33,6 @@ vim.opt.spellfile = vim.fn.expand("$HOME/.config/nvim/spell/en.utf-8.add")
 -- see https://github.com/nvim-tree/nvim-tree.lua/commit/ce2420b9dab282703fb08e72009f0787b1a7b097
 -- see https://www.reddit.com/r/vim/comments/3d4cpf/prevent_netrw_or_nerdtree_from_opening_when/
 vim.cmd([[autocmd VimEnter * silent! au! FileExplorer *]])
-
 
 -- Terraform highlight and linting
 --

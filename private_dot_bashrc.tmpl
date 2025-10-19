@@ -265,3 +265,11 @@ bind -x '"\C-r": __atuin_history --keymap-mode=vim-insert'
 # @see https://github.com/ajeetdsouza/zoxide/issues/1013#issuecomment-2760232603
 ########################################################################################################################
 eval "$(zoxide init bash)"
+
+
+########################################################################################################################
+# bash-preexec (required for Atuin)
+#
+# @see https://github.com/rcaloras/bash-preexec
+########################################################################################################################
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh

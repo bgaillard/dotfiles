@@ -24,6 +24,8 @@ return {
        }
      },
      view = {
+       cursorline = true,
+       side = "left",
        width = 40
      }
    },
