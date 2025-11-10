@@ -41,6 +41,7 @@
       - stable
     state: present
     enabled: yes
+  when: docker | default(false)
 
 # @see https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/#install-from-apt-repository
 - name: Add Grafana APT repository

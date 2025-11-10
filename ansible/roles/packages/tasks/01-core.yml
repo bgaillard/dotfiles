@@ -36,6 +36,7 @@
       - hwinfo
       - libarchive-tools
       - libcairo2-dev
+      - libdbus-1-dev      # Required by the 'dbus-python' package
       - libelf-dev         # Linux kernel compilation
       - libfontconfig1-dev
       - libgirepository-2.0-dev

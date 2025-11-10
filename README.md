@@ -13,7 +13,7 @@ Dotfiles managed with [chezmoi](https://github.com/twpayne/chezmoi).
 #
 # After 'adduser' logout and login again to apply sudo group
 su -
-apt install ansible curl git gh sudo -y
+apt install ansible curl git gh gpg python3-debian -y
 adduser baptiste sudo
 
 # Install required Ansible roles
@@ -77,4 +77,47 @@ cp p.yml ~/.config
 # Apply dotfiles to home directory
 chezmoi diff
 chezmoi apply
+```
+
+
+## Testing
+
+### incus
+
+```bash
+# Launch a Debian trixie container
+incus launch images:debian/trixie chezmoi-test
+
+# Provision
+incus exec chezmoi-test -- bash
+
+    # Install base packages
+    #
+    # If you encounter networking issues check the bellow links
+    #
+    # @see https://linuxcontainers.org/incus/docs/main/howto/network_bridge_firewalld/#network-incus-docker
+    # @see https://discuss.linuxcontainers.org/t/incus-container-unable-to-reach-outside-world/21256/11
+    apt install ansible curl git gh gpg python3-debian -y
+    ansible-galaxy collection install prometheus.prometheus
+
+    # Create a standard user
+    useradd -m -s /bin/bash baptiste
+    adduser baptiste sudo
+    passwd baptiste
+
+    # Install and initialize chezmoi
+    su baptiste
+    sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
+     ~/.local/bin/chezmoi init bgaillard
+
+    # Get a Github token to prevent Rate Limit problems with 'mise'
+    BROWSER=false gh auth login
+    export MISE_GITHUB_TOKEN=$(gh auth token)
+
+    # Copy the provisioning configuration file and adapt it to your needs
+    cd ~/.local/share/chezmoi
+    cp p.yml ~/.config
+
+    # Start the provisioning
+    ./p
 ```
