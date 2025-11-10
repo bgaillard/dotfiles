@@ -1,0 +1,49 @@
+---
+- name: Install 'virtualization' Linux packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - libvirt-daemon-system
+      - qemu-system-x86
+      - qemu-utils
+      - incus
+      - incus-base
+      - virt-manager
+      - virt-viewer
+      - virtinst
+
+- name: Add the user '{{ ansible_env.USER }}' to the 'incus-admin' group
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_env.USER }}"
+    shell: /bin/bash
+    group: "{{ ansible_env.USER }}"
+    groups: incus-admin
+    append: true
+    state: present
+
+- name: Initialize incus
+  become: true
+  ansible.builtin.shell:
+    stdin: |
+      config: {}
+      networks: []
+      storage_pools: []
+      storage_volumes: []
+      profiles:
+      - config: {}
+        description: Default Incus profile
+        devices: {}
+        name: default
+        project: ""
+      projects:
+      - config:
+          features.images: "true"
+          features.networks: "true"
+          features.networks.zones: "true"
+          features.profiles: "true"
+          features.storage.buckets: "true"
+          features.storage.volumes: "true"
+        description: Default Incus project
+        name: default
+    cmd: incus admin init --preseed
