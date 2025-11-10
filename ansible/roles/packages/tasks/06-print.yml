@@ -1,3 +1,4 @@
+---
 - name: Install 'print' Linux packages
   become: true
   ansible.builtin.package:

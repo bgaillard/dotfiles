@@ -1,3 +1,5 @@
+---
+
 - name: Add the user 'baptiste' to the right groups
   ansible.builtin.user:
     name: "{{ ansible_env.USER }}"

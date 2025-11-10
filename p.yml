@@ -7,6 +7,7 @@ messaging: false
 monitoring: false
 print: false
 video: false
+virtualization: false
 
 # Specific applications and servers
 alacritty: false

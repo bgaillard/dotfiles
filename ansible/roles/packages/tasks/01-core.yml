@@ -46,7 +46,6 @@
       - libssl-dev         # Linux kernel compilation
       - libudev-dev
       - libusb-1.0-0-dev
-      - libvirt-daemon-system
       - libxcb-xfixes0-dev
       - libxkbcommon-dev
       - libyaml-dev
@@ -62,8 +61,6 @@
       - podman
       - psmisc             # Required for the 'killall' command for example
       - python3-pip
-      - qemu-system-x86
-      - qemu-utils
       - rsync
       - shfmt
       - swtpm
@@ -71,9 +68,6 @@
       - tuned
       - unzip
       - vagrant
-      - virt-manager
-      - virt-viewer
-      - virtinst
       - wget
       - zip
     state: latest

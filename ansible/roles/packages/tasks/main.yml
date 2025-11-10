@@ -19,3 +19,5 @@
   when: messaging | default(false)
 - import_tasks: 09-monitoring.yml
   when: monitoring | default(false)
+- import_tasks: 10-virtualization.yml
+  when: virtualization | default(false)

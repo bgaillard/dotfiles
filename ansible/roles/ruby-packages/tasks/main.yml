@@ -1,3 +1,5 @@
+---
+
 # We install Ruby with mise, so this should be executed after the mise role.
 #
 # @see https://docs.ansible.com/ansible/latest/collections/community/general/gem_module.html

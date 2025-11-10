@@ -1,3 +1,4 @@
+---
 - name: Install 'mail' Linux packages
   become: true
   ansible.builtin.package:

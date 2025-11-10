@@ -1,3 +1,5 @@
+---
+
 # We install Python with mise, so this should be executed after the mise role.
 #
 # @see https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html
