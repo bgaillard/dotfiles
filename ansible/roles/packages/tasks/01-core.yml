@@ -20,6 +20,7 @@
       - curl
       - devscripts         # Linux Kernel compilation
       - dunst              # Lightweight notification daemon
+      - etherwake
       - fakeroot           # Linux Kernel compilation
       - feh                # Lightweight image viewer
       - ffmpeg
