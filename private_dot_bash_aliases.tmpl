@@ -76,10 +76,10 @@ if [ $UID -ne 0 ]; then
 fi
 
 # SSH
-alias ssh-inspiron-3847="ssh inspiron-3847"
+alias ssh-homelab="ssh baptiste@homelab"
 
 # Wake on LAN
-alias wol-inspiron-3847="wakeonlan {{ (bitwardenFields "item" "b3a24bd2-c777-4556-9f07-b39200acc70a").macAddress.value }}"
+alias wol-homelab="wakeonlan {{ (bitwardenFields "item" "b3a24bd2-c777-4556-9f07-b39200acc70a").macAddress.value }}"
 
 # Poweroff
-alias poweroff-inspiron-3847="ssh-inspiron-3847 'sudo poweroff'"
+alias poweroff-homelab="ssh-homelab 'sudo poweroff'"

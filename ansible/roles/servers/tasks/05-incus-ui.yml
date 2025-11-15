@@ -1,0 +1,55 @@
+---
+# @see https://github.com/osamuaoki/incus-ui-canonical
+# @see https://discuss.linuxcontainers.org/t/web-ui-for-incus/18198/41
+# @see https://discuss.linuxcontainers.org/t/tutorial-installing-the-web-ui-for-incus-on-fedora-or-other-redhat-based-distros/20986
+
+- name: Create temporary directory to download 'incus-ui' .deb package
+  ansible.builtin.tempfile:
+    state: directory
+  register: incus_ui_tmp_dir
+
+- name: Download 'incus-ui' download page
+  ansible.builtin.get_url:
+    url: https://pkgs.zabbly.com/incus/stable/pool/main/i/incus/
+    dest: "{{ incus_ui_tmp_dir.path }}/incus-ui.html"
+    mode: "0400"
+
+- name: Extract 'incus-ui' .deb package URL from download page
+  ansible.builtin.shell:
+    cmd: cat incus-ui.html | grep 'incus-ui-canonical' | grep 'amd64' | tail -n1 | sed 's/^.*\(incus-ui.*\.deb\).*$/\1/'
+  args:
+    chdir: "{{ incus_ui_tmp_dir.path }}"
+  register: incus_ui_deb_filename
+
+- name: Install 'incus-ui' .deb package
+  become: true
+  ansible.builtin.apt:
+    deb: "https://pkgs.zabbly.com/incus/stable/pool/main/i/incus/{{ incus_ui_deb_filename.stdout }}"
+
+- name: Create the '/etc/systemd/system/incus.service.d' directory
+  become: true
+  ansible.builtin.file:
+    path: /etc/systemd/system/incus.service.d
+    state: directory
+    mode: '0755'
+
+- name: Configure 'INCUS_UI' environment variable
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/incus.service.d/10-env.conf
+    content: |
+      [Service]
+      Environment=INCUS_UI=/opt/incus/ui/
+    mode: "0644"
+
+- name: Restart incus service
+  become: true
+  ansible.builtin.systemd_service:
+    state: restarted
+    daemon_reload: true
+    name: incus
+
+- name: Clean up temporary directory
+  ansible.builtin.file:
+    path: "{{ incus_ui_tmp_dir.path }}"
+    state: absent

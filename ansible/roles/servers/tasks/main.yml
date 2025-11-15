@@ -7,3 +7,5 @@
   when: monitoring and alertmanager | default(false)
 - import_tasks: 04-grafana.yml
   when: monitoring and grafana | default(false)
+- import_tasks: 05-incus-ui.yml
+  when: virtualization and incus | default(false)

@@ -13,6 +13,7 @@ virtualization: false
 alacritty: false
 alertmanager: false
 grafana: false
+incus: false
 prometheus: false
 slack: false
 spotify: false
