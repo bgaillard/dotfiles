@@ -35,6 +35,7 @@
       - gvfs-backends      # Required for Thunar trash, removable media and remote file systems support
       - gvfs-fuse          # Required for Thunar trash, removable media and remote file systems support
       - hwinfo
+      - ipcalc
       - libarchive-tools
       - libcairo2-dev
       - libdbus-1-dev      # Required by the 'dbus-python' package
