@@ -16,7 +16,10 @@ su -
 apt install ansible curl git gh gpg python3-debian -y
 adduser baptiste sudo
 
+# TODO: Install the Bitwarden CLI
+
 # Install required Ansible roles
+ansible-galaxy collection install community.general
 ansible-galaxy collection install prometheus.prometheus
 
 # Install ~/.local/bin/chezmoi
@@ -39,7 +42,10 @@ sudo dnf install dnf5-plugins
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
 sudo dnf install gh --repo gh-cli
 
+# TODO: Install the Bitwarden CLI
+
 # Install required Ansible roles
+ansible-galaxy collection install community.general
 ansible-galaxy collection install prometheus.prometheus
 
 # Install ~/.local/bin/chezmoi

@@ -1,0 +1,21 @@
+# See 'man wg-quick' for details about the format of this file
+
+{% if interface.comment %}
+# {{ interface.comment }}
+{% endif %}
+[Interface]
+Address = {{ interface.address }}
+ListenPort = {{ interface.listen_port }}
+PrivateKey = {{ interface.private_key }}
+SaveConfig = true
+
+{% for peer in peers %}
+{% if peer.comment %}
+# {{ peer.comment }}
+{% endif %}
+[Peer]
+PublicKey = {{ peer.public_key }}
+AllowedIPs = {{ peer.allowed_ips }}
+Endpoint = {{ peer.endpoint }}
+PersistentKeepalive = {{ peer.persistent_keepalive }}
+{% endfor %}

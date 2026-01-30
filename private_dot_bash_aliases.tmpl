@@ -77,9 +77,12 @@ fi
 
 # SSH
 alias ssh-homelab="ssh baptiste@homelab"
+alias ssh-homelab-from-outside="ssh baptiste@bgaillard.dynamic-dns.net"
 
 # Wake on LAN
 alias wol-homelab="wakeonlan {{ (bitwardenFields "item" "b3a24bd2-c777-4556-9f07-b39200acc70a").macAddress.value }}"
+alias wol-homelab-from-outside="wakeonlan -i bgaillard.dynamic-dns.net {{ (bitwardenFields "item" "b3a24bd2-c777-4556-9f07-b39200acc70a").macAddress.value }}"
 
 # Poweroff
 alias poweroff-homelab="ssh-homelab 'sudo poweroff'"
+alias poweroff-homelab-from-outside="ssh-homelab-from-outside 'sudo poweroff'"

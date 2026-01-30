@@ -1,0 +1,13 @@
+---
+interface:
+  # comment: "Computer 1"
+  address: "0.0.0.0/32"
+  listen_port: 51820
+  private_key: "xxxxxxxx"
+
+peers: []
+  # - comment: "Peer 1"
+  #   public_key: "xxxxxxxx"
+  #   allowed_ips: "1.2.3.4/32, 4.5.6.7/32"
+  #   endpoint: "example.com:51820"
+  #   persistent_keepalive: 25

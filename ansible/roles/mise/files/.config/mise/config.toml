@@ -105,6 +105,11 @@ glow = "latest"
 # @see https://golang.org/
 go = "latest"
 
+# Fast linters runner for Go
+#
+# @see https://golangci-lint.run/
+golangci-lint = "latest"
+
 # Template renderer which supports a growing list of datasources
 #
 # @see https://github.com/hairyhenderson/gomplate

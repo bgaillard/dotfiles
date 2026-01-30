@@ -19,6 +19,8 @@
       - cmake-language-server # @see https://github.com/regen100/cmake-language-server
       - cryptography
       - dbus-python
+      - mkdocs
+      - mkdocs-material
       - PyGObject
       - pyopenssl
       - rply

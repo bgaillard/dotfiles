@@ -1,0 +1,12 @@
+---
+- name: Check if draw.io is already installed
+  ansible.builtin.stat:
+    path: "{{ ansible_facts['env']['HOME'] }}/.local/bin/drawio"
+  register: drawio_app_image
+
+- name: Download the draw.io AppImage
+  ansible.builtin.get_url:
+    url: "https://github.com/jgraph/drawio-desktop/releases/download/v{{ version }}/drawio-{{ arch }}-{{ version }}.AppImage"
+    mode: '0500'
+    dest: "{{ ansible_facts['env']['HOME'] }}/.local/bin/drawio"
+  when: not drawio_app_image.stat.exists
