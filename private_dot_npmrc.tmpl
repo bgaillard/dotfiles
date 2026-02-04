@@ -1,1 +1,4 @@
+{{ if stat (joinPath .chezmoi.homeDir ".antora-live-reload") -}}
+proxy={{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").proxy.value }}
+{{- end }}
 prefix={{ .chezmoi.homeDir }}/.npm-packages
