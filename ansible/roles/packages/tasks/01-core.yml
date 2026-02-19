@@ -25,6 +25,7 @@
       - fakeroot           # Linux Kernel compilation
       - feh                # Lightweight image viewer
       - ffmpeg
+      - flatpak
       - flex               # Linux Kernel compilation
       - g++
       - gcc

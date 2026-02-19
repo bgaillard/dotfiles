@@ -43,6 +43,36 @@
     enabled: yes
   when: docker | default(false)
 
+# @see https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions
+- name: Add Mozilla APT keyring directory
+  ansible.builtin.shell:
+    cmd: wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
+  become: true
+- name: Add Mozilla APT repository
+  become: true
+  ansible.builtin.deb822_repository:
+    name: mozilla
+    types: [deb]
+    uris: " https://packages.mozilla.org/apt"
+    signed_by: "/etc/apt/keyrings/packages.mozilla.org.asc"
+    architectures: amd64
+    suites:
+      - "mozilla"
+    components:
+      - main
+    state: present
+    enabled: yes
+  when: firefox | default(false)
+- name: Configure APT to prioritize packages from Mozilla repository
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/apt/preferences.d/mozilla
+    content: |
+      Package: *
+      Pin: origin packages.mozilla.org
+      Pin-Priority: 1000
+  when: firefox | default(false)
+
 # @see https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/#install-from-apt-repository
 - name: Add Grafana APT repository
   become: true

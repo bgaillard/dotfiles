@@ -1,0 +1,19 @@
+---
+# TLS certificates to be trusted, those certificates will be copied to the
+# '/usr/local/share/ca-certificates/' folder and then the 'update-ca-certificates'
+# command will be executed.
+certs: []
+  # - file_name: "tls.crt"
+  #   content: |
+  #     -----BEGIN CERTIFICATE-----
+  #     MIID...
+  #     -----END CERTIFICATE-----
+
+# Server store their backups into the /src/backups/ directory which mounts a Samba share.
+#
+# The Samba share is then backed up to an off-site location using Restic.
+backups_smb_server: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/data/servers/smb:ip_address') }}"
+backups_smb_share: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/data/servers/smb:share') }}"
+backups_smb_username: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/data/servers/smb:username') }}"
+backups_smb_password: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/data/servers/smb:password') }}"
+backups_smb_version: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/data/servers/smb:version') }}"

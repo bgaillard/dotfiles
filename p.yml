@@ -17,3 +17,6 @@ incus: false
 prometheus: false
 slack: false
 spotify: false
+
+# Specific computer roles
+xps13: false

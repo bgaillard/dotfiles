@@ -9,6 +9,7 @@
       - evince
       - gparted
       - kdocker
+      - gnome-software-plugin-flatpak
       - libreoffice
       - peek
       - ristretto             # XFCE image viewer
@@ -18,4 +19,5 @@
       - webp-pixbuf-loader    # WebP image format support for Ristretto
       - wl-clipboard
       - xclip
+      - xfce4-screenshooter
       - xsel

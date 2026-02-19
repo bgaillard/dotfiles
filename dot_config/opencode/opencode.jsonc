@@ -23,5 +23,52 @@
       "template": "Translate the following French text to English: $ARGUMENTS",
       "description": "Translate French to English."
     }
+  },
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "git add": "deny",
+      "git commit": "deny",
+      "git pull": "allow",
+      "git push": "deny",
+      "git status": "allow",
+      "make": "ask",
+      "make clean": "allow",
+      "make clear": "allow",
+      "make check": "allow",
+      "make fmt": "allow",
+      "make lint": "allow",
+      "make lint-fix": "allow",
+      "make run": "ask",
+      "make run-dev": "ask",
+      "make test": "ask",
+      "make test-cov": "ask",
+      "make test-coverage": "ask",
+      "uv add": "ask",
+      "uv build": "ask",
+      "uv cache": "allow",
+      "uv help": "allow",
+      "uv init": "allow",
+      "uv lock": "allow",
+      "uv export": "allow",
+      "uv format": "allow",
+      "uv pip": "allow",
+      "uv publish": "ask",
+      "uv python": "allow",
+      "uv remove": "allow",
+      "uv run": "ask",
+      "uv self": "allow",
+      "uv sync": "allow",
+      "uv tool": "ask",
+      "uv tree": "allow",
+      "uv venv": "allow",
+      "uv version": "allow"
+    },
+    "read": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    }
   }
 }

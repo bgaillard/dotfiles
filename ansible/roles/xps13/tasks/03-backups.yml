@@ -1,0 +1,32 @@
+---
+- name: Copy file '/home/baptiste/.local/bin/backup-thunderbird'
+  become: true
+  ansible.builtin.copy:
+    src: home/baptiste/.local/bin/backup-thunderbird
+    dest: "{{ ansible_facts['env']['HOME'] }}/.local/bin/backup-thunderbird"
+    owner: "{{ ansible_facts['env']['USER'] }}"
+    group: "{{ ansible_facts['env']['USER'] }}"
+    mode: u=rx
+    force: true
+
+- name: Create the '/var/log/backup-thunderbird/' directory if it does not exist
+  become: true
+  ansible.builtin.file:
+    path: "/var/log/backup-thunderbird/"
+    state: directory
+    owner: "{{ ansible_facts['env']['USER'] }}"
+    group: "{{ ansible_facts['env']['USER'] }}"
+    mode: '0700'
+
+- name: Configure thunderbird backup cron job
+  become: true
+  ansible.builtin.cron:
+    name: "Backup the Vault data"
+    job: "{{ ansible_facts['env']['HOME'] }}/.local/bin/backup-thunderbird >> /var/log/backup-thunderbird/backup-thunderbird.log 2>&1"
+    state: present
+    user: "{{ ansible_facts['env']['USER'] }}"
+    minute: "0"
+    hour: "20"
+    weekday: "*"
+    month: "*"
+    day: "*"

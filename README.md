@@ -13,7 +13,7 @@ Dotfiles managed with [chezmoi](https://github.com/twpayne/chezmoi).
 #
 # After 'adduser' logout and login again to apply sudo group
 su -
-apt install ansible curl git gh gpg python3-debian -y
+apt install ansible curl git gh gpg hvac python3-debian -y
 adduser baptiste sudo
 
 # TODO: Install the Bitwarden CLI

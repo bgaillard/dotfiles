@@ -1,0 +1,17 @@
+---
+- name: Copy TLS certificate
+  become: true
+  ansible.builtin.copy:
+    content: "{{ cert.content }}"
+    dest: "/usr/local/share/ca-certificates/{{ cert.file_name }}"
+    owner: root
+    group: root
+    mode: '0644'
+  loop: "{{ certs }}"
+  loop_control:
+    loop_var: cert
+
+- name: Update CA certificates
+  become: true
+  ansible.builtin.command:
+    cmd: update-ca-certificates

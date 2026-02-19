@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
 if [ ! -d ~/.config ]; then
   mkdir -p ~/.config
 fi

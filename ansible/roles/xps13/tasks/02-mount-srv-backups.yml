@@ -1,0 +1,34 @@
+---
+# Sample Samba CIFS commands
+#
+# Connect with smbclient to list shares (SFR Box).
+#   smbclient --option="client lanman auth = yes" --option="client ntlmv2 auth = no" --option="client min protocol = NT1" --user=user%password -L 192.168.1.1
+#
+# Manually mount a share (SFR Box).
+#   sudo mount -t cifs -o username=user,password=password,vers=1.0 //192.168.1.1/SMBShare /srv/backups/
+#
+# @see https://la-communaute.sfr.fr/t5/installation-et-param%C3%A9trage/connection-%C3%A0-fichiers-partag%C3%A9-de-la-box/td-p/2238312
+# @see https://wiki.debian.org/fstab
+
+- name: Create /srv/backups directory
+  become: true
+  ansible.builtin.file:
+    path: /srv/backups
+    state: directory
+    mode: '0755'
+
+- name: Add the mount instructions to /etc/fstab
+  become: true
+  ansible.builtin.blockinfile:
+    path: /etc/fstab
+    block: |
+      # Mount the SMB share used for backups
+      //{{ backups_smb_server }}/{{ backups_smb_share }} /srv/backups cifs username={{ backups_smb_username }},password={{ backups_smb_password }},vers={{ backups_smb_version }},uid={{ ansible_facts['user_uid'] }},gid={{ ansible_facts['user_gid'] }} 0 0
+    backup: true
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - Hard Drives Mounts"
+    state: present
+
+# Mount all filesystems mentioned in /etc/fstab
+- name: Mount all filesystems from /etc/fstab
+  become: true
+  ansible.builtin.command: mount -a

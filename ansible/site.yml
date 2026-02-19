@@ -26,3 +26,9 @@
             allowed_ips: "{{ lookup('community.general.bitwarden', '7f9fe70f-a0f4-45c2-b062-b3c50170d4c0', search='id', field='wireguardAllowedIPs') | first }}"
             endpoint: "{{ lookup('community.general.bitwarden', '7f9fe70f-a0f4-45c2-b062-b3c50170d4c0', search='id', field='wireguardEndpoint') | first }}"
             persistent_keepalive: 25
+    - role: xps13
+      when: xps13 | default(false)
+      vars:
+        certs:
+          - file_name: "vault.crt"
+            content: "{{ lookup('community.general.bitwarden', '5f23f062-c642-4c10-8c57-b3dc01505dd6', search='id', field='vaultTLSCertificate') | first | replace('-----BEGIN CERTIFICATE-----', '__BC__') | replace('-----END CERTIFICATE-----', '__EC__') | replace(' ', '\n') | replace('__BC__', '-----BEGIN CERTIFICATE-----') | replace('__EC__', '-----END CERTIFICATE-----') }}"
