@@ -103,7 +103,8 @@ incus exec chezmoi-test -- bash
     #
     # @see https://linuxcontainers.org/incus/docs/main/howto/network_bridge_firewalld/#network-incus-docker
     # @see https://discuss.linuxcontainers.org/t/incus-container-unable-to-reach-outside-world/21256/11
-    apt install ansible curl git gh gpg python3-debian -y
+    apt install ansible curl git gh gpg hvac python3-debian -y
+    ansible-galaxy collection install community.general
     ansible-galaxy collection install prometheus.prometheus
 
     # Create a standard user
