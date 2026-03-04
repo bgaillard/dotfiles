@@ -16,7 +16,12 @@ su -
 apt install ansible curl git gh gpg python3-hvac python3-debian -y
 adduser baptiste sudo
 
-# TODO: Install the Bitwarden CLI
+# TODO: Install Bitwarden CLI with Ansible
+cd /tmp
+wget https://github.com/bitwarden/clients/releases/download/cli-v2026.1.0/bw-oss-linux-2026.1.0.zip
+unzip bw-oss-linux-2026.1.0.zip
+chmod +x bw
+mv bw ~/.local/bin
 
 # Install required Ansible roles
 ansible-galaxy collection install community.general
@@ -80,6 +85,8 @@ cp p.yml ~/.config
 ## Copy dotfiles
 
 ```bash
+export PATH=$PATH:~/.local/bin
+
 # Apply dotfiles to home directory
 chezmoi diff
 chezmoi apply
