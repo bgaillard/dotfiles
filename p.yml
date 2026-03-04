@@ -12,6 +12,7 @@ virtualization: false
 # Specific applications and servers
 alacritty: false
 alertmanager: false
+drawio: false
 grafana: false
 incus: false
 prometheus: false

@@ -13,7 +13,7 @@ Dotfiles managed with [chezmoi](https://github.com/twpayne/chezmoi).
 #
 # After 'adduser' logout and login again to apply sudo group
 su -
-apt install ansible curl git gh gpg hvac python3-debian -y
+apt install ansible curl git gh gpg python3-hvac python3-debian -y
 adduser baptiste sudo
 
 # TODO: Install the Bitwarden CLI
@@ -103,7 +103,7 @@ incus exec chezmoi-test -- bash
     #
     # @see https://linuxcontainers.org/incus/docs/main/howto/network_bridge_firewalld/#network-incus-docker
     # @see https://discuss.linuxcontainers.org/t/incus-container-unable-to-reach-outside-world/21256/11
-    apt install ansible curl git gh gpg hvac python3-debian -y
+    apt install ansible curl git gh gpg python3-hvac python3-debian -y
     ansible-galaxy collection install community.general
     ansible-galaxy collection install prometheus.prometheus
 
@@ -115,6 +115,7 @@ incus exec chezmoi-test -- bash
     # Install and initialize chezmoi
     su baptiste
     sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
+    cd ~
      ~/.local/bin/chezmoi init bgaillard
 
     # Get a Github token to prevent Rate Limit problems with 'mise'

@@ -73,7 +73,7 @@ eza = "latest"
 # Database Migrations Made Easy
 #
 # @see https://flywaydb.org/
-flyway = "11.8.2"
+flyway = "latest"
 
 # Fuzzy finder
 #
@@ -133,12 +133,14 @@ helm-docs = "latest"
 # Hey is a tiny program that sends some load to a web application.
 #
 # @see https://github.com/rakyll/hey
-hey = "latest"
+# FIXME: Not found
+#hey = "latest"
 
 # A 100% pure Java application designed to load test functional behavior and measure performance.
 #
 # @see https://jmeter.apache.org/
-jmeter = "latest"
+# FIXME: Not found
+#jmeter = "latest"
 
 # Lightweight Kubernetes
 #
