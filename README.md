@@ -136,3 +136,44 @@ incus exec chezmoi-test -- bash
     # Start the provisioning
     ./p
 ```
+
+
+## kDrive
+
+FIXME: The install of kDrive should be done with Ansible, the update should be managed with the `u` alias command.
+
+### Update
+
+Download kDrive from [Télecharger l'application kDrive pour Linux](https://www.infomaniak.com/fr/applications/telecharger-kdrive) into the `Downloads`.
+
+Manually stop kDrive using the UI.
+
+Execute the following commands to update kDrive:
+
+```bash
+rm ~/.local/bin/kDrive*
+chmod +x ~/Downloads/kDrive-*.AppImage
+mv ~/Downloads/kDrive-*.AppImage ~/.local/bin
+ln -s ~/.local/bin/kDrive-3.7.10.1-amd64.AppImage ~/.local/bin/kDrive
+```
+
+Login from XFCE and login again.
+
+### XFCE Desktop file
+
+Create a `~/.config/autostart/kDrive.desktop` file with the following content:
+
+```ini
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.9.4
+Type=Application
+Name=kDrive
+Comment=Infonamiak kDrive
+Exec=/home/baptiste/.local/bin/kDrive
+OnlyShowIn=XFCE;
+RunHook=0
+StartupNotify=false
+Terminal=false
+Hidden=false
+```
