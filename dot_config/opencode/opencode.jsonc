@@ -15,8 +15,10 @@
     "opencode",
     "openai"
   ],
-  "model": "mistral/devstral-medium-2507",
-  "small_model": "mistral/devstral-small-2507",
+
+  // @see https://models.dev/
+  "model": "mistral/devstral-medium-latest",
+  "small_model": "mistral/labs-devstral-small-2512",
   "command": {
     "fr_en" : {
       "agent": "plan",
