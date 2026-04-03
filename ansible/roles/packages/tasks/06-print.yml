@@ -4,4 +4,6 @@
   ansible.builtin.package:
     name:
       - cups
+      - hplip
+      - hplip-gui
       - printer-driver-all

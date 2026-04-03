@@ -36,19 +36,28 @@
 [credential "https://gist.github.com"]
   helper = !/usr/bin/gh auth git-credential
 
+[http]
+  postBuffer = 1048576000
+
+
+[url "https://root:{{ (bitwardenFields "item" "c8e2e778-8343-4e4c-9cae-ac0c00665261").PatDevelopment.value }}@github.com"]
+  insteadOf = https://github.com
+
+{{ if eq .chezmoi.hostname "xps-13" -}}
+#######################################################################################################################
+# Home
+#######################################################################################################################
+[url "https://{{ (bitwardenFields "item" "e735dca9-5493-435c-a71f-b39200ad4e0b").gitlabHomelabUser.value }}:{{ (bitwardenFields "item" "e735dca9-5493-435c-a71f-b39200ad4e0b").gitlabHomelabPat.value }}@gitlab.homelab.internal"]
+  insteadOf = https://gitlab.homelab.internal
+{{- end }}
 
 {{ if stat (joinPath .chezmoi.homeDir "workspace-github/bgaillard/dotfiles") -}}
 #######################################################################################################################
 # My Money Bank
 #######################################################################################################################
-[http]
-   postBuffer = 1048576000
-[url "https://{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHttpsUsername.value }}:{{
-(bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHttpsPassword.value }}@{{ (bitwardenFields "item"
-"af737683-4aa8-4a44-9a03-aef100ad8e96").gitHost1.value }}"]
+[url "https://{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHttpsUsername.value }}:{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHttpsPassword.value }}@{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHost1.value }}"]
   insteadOf = https://{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHost1.value }}
-[url "https://{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHttpsUsername.value }}:{{
-(bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHttpsPassword.value }}@{{ (bitwardenFields "item"
-"af737683-4aa8-4a44-9a03-aef100ad8e96").gitHost1.value }}"]
+
+[url "https://{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHttpsUsername.value }}:{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHttpsPassword.value }}@{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHost1.value }}"]
   insteadOf = https://{{ (bitwardenFields "item" "af737683-4aa8-4a44-9a03-aef100ad8e96").gitHost2.value }}
 {{- end }}

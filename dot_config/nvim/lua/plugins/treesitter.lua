@@ -4,6 +4,9 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    branch = "main",
+    build = ":TSUpdate",
     opts = {
       -- Required by spellsitter
       additional_vim_regex_highlighting = false,

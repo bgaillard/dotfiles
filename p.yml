@@ -8,6 +8,7 @@ monitoring: false
 print: false
 video: false
 virtualization: false
+database: false
 
 # Specific applications and servers
 alacritty: false

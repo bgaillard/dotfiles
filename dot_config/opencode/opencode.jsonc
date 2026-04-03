@@ -7,7 +7,7 @@
     "mistral" : {
       "options": {
         "apiKey": "{file:~/.mistral_api_key}",
-        "timeout": 60000 // 10 minutes
+        "timeout": 600000 // 10 minutes (warning the timeout is expressed in milliseconds)
       }
     }
   },

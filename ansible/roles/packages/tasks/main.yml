@@ -21,3 +21,5 @@
   when: monitoring | default(false)
 - import_tasks: 10-virtualization.yml
   when: virtualization | default(false)
+- import_tasks: 11-database.yml
+  when: database | default(false)
