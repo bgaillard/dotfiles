@@ -157,7 +157,7 @@ mv ~/Downloads/kDrive-*.AppImage ~/.local/bin
 ln -s ~/.local/bin/kDrive-3.7.10.1-amd64.AppImage ~/.local/bin/kDrive
 ```
 
-Login from XFCE and login again.
+Logout from XFCE and login again.
 
 ### XFCE Desktop file
 
