@@ -24,6 +24,18 @@
   st = status
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
+# Git Hook Manager
+#
+# @see https://hk.jdx.dev/
+[hook "hk-pre-commit"]
+    command = test "${HK:-1}" = "0" || hk run pre-commit --from-hook "$@"
+    event = pre-commit
+[hook "hk-pre-push"]
+    command = test "${HK:-1}" = "0" || hk run pre-push --from-hook "$@"
+    event = pre-push
+[hook "hk-commit-msg"]
+    command = test "${HK:-1}" = "0" || hk run commit-msg --from-hook "$@"
+    event = commit-msg
 
 # FIXME: We should use GPG files.
 #
