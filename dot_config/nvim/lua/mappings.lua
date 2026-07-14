@@ -91,23 +91,7 @@ map(
   'n',
   '<leader>ot',
   function()
-
-    -- Toggle opencode
-    require('opencode').toggle()
-
-    -- Set the focus to the opencode window to be able to enter text immediately
-    local windows = vim.api.nvim_list_wins()
-
-    for _, win_id in ipairs(windows) do
-      local buf_number = vim.api.nvim_win_get_buf(win_id)
-        local buf_name = vim.api.nvim_buf_get_name(buf_number)
-
-        if buf_name:match("term://") and buf_name:match(":opencode") then
-          vim.api.nvim_set_current_win(win_id)
-          break
-        end
-    end
-
+    require('opencode').command("session.new")
   end,
   {
     desc = 'Toggle opencode'
