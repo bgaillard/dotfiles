@@ -1,9 +1,9 @@
--- null-ls
+-- none-ls
 --
--- https://github.com/jose-elias-alvarez/null-ls.nvim
+-- https://github.com/nvimtools/none-ls.nvim
 return {
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     dependencies = {
        "neovim/nvim-lspconfig",
     },
