@@ -3,8 +3,6 @@ experimental = true
 
 [tools]
 
-"npm:tree-sitter-cli" = "latest"
-
 # Ansible is open-source technology that can perform virtually any IT task and remove complexity from workflows.
 #
 # @see https://docs.ansible.com/
@@ -360,6 +358,11 @@ lua = "latest"
 #
 # @see https://github.com/tombi-toml/tombi
 "aqua:tombi-toml/tombi" = "latest"
+
+# Tree-sitter is a parser generator tool and an incremental parsing library.
+#
+# @see https://github.com/tree-sitter/tree-sitter
+"npm:tree-sitter-cli" = "latest"
 
 # A comprehensive and versatile security scanner
 #
