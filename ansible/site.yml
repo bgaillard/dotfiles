@@ -4,7 +4,6 @@
     - role: alacritty
       when: alacritty | default(false)
     - fonts
-    - mise
     - mkcert
     - node-packages
     - packages

@@ -2,6 +2,17 @@
 
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
+# Ensure mise is installed
+if ! command -v mise &> /dev/null; then
+    echo "mise is not installed!"
+    echo "Please install mise first with 'curl https://mise.run | sh'"
+    exit 1
+fi
+
+# Update mise
+mise up
+
+# Ensure the 'p.yml' configuration file exists
 if [ ! -d ~/.config ]; then
   mkdir -p ~/.config
 fi

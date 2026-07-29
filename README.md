@@ -16,23 +16,17 @@ su -
 apt install ansible curl git gh gpg python3-hvac python3-debian -y
 adduser baptiste sudo
 
-# TODO: Install Bitwarden CLI with Ansible
-cd /tmp
-wget https://github.com/bitwarden/clients/releases/download/cli-v2026.1.0/bw-oss-linux-2026.1.0.zip
-unzip bw-oss-linux-2026.1.0.zip
-chmod +x bw
-mv bw ~/.local/bin
-
 # Install required Ansible roles
 ansible-galaxy collection install community.general
 ansible-galaxy collection install prometheus.prometheus
 
-# Install ~/.local/bin/chezmoi
-#
-# After installation, logout and login again to apply ~/.local/bin to PATH
+# Install mise and chezmoi in '~/.local/bin'
+curl https://mise.run | sh
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
 
-# Initialize ~/.local/share/chezmoi
+# Logout and login again to apply ~/.local/bin to PATH.
+#
+# Then initialize ~/.local/share/chezmoi
 ~/.local/bin/chezmoi init bgaillard
 ```
 
@@ -47,18 +41,17 @@ sudo dnf install dnf5-plugins
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
 sudo dnf install gh --repo gh-cli
 
-# TODO: Install the Bitwarden CLI
-
 # Install required Ansible roles
 ansible-galaxy collection install community.general
 ansible-galaxy collection install prometheus.prometheus
 
-# Install ~/.local/bin/chezmoi
-#
-# After installation, logout and login again to apply ~/.local/bin to PATH
+# Install mise and chezmoi in '~/.local/bin'
+curl https://mise.run | sh
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
 
-# Initialize ~/.local/share/chezmoi
+# Logout and login again to apply ~/.local/bin to PATH.
+#
+# Then initialize ~/.local/share/chezmoi
 ~/.local/bin/chezmoi init bgaillard
 ```
 
