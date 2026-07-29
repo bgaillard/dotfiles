@@ -5,7 +5,6 @@
       when: alacritty | default(false)
     - fonts
     - mkcert
-    - node-packages
     - packages
     - python-packages
     - ruby-packages

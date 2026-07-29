@@ -13,6 +13,11 @@ experimental = true
 # @see https://docs.ansible.com/
 "pipx:ansible-core" = "latest"
 
+# Ansible Language Server
+#
+# @see https://ansible.readthedocs.io/projects/vscode-ansible/als/
+"npm:ansible-language-server" = "latest"
+
 # Declarative CLI Version Manager. Unify tool versions in teams, projects, and CI. Easy, painless, and secure.
 #
 # @see https://aquaproj.github.io/
@@ -22,6 +27,11 @@ experimental = true
 #
 # @see https://atuin.sh
 "aqua:atuinsh/atuin" = "latest"
+
+# AWK Language Server
+#
+# @see https://github.com/Beaglefoot/awk-language-server
+"npm:awk-language-server" = "latest"
 
 # The official CLI for Amazon Web Services
 #
@@ -302,7 +312,9 @@ lua = "latest"
 # Automated dependency updates. Multi-platform and multi-language.
 #
 # @see https://docs.renovatebot.com/
-"npm:renovate" = "latest"
+#
+# FIXME: https://github.com/yarnpkg/berry/issues/7182
+"npm:renovate" = { version = "latest", trust_policy_excludes = ["@yarnpkg/libzip@3.2.2"] }
 
 # Recursively search directories for a regex pattern
 #
