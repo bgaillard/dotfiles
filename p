@@ -9,7 +9,8 @@ if ! command -v mise &> /dev/null; then
     exit 1
 fi
 
-# Update mise
+# Bootstrap and update mise
+mise bootstrap
 mise up
 
 # Ensure the 'p.yml' configuration file exists
