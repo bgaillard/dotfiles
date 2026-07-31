@@ -6,7 +6,6 @@
     - fonts
     - mkcert
     - packages
-    - python-packages
     - ruby-packages
     - servers
     - users

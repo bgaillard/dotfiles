@@ -1,3 +1,76 @@
+[bootstrap.packages]
+"apt:apt-file" = "latest"
+"apt:apt-transport-https" = "latest"
+"apt:autoconf" = "latest"
+"apt:automake" = "latest"
+"apt:bash-completion" = "latest"
+"apt:bison" = "latest"              # Linux Kernel compilation
+"apt:build-essential" = "latest"
+"apt:ca-certificates" = "latest"
+"apt:cargo" = "latest"
+"apt:cifs-utils" = "latest"
+"apt:clang" = "latest"
+"apt:cmake" = "latest"
+"apt:cpu-checker" = "latest"
+"apt:curl" = "latest"
+"apt:devscripts" = "latest"         # Linux Kernel compilation
+"apt:dunst" = "latest"              # Lightweight notification daemon
+"apt:etherwake" = "latest"
+"apt:fakeroot" = "latest"           # Linux Kernel compilation
+"apt:feh" = "latest"                # Lightweight image viewer
+"apt:ffmpeg" = "latest"
+"apt:flatpak" = "latest"
+"apt:flex" = "latest"               # Linux Kernel compilation
+"apt:g++" = "latest"
+"apt:gcc" = "latest"
+"apt:git" = "latest"
+"apt:git-secrets" = "latest"        # Prevents you from committing secrets and credentials into git repositories
+"apt:gnupg" = "latest"
+"apt:groff" = "latest"
+"apt:guestfs-tools" = "latest"
+"apt:gvfs-backends" = "latest"      # Required for Thunar trash, removable media and remote file systems support
+"apt:gvfs-fuse" = "latest"          # Required for Thunar trash, removable media and remote file systems support
+"apt:hwinfo" = "latest"
+"apt:ipcalc" = "latest"
+"apt:libarchive-tools" = "latest"
+"apt:libcairo2-dev" = "latest"
+"apt:libdbus-1-dev" = "latest"      # Required by the 'dbus-python' package
+"apt:libelf-dev" = "latest"         # Linux kernel compilation
+"apt:libfontconfig1-dev" = "latest"
+"apt:libgirepository-2.0-dev" = "latest"
+"apt:libnotify-bin" = "latest"      # For the 'notify-send' command
+"apt:libnss3-tools" = "latest"      # Required by the 'mkcert' tool
+"apt:libosinfo-bin" = "latest"
+"apt:libpcsclite-dev" = "latest"
+"apt:libssl-dev" = "latest"         # Linux kernel compilation
+"apt:libudev-dev" = "latest"
+"apt:libusb-1.0-0-dev" = "latest"
+"apt:libxcb-xfixes0-dev" = "latest"
+"apt:libxkbcommon-dev" = "latest"
+"apt:libyaml-dev" = "latest"
+"apt:lshw" = "latest"               # HardWare Lister for Linux
+"apt:make" = "latest"
+"apt:meson" = "latest"
+"apt:nasm" = "latest"               # Required for FFMpeg (installed with asdf)
+"apt:network-manager" = "latest"
+"apt:openssl" = "latest"
+"apt:ovmf" = "latest"
+"apt:pgpdump" = "latest"
+"apt:pkg-config" = "latest"
+"apt:podman" = "latest"
+"apt:psmisc" = "latest"             # Required for the 'killall' command for example
+"apt:python3-pip" = "latest"
+"apt:rsync" = "latest"
+"apt:shfmt" = "latest"
+"apt:smbclient" = "latest"
+"apt:swtpm" = "latest"
+"apt:texlive-full" = "latest"          # LaTeX distribution
+"apt:tuned" = "latest"
+"apt:unzip" = "latest"
+"apt:vagrant" = "latest"
+"apt:wget" = "latest"
+"apt:zip" = "latest"
+
 [settings]
 experimental = true
 
@@ -38,6 +111,11 @@ experimental = true
 # @see https://aws.amazon.com/cli/
 "aqua:aws/aws-cli" = "latest"
 
+# Integrated shell for working with the AWS CLI
+#
+# @see https://github.com/awslabs/aws-shell
+"pipx:aws-shell" = "latest"
+
 # A cat clone with wings
 #
 # @see https://github.com/sharkdp/bat
@@ -47,6 +125,11 @@ experimental = true
 #
 # @see https://github.com/betterleaks/betterleaks
 "aqua:betterleaks/betterleaks" = "latest"
+
+# CLI Bookmark Manager - https://github.com/jarun/buku
+#
+# @see https://github.com/jarun/buku
+"pipx:buku" = "latest"
 
 # Password manager for the command line
 #
@@ -62,6 +145,11 @@ experimental = true
 #
 # @see https://github.com/bridgecrewio/checkov
 "aqua:bridgecrewio/checkov" = "latest"
+
+# CMake LSP Implementation.
+#
+# @see https://github.com/regen100/cmake-language-server
+"pipx:cmake-language-server" = "latest"
 
 # Better project templates
 #
@@ -292,7 +380,23 @@ lua = "latest"
 # Python
 #
 # @see https://www.python.org/
-"core:python" = "latest"
+"core:python" = {
+  version = "latest",
+  # If you need to update or upgrade one library execute the bellow command.
+  #
+  #     mise up python -l
+  #
+  postinstall = """
+python -m pip install --upgrade --user cryptography \
+  cryptography \
+  dbus-python \
+  mkdocs-material \
+  PyGObject \
+  pyopenssl \
+  rply
+"""
+}
+
 
 # rsync for cloud storage
 #
@@ -405,6 +509,11 @@ lua = "latest"
 #
 # @see https://github.com/mikefarah/yq
 "aqua:mikefarah/yq" = "latest"
+
+# Library and command line tool for configuring a YubiKey.
+#
+# @see https://github.com/Yubico/yubikey-manager
+"pipx:yubikey-manager" = "latest"
 
 # Zellij
 #
