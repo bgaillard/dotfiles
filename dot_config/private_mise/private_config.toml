@@ -384,7 +384,7 @@ lua = "latest"
   version = "latest",
   # If you need to update or upgrade one library execute the bellow command.
   #
-  #     mise up python -l
+  #     mise install python -f
   #
   postinstall = """
 python -m pip install --upgrade --user cryptography \
@@ -428,7 +428,18 @@ python -m pip install --upgrade --user cryptography \
 # The Ruby programming language
 #
 # @see https://www.ruby-lang.org/
-"core:ruby" = "latest"
+"core:ruby" = {
+  version = "latest",
+
+  # If you need to update or upgrade one library execute the bellow command.
+  #
+  #     mise install ruby -f
+  #
+  postinstall = """
+gem install bundler
+gem install jekyll
+"""
+}
 
 # An extremely fast Python linter and code formatter, written in Rust.
 #

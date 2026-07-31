@@ -6,7 +6,6 @@
     - fonts
     - mkcert
     - packages
-    - ruby-packages
     - servers
     - users
     - role: wireguard
