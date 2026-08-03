@@ -1,27 +1,5 @@
 ---
-- name: Install 'gui' Linux packages
-  become: true
-  ansible.builtin.package:
-    name:
-      - bruno
-      - calibre
-      - dbeaver-ce
-      - evince
-      - gparted
-      - kdocker
-      - gnome-software-plugin-flatpak
-      - libreoffice
-      - peek
-      - ristretto             # XFCE image viewer
-      - thunar                # XFCE file manager
-      - thunar-archive-plugin # Archive support for Thunar
-      #- thunar-dropbox-plugin # Dropbox support for Thunar FIXME: Requires the 'contrib' Debian repo
-      - webp-pixbuf-loader    # WebP image format support for Ristretto
-      - wl-clipboard
-      - xclip
-      - xfce4-screenshooter
-      - xsel
-
+# GUI packages are now installed with 'mise bootstrap'
 
 - name: Check if draw.io is already installed
   ansible.builtin.stat:

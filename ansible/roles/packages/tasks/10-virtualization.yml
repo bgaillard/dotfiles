@@ -1,16 +1,5 @@
 ---
-- name: Install 'virtualization' Linux packages
-  become: true
-  ansible.builtin.package:
-    name:
-      - libvirt-daemon-system
-      - qemu-system-x86
-      - qemu-utils
-      - incus
-      - incus-base
-      - virt-manager
-      - virt-viewer
-      - virtinst
+# Virtualization packages are now installed with 'mise bootstrap'
 
 
 ########################################################################################################################

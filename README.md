@@ -16,10 +16,6 @@ su -
 apt install ansible curl git gh gpg python3-hvac python3-debian -y
 adduser baptiste sudo
 
-# Install required Ansible roles
-ansible-galaxy collection install community.general
-ansible-galaxy collection install prometheus.prometheus
-
 # Install mise and chezmoi in '~/.local/bin'
 curl https://mise.run | sh
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
@@ -40,10 +36,6 @@ sudo yum install ansible-core git -y
 sudo dnf install dnf5-plugins
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
 sudo dnf install gh --repo gh-cli
-
-# Install required Ansible roles
-ansible-galaxy collection install community.general
-ansible-galaxy collection install prometheus.prometheus
 
 # Install mise and chezmoi in '~/.local/bin'
 curl https://mise.run | sh
@@ -69,6 +61,10 @@ export MISE_GITHUB_TOKEN=$(gh auth token)
 # Copy the provisioning configuration file and adapt it to your needs
 cd ~/.local/share/chezmoi
 cp p.yml ~/.config
+
+mkdir -p ~/.config/mise/conf.d/
+cp dot_config/private_mise/private_config.toml ~/.config/mise/config.toml
+cp -R dot_config/private_mise/conf.d/* ~/.config/mise/conf.d/
 
 # Start the provisioning
 ./p

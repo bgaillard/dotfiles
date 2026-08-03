@@ -1,6 +1,2 @@
 ---
-- name: Install 'database' Linux packages
-  become: true
-  ansible.builtin.package:
-    name:
-      - postgresql-client
+# Database packages are now installed with 'mise bootstrap'

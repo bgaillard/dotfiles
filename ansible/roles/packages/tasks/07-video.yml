@@ -1,7 +1,2 @@
 ---
-- name: Install 'video AND gui' Linux packages
-  become: true
-  ansible.builtin.package:
-    name:
-      - vlc
-  when: gui | default(false)
+# Video packages are now installed with 'mise bootstrap'

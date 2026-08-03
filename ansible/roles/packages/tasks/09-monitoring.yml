@@ -1,6 +1,2 @@
 ---
-- name: Install 'monitoring' Linux packages
-  become: true
-  ansible.builtin.package:
-    name:
-      - grafana
+# Monitoring packages are now installed with 'mise bootstrap'
