@@ -85,9 +85,12 @@ ansible-galaxy collection install prometheus.prometheus --upgrade
 ########################################################################################################################
 # GUI
 ########################################################################################################################
-"apt:bruno" = "latest"
+# FIXME: Add custom APT repo before
+#"apt:bruno" = "latest"
 "apt:calibre" = "latest"
-"apt:dbeaver-ce" = "latest"
+
+# FIXME: add custom APT repo before
+# "apt:dbeaver-ce" = "latest"
 "apt:evince" = "latest"
 "apt:gparted" = "latest"
 "apt:kdocker" = "latest"

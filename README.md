@@ -2,6 +2,8 @@
 
 Dotfiles managed with [chezmoi](https://github.com/twpayne/chezmoi).
 
+Provisioning managed with [mise](https://mise.jdx.dev/).
+
 **WARNING**: The full install requires at least 40 GB.
 
 ## Init
@@ -88,7 +90,7 @@ chezmoi apply
 
 ```bash
 # Launch a Debian trixie container
-incus launch images:debian/trixie chezmoi-test
+incus launch -d root,size=40GiB images:debian/trixie chezmoi-test
 
 # Provision
 incus exec chezmoi-test -- bash
@@ -100,27 +102,32 @@ incus exec chezmoi-test -- bash
     # @see https://linuxcontainers.org/incus/docs/main/howto/network_bridge_firewalld/#network-incus-docker
     # @see https://discuss.linuxcontainers.org/t/incus-container-unable-to-reach-outside-world/21256/11
     apt install ansible curl git gh gpg python3-hvac python3-debian -y
-    ansible-galaxy collection install community.general
-    ansible-galaxy collection install prometheus.prometheus
 
     # Create a standard user
     useradd -m -s /bin/bash baptiste
     adduser baptiste sudo
     passwd baptiste
 
-    # Install and initialize chezmoi
+    # Install mise in '~/.local/bin'
     su baptiste
-    sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
     cd ~
-     ~/.local/bin/chezmoi init bgaillard
+    curl https://mise.run | sh
+    eval "$(~/.local/bin/mise activate bash)"
+    mise doctor
 
     # Get a Github token to prevent Rate Limit problems with 'mise'
     BROWSER=false gh auth login
     export MISE_GITHUB_TOKEN=$(gh auth token)
 
+    mise use --global chezmoi@latest
+    chezmoi init bgaillard
+
     # Copy the provisioning configuration file and adapt it to your needs
+    mkdir -p ~/.config/mise/conf.d/
     cd ~/.local/share/chezmoi
     cp p.yml ~/.config
+    cp dot_config/private_mise/private_config.toml ~/.config/mise/config.toml
+    cp -R dot_config/private_mise/conf.d/* ~/.config/mise/conf.d/
 
     # Start the provisioning
     ./p
@@ -130,6 +137,14 @@ incus exec chezmoi-test -- bash
 ## kDrive
 
 FIXME: The install of kDrive should be done with Ansible, the update should be managed with the `u` alias command.
+
+## Ente Auth
+
+FIXME: The install of Ente auth should be done with Ansible, the update should be managed with the `u` alias command.
+
+## Vivaldi
+
+FIXME: The install of Vivaldi should be done with Ansible, the update should be managed with the `u` alias command.
 
 ### Update
 
