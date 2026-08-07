@@ -7,8 +7,8 @@
   when: gui | default(false)
 - import_tasks: 03-audio.yml
   when: audio | default(false)
-- import_tasks: 04-docker.yml
-  when: docker | default(false)
+# - import_tasks: 04-docker.yml
+#   when: docker | default(false)
 - import_tasks: 05-mail.yml
   when: mail | default(false)
 - import_tasks: 06-print.yml

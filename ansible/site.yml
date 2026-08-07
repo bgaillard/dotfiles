@@ -1,13 +1,10 @@
 ---
 - hosts: 127.0.0.1
   roles:
-    - role: alacritty
-      when: alacritty | default(false)
     - fonts
     - mkcert
     - packages
     - servers
-    - users
     - role: wireguard
       vars:
         interface:

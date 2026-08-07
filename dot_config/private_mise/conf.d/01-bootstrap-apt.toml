@@ -1,8 +1,47 @@
+########################################################################################################################
+# Groups & Users
+########################################################################################################################
+[bootstrap.groups.baptiste]
+system = true
+
+[bootstrap.groups.docker]
+system = true
+
+[bootstrap.users.baptiste]
+system = true
+exclusive_groups = false
+group = "baptiste"
+groups = [
+  "audio",
+  "cdrom",
+  "dip",
+  "docker",
+  "floppy",
+  "kvm",
+  "libvirt",
+  "lpadmin",
+  "netdev",
+  "plugdev",
+  "sudo",
+  "video",
+  ]
+
+
 [bootstrap.hooks.post-packages]
 run = """
 ansible-galaxy collection install community.general --upgrade
 ansible-galaxy collection install prometheus.prometheus --upgrade
 """
+
+
+########################################################################################################################
+# Systemd services
+########################################################################################################################
+[bootstrap.services.docker]
+state = "running"
+enabled = true
+on_change = "reload_or_restart"
+
 
 [bootstrap.packages]
 
@@ -107,6 +146,7 @@ ansible-galaxy collection install prometheus.prometheus --upgrade
 "apt:xfce4-screenshooter" = "latest"
 "apt:xsel" = "latest"
 
+
 ########################################################################################################################
 # Audio
 ########################################################################################################################
@@ -115,6 +155,11 @@ ansible-galaxy collection install prometheus.prometheus --upgrade
 ########################################################################################################################
 # Docker
 ########################################################################################################################
+"apt:containerd.io" = "latest"
+"apt:docker-buildx-plugin" = "latest"
+"apt:docker-ce" = "latest"
+"apt:docker-ce-cli" = "latest"
+"apt:docker-compose-plugin" = "latest"
 
 
 ########################################################################################################################

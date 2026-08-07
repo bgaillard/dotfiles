@@ -3,6 +3,11 @@ experimental = true
 
 [tools]
 
+# A fast, cross-platform, OpenGL terminal emulator
+#
+# @see https://github.com/alacritty/alacritty
+"cargo:alacritty" = "latest"
+
 # Ansible is open-source technology that can perform virtually any IT task and remove complexity from workflows.
 #
 # @see https://docs.ansible.com/
