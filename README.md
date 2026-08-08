@@ -1,5 +1,7 @@
 # dotfiles
 
+Repository used to completely provision and configure my development machine.
+
 Provisioning and configuration is done executing the following workflow.
 
 1. Install tools with [mise](https://mise.jdx.dev/) and [ansible](https://docs.ansible.com/projects/ansible/latest/index.html)
@@ -9,7 +11,7 @@ Provisioning and configuration is done executing the following workflow.
 
 ## Usage
 
-My operating system is Debian, those instructions are not guaranteed to work in other distributions.
+I use [Debian](https://www.debian.org), those instructions are not guaranteed to work in other distributions (adapt the code depending on your needs).
 
 ```bash
 # Create a standard user
@@ -32,7 +34,7 @@ export MISE_GITHUB_TOKEN=$(gh auth token)
 # Retrieve dotfiles
 chezmoi init bgaillard
 
-# Copy the provisioning configuration file and adapt it to your needs
+# Copy the provisioning configuration files
 mkdir -p ~/.config/mise/conf.d/
 cd ~/.local/share/chezmoi
 cp p.yml ~/.config
@@ -71,26 +73,6 @@ Then simply execute the script mentioned in the usage section.
 
 ## kDrive
 
-FIXME: The install of kDrive should be done with Ansible, the update should be managed with the `u` alias command.
-
-
-### Update
-
-Download kDrive from [Télecharger l'application kDrive pour Linux](https://www.infomaniak.com/fr/applications/telecharger-kdrive) into the `Downloads`.
-
-Manually stop kDrive using the UI.
-
-Execute the following commands to update kDrive:
-
-```bash
-rm ~/.local/bin/kDrive*
-chmod +x ~/Downloads/kDrive-*.AppImage
-mv ~/Downloads/kDrive-*.AppImage ~/.local/bin
-ln -s ~/.local/bin/kDrive-3.8.5.2-amd64.AppImage ~/.local/bin/kDrive
-```
-
-Logout from XFCE and login again.
-
 ### XFCE Desktop file
 
 Create a `~/.config/autostart/kDrive.desktop` file with the following content:
@@ -102,7 +84,7 @@ Version=0.9.4
 Type=Application
 Name=kDrive
 Comment=Infonamiak kDrive
-Exec=/home/baptiste/.local/bin/kDrive
+Exec=/home/baptiste/.local/bin/kDrive.AppImage
 OnlyShowIn=XFCE;
 RunHook=0
 StartupNotify=false
