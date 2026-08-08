@@ -73,9 +73,6 @@ Then simply execute the script mentioned in the usage section.
 
 FIXME: The install of kDrive should be done with Ansible, the update should be managed with the `u` alias command.
 
-## Vivaldi
-
-FIXME: The install of Vivaldi should be done with Ansible, the update should be managed with the `u` alias command.
 
 ### Update
 

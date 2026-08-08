@@ -38,6 +38,12 @@ DEB_URL=$(curl -s https://api.github.com/repos/ente/ente/releases | jq -r '.[] |
 DEB_FILE="/tmp/$(basename "$DEB_URL")"
 curl -L -o "${DEB_FILE}" "${DEB_URL}"
 sudo apt install "${DEB_FILE}" -y
+
+# Install Vivaldi
+DEB_URL=$(curl -s https://vivaldi.com/fr/download/ | grep "amd64.deb" | sed -E 's/^.*(https:\\/\\/.*amd64\\.deb).*$/\\1/')
+DEB_FILE="/tmp/$(basename "$DEB_URL")"
+curl -L -o "${DEB_FILE}" "${DEB_URL}"
+sudo apt install "${DEB_FILE}" -y
 """
 
 
