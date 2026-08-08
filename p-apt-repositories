@@ -1,13 +1,14 @@
 #!/bin/bash
 
+sudo apt install -y gpg
+
 # Create keyring directories
 sudo install -m 0755 -d /etc/apt/keyrings
-
 
 # Bruno
 #
 # @see https://www.usebruno.com/downloads
-sudo curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9FA6017ECABE0266" | gpg --dearmor | sudo tee /etc/apt/keyrings/bruno.gpg > /dev/null
+curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9FA6017ECABE0266" | gpg --dearmor | sudo tee /etc/apt/keyrings/bruno.gpg > /dev/null
 sudo chmod a+r /etc/apt/keyrings/bruno.gpg
 echo "# @see https://www.usebruno.com/downloads
 Types: deb
@@ -91,3 +92,6 @@ Suites: stable
 Components: non-free
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/spotify.asc" | sudo tee /etc/apt/sources.list.d/spotify.sources
+
+
+sudo apt update

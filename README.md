@@ -1,82 +1,50 @@
 # dotfiles
 
-Dotfiles managed with [chezmoi](https://github.com/twpayne/chezmoi).
+Provisioning and configuration is done executing the following workflow.
 
-Provisioning managed with [mise](https://mise.jdx.dev/).
+1. Install tools with [mise](https://mise.jdx.dev/) and [ansible](https://docs.ansible.com/projects/ansible/latest/index.html)
+2. Install dotfiles with [chezmoi](https://github.com/twpayne/chezmoi)
 
 **WARNING**: The full install requires at least 40 GB.
 
-## Init
+## Usage
 
-### Debian / Ubuntu
+My operating system is Debian, those instructions are not guaranteed to work in other distributions.
 
 ```bash
 # Create a standard user
-su -
 useradd -m -s /bin/bash baptiste
 adduser baptiste sudo
 passwd baptiste
 
-# Install mise and chezmoi in '~/.local/bin'
+# Install mise in '~/.local/bin'
 su baptiste
+cd ~
 curl https://mise.run | sh
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
+eval "$(~/.local/bin/mise activate bash)"
+mise use --global bitwarden@latest gh@latest chezmoi@latest
 
-# Logout and login again to apply ~/.local/bin to PATH.
-#
-# Then initialize ~/.local/share/chezmoi
-~/.local/bin/chezmoi init bgaillard
-```
-
-### Red Hat
-
-```bash
-# Install base packages
-#
-# After 'adduser' logout and login again to apply sudo group
-sudo yum install ansible-core git -y
-sudo dnf install dnf5-plugins
-sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
-sudo dnf install gh --repo gh-cli
-
-# Install mise and chezmoi in '~/.local/bin'
-curl https://mise.run | sh
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
-
-# Logout and login again to apply ~/.local/bin to PATH.
-#
-# Then initialize ~/.local/share/chezmoi
-~/.local/bin/chezmoi init bgaillard
-```
-
-
-## Provision
-
-```bash
 # Get a Github token to prevent Rate Limit problems with 'mise'
-#
-# @see https://mise.jdx.dev/troubleshooting.html#_403-forbidden-when-installing-a-tool
-# @see https://stackoverflow.com/questions/78890002/how-to-do-gh-auth-login-when-run-in-headless-mode#answer-78890003
+sudo apt install git
 BROWSER=false gh auth login
 export MISE_GITHUB_TOKEN=$(gh auth token)
 
+# Retrieve dotfiles
+chezmoi init bgaillard
+
 # Copy the provisioning configuration file and adapt it to your needs
+mkdir -p ~/.config/mise/conf.d/
 cd ~/.local/share/chezmoi
 cp p.yml ~/.config
-
-mkdir -p ~/.config/mise/conf.d/
 cp dot_config/private_mise/private_config.toml ~/.config/mise/config.toml
 cp -R dot_config/private_mise/conf.d/* ~/.config/mise/conf.d/
 
+# Login to Bitwarden
+bw login
+export BW_SESSION=...
+
 # Start the provisioning
 ./p
-```
-
-
-## Copy dotfiles
-
-```bash
-export PATH=$PATH:~/.local/bin
 
 # Apply dotfiles to home directory
 chezmoi diff
@@ -84,50 +52,21 @@ chezmoi apply
 ```
 
 
-## Testing
+## Testing with incus
 
-### incus
+Launch a Debian Trixie VM and start a bash into it.
 
 ```bash
-# Launch a Debian trixie container
 incus launch -d root,size=40GiB images:debian/trixie chezmoi-test
-
-# Provision
 incus exec chezmoi-test -- bash
-
-    # If you encounter networking issues check the bellow links
-    #
-    # @see https://linuxcontainers.org/incus/docs/main/howto/network_bridge_firewalld/#network-incus-docker
-    # @see https://discuss.linuxcontainers.org/t/incus-container-unable-to-reach-outside-world/21256/11
-
-    # Create a standard user
-    useradd -m -s /bin/bash baptiste
-    adduser baptiste sudo
-    passwd baptiste
-
-    # Install mise in '~/.local/bin'
-    su baptiste
-    cd ~
-    curl https://mise.run | sh
-    eval "$(~/.local/bin/mise activate bash)"
-    mise use --global gh@latest chezmoi@latest
-
-    # Get a Github token to prevent Rate Limit problems with 'mise'
-    BROWSER=false gh auth login
-    export MISE_GITHUB_TOKEN=$(gh auth token)
-
-    chezmoi init bgaillard
-
-    # Copy the provisioning configuration file and adapt it to your needs
-    mkdir -p ~/.config/mise/conf.d/
-    cd ~/.local/share/chezmoi
-    cp p.yml ~/.config
-    cp dot_config/private_mise/private_config.toml ~/.config/mise/config.toml
-    cp -R dot_config/private_mise/conf.d/* ~/.config/mise/conf.d/
-
-    # Start the provisioning
-    ./p
 ```
+
+Then simply execute the script mentioned in the usage section.
+
+:bulb: If you encounter networking issues check the bellow links
+
+- https://linuxcontainers.org/incus/docs/main/howto/network_bridge_firewalld/#network-incus-docker
+- https://discuss.linuxcontainers.org/t/incus-container-unable-to-reach-outside-world/21256/11
 
 
 ## kDrive
