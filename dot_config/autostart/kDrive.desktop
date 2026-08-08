@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=kDrive
+GenericName=File Synchronizer
+Exec='${HOME}/.local/bin/kDrive.AppImage'
+Terminal=false
+Icon=kdrive
+Categories=Network
+Type=Application
+StartupNotify=false
+X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-Delay=10

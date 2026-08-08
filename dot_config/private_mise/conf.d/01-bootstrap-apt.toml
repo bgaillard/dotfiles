@@ -29,9 +29,18 @@ groups = [
 
 [bootstrap.hooks.post-packages]
 run = """
+#!/bin/bash
+
 # Install Ansible collections
 ansible-galaxy collection install community.general --upgrade
 ansible-galaxy collection install prometheus.prometheus --upgrade
+
+# Install kDrive
+APP_IMAGE_URL=$(curl -s https://www.infomaniak.com/drive/latest | jq -r '."linux-amd64".downloadurl')
+bash -c 'read -p "Please quit kDrive using the UI and press ENTER to continue..."'
+curl -L -o "${HOME}/.local/bin/kDrive.AppImage" "${APP_IMAGE_URL}"
+chmod +x ${HOME}/.local/bin/kDrive.AppImage
+nohup ${HOME}/.local/bin/kDrive.AppImage > /dev/null 2>&1 &
 
 # Install Ente Auth
 DEB_URL=$(curl -s https://api.github.com/repos/ente/ente/releases | jq -r '.[] | select(.prerelease == false and (.tag_name | startswith("auth-v"))) | .assets[] | select(.name | endswith("x86_64.deb")) | .browser_download_url' | head -1)
