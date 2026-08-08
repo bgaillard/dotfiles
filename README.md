@@ -11,14 +11,14 @@ Provisioning managed with [mise](https://mise.jdx.dev/).
 ### Debian / Ubuntu
 
 ```bash
-# Install base packages
-#
-# After 'adduser' logout and login again to apply sudo group
+# Create a standard user
 su -
-apt install ansible curl git gh gpg python3-hvac python3-debian -y
+useradd -m -s /bin/bash baptiste
 adduser baptiste sudo
+passwd baptiste
 
 # Install mise and chezmoi in '~/.local/bin'
+su baptiste
 curl https://mise.run | sh
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
 
@@ -95,13 +95,10 @@ incus launch -d root,size=40GiB images:debian/trixie chezmoi-test
 # Provision
 incus exec chezmoi-test -- bash
 
-    # Install base packages
-    #
     # If you encounter networking issues check the bellow links
     #
     # @see https://linuxcontainers.org/incus/docs/main/howto/network_bridge_firewalld/#network-incus-docker
     # @see https://discuss.linuxcontainers.org/t/incus-container-unable-to-reach-outside-world/21256/11
-    apt install ansible curl git gh gpg python3-hvac python3-debian -y
 
     # Create a standard user
     useradd -m -s /bin/bash baptiste
@@ -113,13 +110,12 @@ incus exec chezmoi-test -- bash
     cd ~
     curl https://mise.run | sh
     eval "$(~/.local/bin/mise activate bash)"
-    mise doctor
+    mise use --global gh@latest chezmoi@latest
 
     # Get a Github token to prevent Rate Limit problems with 'mise'
     BROWSER=false gh auth login
     export MISE_GITHUB_TOKEN=$(gh auth token)
 
-    mise use --global chezmoi@latest
     chezmoi init bgaillard
 
     # Copy the provisioning configuration file and adapt it to your needs

@@ -3,23 +3,23 @@
 
 - import_tasks: 00-apt-repositories.yml
 # - import_tasks: 01-core.yml
-- import_tasks: 02-gui.yml
-  when: gui | default(false)
-- import_tasks: 03-audio.yml
-  when: audio | default(false)
+# - import_tasks: 02-gui.yml
+#   when: gui | default(false)
+# - import_tasks: 03-audio.yml
+#   when: audio | default(false)
 # - import_tasks: 04-docker.yml
 #   when: docker | default(false)
-- import_tasks: 05-mail.yml
-  when: mail | default(false)
-- import_tasks: 06-print.yml
-  when: print | default(false)
-- import_tasks: 07-video.yml
-  when: video | default(false)
+# - import_tasks: 05-mail.yml
+#   when: mail | default(false)
+# - import_tasks: 06-print.yml
+#   when: print | default(false)
+# - import_tasks: 07-video.yml
+#   when: video | default(false)
 - import_tasks: 08-messaging.yml
   when: messaging | default(false)
-- import_tasks: 09-monitoring.yml
-  when: monitoring | default(false)
+# - import_tasks: 09-monitoring.yml
+#   when: monitoring | default(false)
 - import_tasks: 10-virtualization.yml
   when: virtualization | default(false)
-- import_tasks: 11-database.yml
-  when: database | default(false)
+# - import_tasks: 11-database.yml
+#   when: database | default(false)

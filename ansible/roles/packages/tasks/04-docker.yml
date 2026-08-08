@@ -1,4 +1,2 @@
 ---
 # Docker packages are now installed with 'mise bootstrap'
-
-# The APT repository is configured in the '00-apt-repositories.yml' file

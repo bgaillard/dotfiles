@@ -9,8 +9,11 @@ if ! command -v mise &> /dev/null; then
     exit 1
 fi
 
+# Configure custom APT repositories
+./p-apt-repositories
+
 # Bootstrap and update mise
-mise bootstrap
+mise bootstrap --update --yes
 mise up
 
 # Ensure the 'p.yml' configuration file exists

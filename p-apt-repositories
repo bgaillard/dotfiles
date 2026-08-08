@@ -1,0 +1,93 @@
+#!/bin/bash
+
+# Create keyring directories
+sudo install -m 0755 -d /etc/apt/keyrings
+
+
+# Bruno
+#
+# @see https://www.usebruno.com/downloads
+sudo curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9FA6017ECABE0266" | gpg --dearmor | sudo tee /etc/apt/keyrings/bruno.gpg > /dev/null
+sudo chmod a+r /etc/apt/keyrings/bruno.gpg
+echo "# @see https://www.usebruno.com/downloads
+Types: deb
+URIs: http://debian.usebruno.com/
+Suites: bruno
+Components: stable
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/bruno.gpg" | sudo tee /etc/apt/sources.list.d/bruno.sources
+
+
+# DBeaver
+#
+# @see https://dbeaver.io/download/
+sudo curl -fsSL "https://dbeaver.io/debs/dbeaver.gpg.key" -o /etc/apt/keyrings/dbeaver.gpg.key
+sudo chmod a+r /etc/apt/keyrings/dbeaver.gpg.key
+echo "# @see https://dbeaver.io/download/
+Types: deb
+URIs: https://dbeaver.io/debs/dbeaver-ce
+Suites: /
+Components:
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/dbeaver.gpg.key" | sudo tee /etc/apt/sources.list.d/dbeaver.sources
+
+
+# Docker
+#
+# @see https://docs.docker.com/engine/install/debian/
+sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo "# @see https://docs.docker.com/engine/install/debian/
+Types: deb
+URIs: https://download.docker.com/linux/debian
+Suites: trixie
+Components: stable
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/docker.asc" | sudo tee /etc/apt/sources.list.d/docker.sources
+
+
+# Grafana
+#
+# @see https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/#install-from-apt-repository
+sudo curl -fsSL https://apt.grafana.com/gpg.key -o /etc/apt/keyrings/grafana.asc
+sudo chmod a+r /etc/apt/keyrings/grafana.asc
+echo "# @see https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/#install-from-apt-repository
+Types: deb
+URIs: https://apt.grafana.com
+Suites: stable
+Components: main
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/grafana.asc" | sudo tee /etc/apt/sources.list.d/grafana.sources
+
+
+# Mozilla
+#
+# @see https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions
+sudo curl -fsSL https://packages.mozilla.org/apt/repo-signing-key.gpg -o /etc/apt/keyrings/packages.mozilla.org.asc
+sudo chmod a+r /etc/apt/keyrings/packages.mozilla.org.asc
+echo "# @see https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions
+Types: deb
+URIs: https://packages.mozilla.org/apt
+Suites: mozilla
+Components: main
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc" | sudo tee /etc/apt/sources.list.d/mozilla.sources
+
+# Configure APT to prioritize packages from Mozilla repository
+echo "Package: *
+Pin: origin packages.mozilla.org
+Pin-Priority: 1000" | sudo tee /etc/apt/preferences.d/mozilla
+
+
+# Spotify
+#
+# @see https://www.spotify.com/us/download/linux/
+sudo curl -fsSL https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc -o /etc/apt/keyrings/spotify.asc
+sudo chmod a+r /etc/apt/keyrings/spotify.asc
+echo "# @see https://www.spotify.com/us/download/linux/
+Types: deb
+URIs: https://repository.spotify.com
+Suites: stable
+Components: non-free
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/spotify.asc" | sudo tee /etc/apt/sources.list.d/spotify.sources
