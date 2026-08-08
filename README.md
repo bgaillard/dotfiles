@@ -5,7 +5,7 @@ Provisioning and configuration is done executing the following workflow.
 1. Install tools with [mise](https://mise.jdx.dev/) and [ansible](https://docs.ansible.com/projects/ansible/latest/index.html)
 2. Install dotfiles with [chezmoi](https://github.com/twpayne/chezmoi)
 
-**WARNING**: The full install requires at least 40 GB.
+:warning: The full install requires at least 40 GB.
 
 ## Usage
 
@@ -73,10 +73,6 @@ Then simply execute the script mentioned in the usage section.
 
 FIXME: The install of kDrive should be done with Ansible, the update should be managed with the `u` alias command.
 
-## Ente Auth
-
-FIXME: The install of Ente auth should be done with Ansible, the update should be managed with the `u` alias command.
-
 ## Vivaldi
 
 FIXME: The install of Vivaldi should be done with Ansible, the update should be managed with the `u` alias command.
@@ -93,7 +89,7 @@ Execute the following commands to update kDrive:
 rm ~/.local/bin/kDrive*
 chmod +x ~/Downloads/kDrive-*.AppImage
 mv ~/Downloads/kDrive-*.AppImage ~/.local/bin
-ln -s ~/.local/bin/kDrive-3.7.10.1-amd64.AppImage ~/.local/bin/kDrive
+ln -s ~/.local/bin/kDrive-3.8.5.2-amd64.AppImage ~/.local/bin/kDrive
 ```
 
 Logout from XFCE and login again.
