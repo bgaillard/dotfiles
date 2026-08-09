@@ -1,0 +1,22 @@
+########################################################################################################################
+# Hooks
+########################################################################################################################
+[hooks]
+enter = { task = "setup" }
+
+
+########################################################################################################################
+# Tasks
+########################################################################################################################
+[tasks.pre-commit]
+description = "Execute Git pre-commit hooks with HK on staged files."
+run = "hk run pre-commit"
+
+[tasks.pre-commit-all]
+description = "Execute Git pre-commit hooks with HK on all files instead of just staged files."
+run = "hk run pre-commit --all"
+
+[tasks.setup]
+description = "Setup the project for development."
+hide = true
+run = "hk install --force-local --mise"
