@@ -373,6 +373,11 @@ gem install jekyll
 # @see https://www.rust-lang.org/
 "core:rust" = "latest"
 
+# The Easy Way To Build Serverless Apps
+#
+# @see https://www.serverless.com/framework
+"npm:serverless" = "latest"
+
 # A shell parser, formatter, and interpreter.
 #
 # @see https://github.com/mvdan/sh
