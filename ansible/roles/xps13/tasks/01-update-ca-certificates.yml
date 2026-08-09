@@ -6,7 +6,7 @@
     dest: "/usr/local/share/ca-certificates/{{ cert.file_name }}"
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   loop: "{{ certs }}"
   loop_control:
     loop_var: cert

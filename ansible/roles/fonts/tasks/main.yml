@@ -21,7 +21,7 @@
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.local/share/fonts"
     state: directory
-    mode: '0700'
+    mode: "0700"
   when: not font_stat.stat.exists
 
 - name: Unzip JetBrains Mono Nerd Font

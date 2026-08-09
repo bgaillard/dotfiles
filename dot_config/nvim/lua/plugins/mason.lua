@@ -16,7 +16,7 @@ return  {
         automatic_installation = true,
 
         -- IMPORTANT
-        --   - The plugins listed below MUST BE available in the Mason '(2) LSP' tab or the table accessible through the 
+        --   - The plugins listed below MUST BE available in the Mason '(2) LSP' tab or the table accessible through the
         --     bellow link.
         --   - Install only essential and best plugins and no more! Otherwise you'll end with a slow setup with is more
         --     prone to plugin installation errors.

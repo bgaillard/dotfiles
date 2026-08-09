@@ -1,5 +1,4 @@
 ---
-
 # @see https://prometheus-community.github.io/ansible/branch/main/alertmanager_role.html
 - name: Install and configure Prometheus AlertManager
   no_log: false

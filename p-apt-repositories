@@ -8,7 +8,7 @@ sudo install -m 0755 -d /etc/apt/keyrings
 # Bruno
 #
 # @see https://www.usebruno.com/downloads
-curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9FA6017ECABE0266" | gpg --dearmor | sudo tee /etc/apt/keyrings/bruno.gpg > /dev/null
+curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9FA6017ECABE0266" | gpg --dearmor | sudo tee /etc/apt/keyrings/bruno.gpg >/dev/null
 sudo chmod a+r /etc/apt/keyrings/bruno.gpg
 echo "# @see https://www.usebruno.com/downloads
 Types: deb
@@ -17,7 +17,6 @@ Suites: bruno
 Components: stable
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/bruno.gpg" | sudo tee /etc/apt/sources.list.d/bruno.sources
-
 
 # DBeaver
 #
@@ -32,7 +31,6 @@ Components:
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/dbeaver.gpg.key" | sudo tee /etc/apt/sources.list.d/dbeaver.sources
 
-
 # Docker
 #
 # @see https://docs.docker.com/engine/install/debian/
@@ -46,7 +44,6 @@ Components: stable
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/docker.asc" | sudo tee /etc/apt/sources.list.d/docker.sources
 
-
 # Grafana
 #
 # @see https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/#install-from-apt-repository
@@ -59,7 +56,6 @@ Suites: stable
 Components: main
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/grafana.asc" | sudo tee /etc/apt/sources.list.d/grafana.sources
-
 
 # Mozilla
 #
@@ -79,7 +75,6 @@ echo "Package: *
 Pin: origin packages.mozilla.org
 Pin-Priority: 1000" | sudo tee /etc/apt/preferences.d/mozilla
 
-
 # Spotify
 #
 # @see https://www.spotify.com/us/download/linux/
@@ -92,6 +87,5 @@ Suites: stable
 Components: non-free
 Architectures: amd64
 Signed-By: /etc/apt/keyrings/spotify.asc" | sudo tee /etc/apt/sources.list.d/spotify.sources
-
 
 sudo apt update

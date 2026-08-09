@@ -31,7 +31,7 @@
   ansible.builtin.file:
     path: /etc/systemd/system/incus.service.d
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 - name: Configure 'INCUS_UI' environment variable
   become: true

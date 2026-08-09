@@ -6,6 +6,6 @@ Grafana checks to configure
 - dropbox
 - Aucun service Linux n'est pas dans un bon état
 
-Monitoring of the Montoring (Use D-BUS and Freedesktop.org notifications + mailx)
+Monitoring of the Monitoring (Use D-BUS and Freedesktop.org notifications + mailx)
 - Prometheus
 - Grafana

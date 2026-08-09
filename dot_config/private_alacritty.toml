@@ -387,5 +387,3 @@ import = [
   # @see https://github.com/alacritty/alacritty-theme/issues/38
   # "~/.config/alacritty/themes/themes/blood_moon.yaml"
 ]
-
-[terminal]

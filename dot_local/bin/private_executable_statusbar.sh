@@ -9,9 +9,9 @@ function battery() {
 
     capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 
-    if [ "${capacity}" -gt 80 ] ; then
+    if [ "${capacity}" -gt 80 ]; then
         icon="${full_icon}"
-    elif [ "${capacity}" -lt 20 ] ; then
+    elif [ "${capacity}" -lt 20 ]; then
         icon="${empty_icon}"
     else
         icon="${half_icon}"
@@ -31,14 +31,14 @@ function volume() {
 
     master=$(amixer sget Master)
 
-    front_left=$(echo "${master}"| grep 'Front Left:' | sed 's/.*\[\(.*\)%\].*/\1/g')
+    front_left=$(echo "${master}" | grep 'Front Left:' | sed 's/.*\[\(.*\)%\].*/\1/g')
     on_off=$(echo "${master}" | grep 'Front Left:' | sed 's/.*\[.*\%] \[\(.*\)\].*/\1/g')
     message="${icon} ${front_left}%"
 
-    if [ "${on_off}" == "off" ] ; then
+    if [ "${on_off}" == "off" ]; then
         icon="${off_icon}"
         message="${icon} muted"
-    elif [ "${front_left}" -gt 80 ] ; then
+    elif [ "${front_left}" -gt 80 ]; then
         icon="${high_icon}"
     fi
 
@@ -49,7 +49,7 @@ function wifi_essid() {
     iwgetid | sed 's/.*ESSID:"\(.*\)"/\1/g'
 }
 
-if [ "${1}" == "--loop" ] ; then
+if [ "${1}" == "--loop" ]; then
     while true; do
         xsetroot -name " $(wifi_essid) | $(volume) | $(battery) | $(date --rfc-3339=seconds)"
         sleep 1

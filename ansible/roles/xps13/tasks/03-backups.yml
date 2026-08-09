@@ -16,7 +16,7 @@
     state: directory
     owner: "{{ ansible_facts['env']['USER'] }}"
     group: "{{ ansible_facts['env']['USER'] }}"
-    mode: '0700'
+    mode: "0700"
 
 - name: Configure thunderbird backup cron job
   become: true

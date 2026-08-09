@@ -14,7 +14,7 @@ vim.opt.termguicolors = true
 -- Spell
 --
 -- To install missing language package in Neovim do the following.
---     
+--
 --     mkdir -p ~/.config/nvim/spell
 --     wget https://ftp.nluug.nl/vim/runtime/spell/fr.utf-8.spl -O ~/.config/nvim/spell/fr.utf-8.spl
 --

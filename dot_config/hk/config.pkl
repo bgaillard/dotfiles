@@ -1,0 +1,67 @@
+amends "package://github.com/jdx/hk/releases/download/v1.54.0/hk@1.54.0#/Config.pkl"
+import "package://github.com/jdx/hk/releases/download/v1.54.0/hk@1.54.0#/Builtins.pkl"
+
+// Controls whether hk aborts remaining steps/groups after the first failure.
+fail_fast = true
+
+// Enables or disables reporting progress via OSC sequences to compatible terminals.
+terminal_progress = true
+
+// Controls whether hk respects .gitignore and other ignore files when walking directories.
+walk_ignore = true
+
+hooks {
+    ["commit-msg"] {
+      steps {
+          ["check-conventional-commit"] = (Builtins.check_conventional_commit) {
+            check = "hk util check-conventional-commit .git/COMMIT_EDITMSG"
+          }
+      }
+    }
+    ["pre-commit"] {
+
+        // Enable automatic fixes
+        fix = true
+
+        steps {
+          ["check-added-large-files"] = Builtins.check_added_large_files
+          ["check-case-conflict"] = Builtins.check_case_conflict
+          ["check-executables-have-shebangs"] = Builtins.check_executables_have_shebangs
+          ["check-merge-conflict"] = Builtins.check_merge_conflict
+          ["check-symlinks"] = Builtins.check_symlinks
+          ["byte-order-marker"] = Builtins.byte_order_marker
+          ["mixed-line-ending"] = Builtins.mixed_line_ending
+          // FIXME: Force the work on a branch on a second time
+          //["no-commit-to-branch"] = Builtins.no_commit_to_branch
+          ["trailing-whitespace"] = Builtins.trailing_whitespace
+
+          // AsciiDoc
+          ["asciidoctor"] = Builtins.asciidoctor
+
+          // Secrets detection
+          ["betterleaks"] = Builtins.betterleaks
+
+          // JSON
+          ["jq"] = Builtins.jq
+
+          // Shell
+          ["shellcheck"] = Builtins.shellcheck
+          ["shfmt"] = Builtins.shfmt
+
+          // TOML
+          ["mise"] = Builtins.mise
+          ["tombi"] = Builtins.tombi
+
+          // YAML
+          //
+          // We initially used 'yq' but it removes new lines which is not wanted. So we use 'prettier' instead.
+          //
+          // ["yq"] = Builtins.yq
+          ["prettier"] = (Builtins.prettier) {
+            glob = List("**/*.yaml", "**/*.yml")
+          }
+
+          ["typos"] = Builtins.typos
+        }
+    }
+}

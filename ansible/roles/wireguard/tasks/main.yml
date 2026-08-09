@@ -10,7 +10,7 @@
   ansible.builtin.file:
     path: "/etc/wireguard"
     state: directory
-    mode: '0700'
+    mode: "0700"
 
 - name: Render the '/etc/wireguard/wg0.conf' configuration file
   become: true
@@ -27,7 +27,6 @@
   #
   #   # Peers
   #   peers: "{{ peers }}"
-
 ## See 'man ip-link' (i.e. 'ip-link(8)') for more information about 'ip link show'
 #- name: Check if the Wireguard 'wg0' interface exists
 #  ansible.builtin.command: ip link show wg0 type wireguard

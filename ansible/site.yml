@@ -13,7 +13,7 @@
           listen_port: "{{ lookup('community.general.bitwarden', 'e735dca9-5493-435c-a71f-b39200ad4e0b', search='id', field='wireguardListenPort') | first }}"
           private_key: "{{ lookup('community.general.bitwarden', 'e735dca9-5493-435c-a71f-b39200ad4e0b', search='id', field='wireguardPrivateKey') | first }}"
         peers:
-          - comment: "Rasberry Pi 3 (i.e. 'pi-3')"
+          - comment: "Raspberry Pi 3 (i.e. 'pi-3')"
             public_key: "{{ lookup('community.general.bitwarden', '7f9fe70f-a0f4-45c2-b062-b3c50170d4c0', search='id', field='wireguardPublicKey') | first }}"
             allowed_ips: "{{ lookup('community.general.bitwarden', '7f9fe70f-a0f4-45c2-b062-b3c50170d4c0', search='id', field='wireguardAllowedIPs') | first }}"
             endpoint: "{{ lookup('community.general.bitwarden', '7f9fe70f-a0f4-45c2-b062-b3c50170d4c0', search='id', field='wireguardEndpoint') | first }}"

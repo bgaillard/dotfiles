@@ -1,4 +1,9 @@
 amends "package://github.com/jdx/hk/releases/download/v1.54.0/hk@1.54.0#/Config.pkl"
 import "package://github.com/jdx/hk/releases/download/v1.54.0/hk@1.54.0#/Builtins.pkl"
 
+exclude = List(
+  "**/*.tmpl",
+  "private_dot_bash-preexec.sh"
+)
+
 hooks {}

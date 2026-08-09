@@ -15,7 +15,7 @@
   ansible.builtin.file:
     path: /srv/backups
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 - name: Add the mount instructions to /etc/fstab
   become: true
