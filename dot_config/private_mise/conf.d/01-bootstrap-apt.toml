@@ -84,6 +84,11 @@ else
   echo "Last Vivaldi version '${DEB_CURRENT_VERSION}' already installed, nothing to do."
 fi
 
+
+# @see https://linuxcontainers.org/incus/docs/main/howto/network_bridge_firewalld/#network-incus-docker
+sudo nft insert rule ip filter DOCKER-USER iifname incusbr0 counter accept
+sudo nft insert rule ip filter DOCKER-USER oifname incusbr0 ct state related,established counter accept
+
 echo "\n"
 """
 
