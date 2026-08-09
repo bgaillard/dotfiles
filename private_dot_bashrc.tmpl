@@ -16,6 +16,7 @@ esac
 #
 # @see https://mise.jdx.dev/
 ########################################################################################################################
+export MISE_GITHUB_TOKEN="{{ (bitwardenFields "item" "c8e2e778-8343-4e4c-9cae-ac0c00665261").PatMiseGithubToken.value }}"
 eval "$(~/.local/bin/mise activate bash)"
 
 
