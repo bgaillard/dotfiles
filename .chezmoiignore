@@ -1,10 +1,7 @@
 .editorconfig
 .gitignore
-.pre-commit-config.yaml
 ansible
 Makefile
 README.md
 p
 p.yml
-provision.sh
-scan.sh

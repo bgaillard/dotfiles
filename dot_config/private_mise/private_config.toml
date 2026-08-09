@@ -13,6 +13,11 @@ experimental = true
 # @see https://docs.ansible.com/
 "pipx:ansible" = "latest"
 
+# Ansible is open-source technology that can perform virtually any IT task and remove complexity from workflows.
+#
+# @see https://docs.ansible.com/
+"pipx:ansible-core" = "latest"
+
 # Ansible Language Server
 #
 # @see https://ansible.readthedocs.io/projects/vscode-ansible/als/

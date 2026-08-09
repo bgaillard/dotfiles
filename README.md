@@ -25,7 +25,7 @@ eval "$(~/.local/bin/mise activate bash)"
 mise use --global bitwarden@latest gh@latest chezmoi@latest
 
 # Get a Github token to prevent Rate Limit problems with 'mise'
-sudo apt install git
+sudo apt install git -y
 BROWSER=false gh auth login
 export MISE_GITHUB_TOKEN=$(gh auth token)
 
