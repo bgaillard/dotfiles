@@ -43,9 +43,10 @@ CURRENT_VERSION=$(kDrive.AppImage 2>/dev/null --version | grep "kDrive version" 
 
 if [ "${CURRENT_VERSION}" != "${VERSION}" ] ; then
   echo "Last kDrive version is '${CURRENT_VERSION}', installing new version '${VERSION}'..."
-  bash -c 'read -p "Please quit kDrive using the UI and press ENTER to continue..."'
-  curl -L -o "${HOME}/.local/bin/kDrive.AppImage" "${APP_IMAGE_URL}"
-  chmod +x ${HOME}/.local/bin/kDrive.AppImage
+  curl -L -o "${HOME}/.local/bin/kDrive.AppImage.new" "${APP_IMAGE_URL}"
+  chmod +x ${HOME}/.local/bin/kDrive.AppImage.new
+  mv -f ${HOME}/.local/bin/kDrive.AppImage.new ${HOME}/.local/bin/kDrive.AppImage
+  bash -c 'read -p "Please quit kDrive using the UI and press ENTER to restart with the new version..."'
   nohup ${HOME}/.local/bin/kDrive.AppImage > /dev/null 2>&1 &
 else
   echo "Last kDrive version '${CURRENT_VERSION}' already installed, nothing to do."
