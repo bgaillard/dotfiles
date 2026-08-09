@@ -36,23 +36,54 @@ ansible-galaxy collection install community.general --upgrade
 ansible-galaxy collection install prometheus.prometheus --upgrade
 
 # Install kDrive
+echo "\nChecking last kDrive version..."
 APP_IMAGE_URL=$(curl -s https://www.infomaniak.com/drive/latest | jq -r '."linux-amd64".downloadurl')
-bash -c 'read -p "Please quit kDrive using the UI and press ENTER to continue..."'
-curl -L -o "${HOME}/.local/bin/kDrive.AppImage" "${APP_IMAGE_URL}"
-chmod +x ${HOME}/.local/bin/kDrive.AppImage
-nohup ${HOME}/.local/bin/kDrive.AppImage > /dev/null 2>&1 &
+VERSION=$(echo "${APP_IMAGE_URL}" | sed -E 's/^.*-([0-9\\.]*)-amd64.*$/\\1/')
+CURRENT_VERSION=$(kDrive.AppImage 2>/dev/null --version | grep "kDrive version" | sed -E 's/^kDrive version (.*) \\(build (.*)\\)$/\\1.\\2/' || echo "0.0.0")
+
+if [ "${CURRENT_VERSION}" != "${VERSION}" ] ; then
+  echo "Last kDrive version is '${CURRENT_VERSION}', installing new version '${VERSION}'..."
+  bash -c 'read -p "Please quit kDrive using the UI and press ENTER to continue..."'
+  curl -L -o "${HOME}/.local/bin/kDrive.AppImage" "${APP_IMAGE_URL}"
+  chmod +x ${HOME}/.local/bin/kDrive.AppImage
+  nohup ${HOME}/.local/bin/kDrive.AppImage > /dev/null 2>&1 &
+else
+  echo "Last kDrive version '${CURRENT_VERSION}' already installed, nothing to do."
+fi
+
 
 # Install Ente Auth
+echo "\nChecking last Ente Auth version..."
 DEB_URL=$(curl -s https://api.github.com/repos/ente/ente/releases | jq -r '.[] | select(.prerelease == false and (.tag_name | startswith("auth-v"))) | .assets[] | select(.name | endswith("x86_64.deb")) | .browser_download_url' | head -1)
 DEB_FILE="/tmp/$(basename "$DEB_URL")"
-curl -L -o "${DEB_FILE}" "${DEB_URL}"
-sudo apt install "${DEB_FILE}" -y
+DEB_VERSION=$(echo "${DEB_FILE}" | sed -E 's/.*v(.*)-.*$/\\1/')
+DEB_CURRENT_VERSION=$(dpkg-query -s enteauth 2>/dev/null | grep "Version:" | awk -F ": " '{print $2}' || echo "0.0.0")
+
+if [ "${DEB_CURRENT_VERSION}" != "${DEB_VERSION}" ] ; then
+  echo "Last Ente Auth version is '${DEB_CURRENT_VERSION}', installing new version '${DEB_VERSION}'..."
+  curl -L -o "${DEB_FILE}" "${DEB_URL}"
+  sudo apt install "${DEB_FILE}" -y
+else
+  echo "Last Ente Auth version '${DEB_CURRENT_VERSION}' already installed, nothing to do."
+fi
+
 
 # Install Vivaldi
+echo "\nChecking last Vivaldi version..."
 DEB_URL=$(curl -s https://vivaldi.com/fr/download/ | grep "amd64.deb" | sed -E 's/^.*(https:\\/\\/.*amd64\\.deb).*$/\\1/')
 DEB_FILE="/tmp/$(basename "$DEB_URL")"
-curl -L -o "${DEB_FILE}" "${DEB_URL}"
-sudo apt install "${DEB_FILE}" -y
+DEB_VERSION=$(echo "${DEB_FILE}" | sed -E 's/.*_(.*)_.*$/\\1/')
+DEB_CURRENT_VERSION=$(dpkg-query -s vivaldi-stable 2>/dev/null | grep "Version:" | awk -F ": " '{print $2}' || echo "0.0.0")
+
+if [ "${DEB_CURRENT_VERSION}" != "${DEB_VERSION}" ] ; then
+  echo "Last Vivaldi version is '${DEB_CURRENT_VERSION}', installing new version '${DEB_VERSION}'..."
+  curl -L -o "${DEB_FILE}" "${DEB_URL}"
+  sudo apt install "${DEB_FILE}" -y
+else
+  echo "Last Vivaldi version '${DEB_CURRENT_VERSION}' already installed, nothing to do."
+fi
+
+echo "\n"
 """
 
 
