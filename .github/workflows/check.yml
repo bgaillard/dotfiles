@@ -1,0 +1,23 @@
+name: Check
+on: [push, pull_request]
+
+jobs:
+  pre-commit:
+    name: Run pre-commit hooks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up mise
+        uses: jdx/mise-action@v2
+        with:
+          install: true
+
+      - name: Set up hk config directory
+        run: |
+          mkdir -p ~/.config/hk
+          cp dot_config/hk/config.pkl ~/.config/hk/config.pkl
+
+      - name: Run mise pre-commit
+        run: mise run pre-commit
