@@ -1,8 +1,6 @@
 # dotfiles
 
-Repository used to completely provision and configure my development machine.
-
-Provisioning and configuration is done executing the following workflow.
+Repository used to provision and configure my development machine, this is done executing the following workflow.
 
 1. Install tools with [mise](https://mise.jdx.dev/) and [ansible](https://docs.ansible.com/projects/ansible/latest/index.html)
 2. Install dotfiles with [chezmoi](https://github.com/twpayne/chezmoi)
