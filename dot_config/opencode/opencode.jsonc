@@ -3,11 +3,20 @@
   // @see https://www.linkedin.com/pulse/faut-il-attribuer-un-r%C3%B4le-dans-prompt-pour-llm-david-lacour-gsv6e/
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": true,
+  "default_agent": "plan",
   "provider": {
     "mistral" : {
       "options": {
         "apiKey": "{file:~/.mistral_api_key}",
         "timeout": 600000 // 10 minutes (warning the timeout is expressed in milliseconds)
+      }
+    },
+
+    // @see https://www.scaleway.com/en/docs/generative-apis/reference-content/integrate-with-opencode/
+    "scaleway": {
+      "options": {
+        "apiKey": "{file:~/.scaleway_api_key}",
+        "baseURL": "https://api.scaleway.ai/{file:~/.scaleway_project_id}/v1"
       }
     }
   },
@@ -16,16 +25,81 @@
     "openai"
   ],
 
+  // Scaleway provider models (pricing 2026-08-27)
+  //
+  //   - DeepSeek V4 Flash 0731                    Input: 0.4   €/M    Output: 0.08    Usage : OpenCode 'model'        (agentique + code)
+  //   - GLM-5.2                                   Input: 1.8   €/M    Output: 5.5     Usage : OpenCode 'model'        (agentique + code)
+  //   - Qwen3-Coder 30B-A3B Instruct              Input: 0.2   €/M    Output: 0.8     Usage : Minuet.ai completion
+  //   - Qwen3 235B A22B Instruct 2507             Input: 0.75  €/M    Output: 2.25    Usage : OpenCode 'model'        (code + texte)
+  //   - Qwen3.5 397B A17B                         Input: 0.6   €/M    Output: 3.6     Usage : OpenCode 'model'        (texte, code, agentique, images, vidéos)
+  //   - Qwen3.6 35B A3B                           Input: 0.25  €/M    Output: 1.5     Usage : OpenCode 'small_model'  (agentique + raisonnement)
+  //   - Qwen 3 Embedding 8B                       Input: 0.1   €/M    Output: Free    Usage : Recherche sémantique + RAG
+  //   - Mistral Small 3.2 24B Instruct (2506)     Input: 0.15  €/M    Output: 0.35    Usage : OpenCode 'small_model'  (titres, résumés, tâches légères)
+  //   - Mistral Medium 3.5 128B                   Input: 1.5   €/M    Output: 7.50    Usage : OpenCode 'model'        (généraliste rédation  / raisonnement, moins spécialisé code)
+  //   - Gemma 4 26B A4B IT                        Input: 0.25  €/M    Output: 0.50    Usage : OpenCode 'model'        (généraliste, moins orienté agentique / code)
+  //   - BGE Multilingual Gemma                    Input: 0.1   €/M    Output: Free    Usage : Recherche sémantique + RAG
+  //   - Llama-3.3079B-Instruct                    Input: 0.9   €/M    Output: 0.90    Usage : OpenCode 'model'        (généraliste, plus ancien)
+  //   - Pixtral 12B 2409                          Input: 0.2   €/M    Output: 0.20    Usage : Texte + Images
+  //   - GPT-OSS 120B                              Input: 0.15  €/M    Output: 0.60    Usage : OpenCode 'model'        (généraliste Open Weight + code)
+  //   - Whisper Large v2                          Input: 0.003 €/M    Output: Free    Usage : Audio
+  //
+  // Mistral provider models
+  //
+  //   - TODO
+  //
+  // System prompts
+  //   - https://platform.claude.com/docs/en/release-notes/system-prompts/overview
+  //   - https://github.com/jujumilk3/leaked-system-prompts
+  //   - https://github.com/0xeb/TheBigPromptLibrary
+  //
+  // Prompt "web" inspiré de
+  //   - https://github.com/jujumilk3/leaked-system-prompts/blob/main/openai-chatgpt4o_20250927.md
+  //   - https://platform.claude.com/docs/en/release-notes/system-prompts/claude-opus-5
+  //
   // @see https://models.dev/
-  "model": "mistral/devstral-medium-latest",
-  "small_model": "mistral/labs-devstral-small-2512",
+  "model": "scaleway/deepseek-v4-flash-0731",
+  "small_model": "scaleway/qwen3.6-35b-a3b",
+
+  "agent": {
+    "web": {
+      "description": "Agent which acts like web AI chats (i.e. claude.ai, chatgpt.com, chat.mistral.ai, etc.)",
+      "mode": "primary",
+      "model": "scaleway/deepseek-v4-flash-0731",
+      "prompt": "{file:~/.config/opencode/prompts/web.txt}",
+      "temperature": 1,
+      "permission": {
+        "apply_patch": "deny",
+        "edit": "deny",
+        "bash": "deny",
+        "glob": "deny",
+        "grep": "deny",
+        "lsp": "deny",
+        "question": "deny",
+        "read": "deny",
+        "skill": "deny",
+        "todowrite": "deny",
+        "webfetch": "deny",
+        "websearch": "deny",
+        "write": "deny"
+      }
+    }
+  },
+
   "command": {
+    "en_fr" : {
+      "agent": "plan",
+      "model": "mistral/mistral-small-latest",
+      "template": "Translate the following English text to French: $ARGUMENTS",
+      "description": "Translate English to French"
+    },
     "fr_en" : {
       "agent": "plan",
+      "model": "mistral/mistral-small-latest",
       "template": "Translate the following French text to English: $ARGUMENTS",
       "description": "Translate French to English."
     }
   },
+
   "permission": {
     "bash": {
       "*": "ask",

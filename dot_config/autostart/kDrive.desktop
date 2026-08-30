@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=kDrive
 GenericName=File Synchronizer
-Exec='${HOME}/.local/bin/kDrive.AppImage'
+Exec='/home/baptiste/.local/bin/kDrive.AppImage'
 Terminal=false
 Icon=kdrive
 Categories=Network

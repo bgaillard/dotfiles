@@ -85,7 +85,10 @@ else
 fi
 
 
+# FIXME: Those commands should be executed after each restart
+#
 # @see https://linuxcontainers.org/incus/docs/main/howto/network_bridge_firewalld/#network-incus-docker
+echo "\nConfigure nft rules to prevent egress network to be blocked in incus"
 sudo nft insert rule ip filter DOCKER-USER iifname incusbr0 counter accept
 sudo nft insert rule ip filter DOCKER-USER oifname incusbr0 ct state related,established counter accept
 

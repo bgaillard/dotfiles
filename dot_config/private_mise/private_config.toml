@@ -1,4 +1,6 @@
 [settings]
+auto_update = true
+
 experimental = true
 
 [tools]
