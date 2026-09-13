@@ -86,27 +86,6 @@ fi
 export GCM_CREDENTIAL_STORE=cache
 
 
-{{ if eq .chezmoi.username "baptiste" -}}
-########################################################################################################################
-# Dropbox
-########################################################################################################################
-
-# The 'dropbox' script is created by fresh install in '~/.local/bin"
-if ! pgrep dropbox >/dev/null ; then
-
-    if [ ! -d ~/.dropbox-dist ] ; then
-      echo "Dropbox install not found!"
-      echo "see https://www.dropbox.com/install-linux"
-      # TODO: Find a clean way to notify and log
-      #       see https://wiki.archlinux.org/title/Desktop_notifications
-    else
-      ~/.dropbox-dist/dropboxd > /tmp/dropboxd.log 2>&1 &
-    fi
-fi
-
-{{- end }}
-
-
 ########################################################################################################################
 # fzf
 #

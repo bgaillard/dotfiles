@@ -202,7 +202,6 @@ on_change = "reload_or_restart"
 "apt:ristretto" = "latest"             # XFCE image viewer
 "apt:thunar" = "latest"                # XFCE file manager
 "apt:thunar-archive-plugin" = "latest" # Archive support for Thunar
-# "apt:thunar-dropbox-plugin" = "latest" # Dropbox support for Thunar FIXME: Requires the 'contrib' Debian repo
 "apt:webp-pixbuf-loader" = "latest"    # WebP image format support for Ristretto
 "apt:wl-clipboard" = "latest"
 "apt:xclip" = "latest"
