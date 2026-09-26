@@ -35,42 +35,109 @@ run = """
 ansible-galaxy collection install community.general --upgrade
 ansible-galaxy collection install prometheus.prometheus --upgrade
 
-# Install kDrive
-echo "\nChecking last kDrive version..."
-APP_IMAGE_URL=$(curl -s https://www.infomaniak.com/drive/latest | jq -r '."linux-amd64".downloadurl')
-VERSION=$(echo "${APP_IMAGE_URL}" | sed -E 's/^.*-([0-9\\.]*)-amd64.*$/\\1/')
-CURRENT_VERSION=$(kDrive.AppImage 2>/dev/null --version | grep "kDrive version" | sed -E 's/^kDrive version (.*) \\(build (.*)\\)$/\\1.\\2/' || echo "0.0.0")
+# Install Proton Mail Bridge
+#
+# FIXME: Does not work with free plan
+#
+# @see https://proton.me/support/protonmail-bridge-clients-windows-thunderbird
+# echo "Checking last Proton Mail Bridge version..."
+# VERSION_JSON=$(curl -s https://proton.me/download/bridge/linux/x86/v1/version.json)
+# VERSION_JSON=$(echo "${VERSION_JSON}" | jq -r '.Releases | sort_by(.ReleaseDate) | reverse')
+# DEB_URL=$(echo "${VERSION_JSON}" | jq -r '.[0].File[] | select(.Url | contains(".deb")) | .Url')
+# DEB_FILE="/tmp/$(basename "$DEB_URL")"
+# DEB_VERSION=$(echo "${DEB_FILE}" | sed -E 's/.*_(.*)_.*$/\\1/')
+# DEB_CURRENT_VERSION=$(dpkg-query -s protonmail-bridge 2>/dev/null | grep "Version:" | awk -F ": " '{print $2}' || echo "0.0.0")
+#
+# if [ "${DEB_CURRENT_VERSION}" != "${DEB_VERSION}" ] ; then
+#  echo "Last Proton Mail Bridge version is '${DEB_CURRENT_VERSION}', installing new version '${DEB_VERSION}'..."
+#  curl -L -o "${DEB_FILE}" "${DEB_URL}"
+#  sudo apt install "${DEB_FILE}" -y
+# else
+#  echo "Last Proton Mail Bridge version '${DEB_CURRENT_VERSION}' already installed, nothing to do."
+# fi
 
-if [ "${CURRENT_VERSION}" != "${VERSION}" ] ; then
-  echo "Last kDrive version is '${CURRENT_VERSION}', installing new version '${VERSION}'..."
-  curl -L -o "${HOME}/.local/bin/kDrive.AppImage.new" "${APP_IMAGE_URL}"
-  chmod +x ${HOME}/.local/bin/kDrive.AppImage.new
-  mv -f ${HOME}/.local/bin/kDrive.AppImage.new ${HOME}/.local/bin/kDrive.AppImage
-  bash -c 'read -p "Please quit kDrive using the UI and press ENTER to restart with the new version..."'
-  nohup ${HOME}/.local/bin/kDrive.AppImage > /dev/null 2>&1 &
-else
-  echo "Last kDrive version '${CURRENT_VERSION}' already installed, nothing to do."
+
+fetch_json() {
+  url="$1"
+  data=$(curl -sfL --compressed --max-time 30 "${url}") || {
+    echo "WARN: curl failed for '${url}', skipping this application." >&2
+    return 1
+  }
+  if ! printf '%s' "${data}" | jq -e . >/dev/null 2>&1 ; then
+    echo "WARN: invalid JSON received from '${url}', skipping this application." >&2
+    return 1
+  fi
+  printf '%s' "${data}"
+}
+
+
+# Install pCloud Drive
+echo "Checking last pCloud Drive version..."
+if VERSION_JSON=$(fetch_json "https://api.pcloud.com/getlastversion?os=ELECTRONV2") \
+   && APP_IMAGE_URL=$(printf '%s' "${VERSION_JSON}" | jq -r '.files[0].url') \
+   && APP_IMAGE_SHA512=$(printf '%s' "${VERSION_JSON}" | jq -r '.files[0].sha512') \
+   && VERSION=$(printf '%s' "${VERSION_JSON}" | jq -r '.version') \
+   && [ -n "${APP_IMAGE_URL}" ] && [ "${APP_IMAGE_URL}" != "null" ] \
+   && [ -n "${APP_IMAGE_SHA512}" ] && [ "${APP_IMAGE_SHA512}" != "null" ] ; then
+  INSTALLED_SHA512=$(sha512sum "${HOME}/.local/bin/pCloud.AppImage" 2>/dev/null | awk '{print $1}')
+
+  if [ "${INSTALLED_SHA512}" != "${APP_IMAGE_SHA512}" ] ; then
+    echo "pCloud installed checksum '${INSTALLED_SHA512}' differs, downloading new version '${VERSION}'..."
+    if curl -fL -o "${HOME}/.local/bin/pCloud.AppImage.new" "${APP_IMAGE_URL}" \
+       && echo "${APP_IMAGE_SHA512}  ${HOME}/.local/bin/pCloud.AppImage.new" | sha512sum -c - >/dev/null ; then
+      chmod +x "${HOME}/.local/bin/pCloud.AppImage.new"
+      mv -f "${HOME}/.local/bin/pCloud.AppImage.new" "${HOME}/.local/bin/pCloud.AppImage"
+      echo "pCloud updated to version '${VERSION}'."
+    else
+      echo "WARN: pCloud download or checksum failed, keeping the current version." >&2
+      rm -f "${HOME}/.local/bin/pCloud.AppImage.new"
+    fi
+  else
+    echo "pCloud version '${VERSION}' already installed (checksum matches), nothing to do."
+  fi
+fi
+
+
+# Install kDrive
+echo "Checking last kDrive version..."
+if APP_IMAGE_URL=$(fetch_json "https://www.infomaniak.com/drive/latest" | jq -r '."linux-amd64".downloadurl') \
+   && [ -n "${APP_IMAGE_URL}" ] && [ "${APP_IMAGE_URL}" != "null" ] ; then
+  VERSION=$(echo "${APP_IMAGE_URL}" | sed -E 's/^.*-([0-9\\.]*)-amd64.*$/\\1/')
+  CURRENT_VERSION=$(kDrive.AppImage 2>/dev/null --version | grep "kDrive version" | sed -E 's/^kDrive version (.*) \\(build (.*)\\)$/\\1.\\2/' || echo "0.0.0")
+
+  if [ "${CURRENT_VERSION}" != "${VERSION}" ] ; then
+    echo "Last kDrive version is '${CURRENT_VERSION}', installing new version '${VERSION}'..."
+    curl -L -o "${HOME}/.local/bin/kDrive.AppImage.new" "${APP_IMAGE_URL}"
+    chmod +x ${HOME}/.local/bin/kDrive.AppImage.new
+    mv -f ${HOME}/.local/bin/kDrive.AppImage.new ${HOME}/.local/bin/kDrive.AppImage
+    bash -c 'read -p "Please quit kDrive using the UI and press ENTER to restart with the new version..."'
+    nohup ${HOME}/.local/bin/kDrive.AppImage > /dev/null 2>&1 &
+  else
+    echo "Last kDrive version '${CURRENT_VERSION}' already installed, nothing to do."
+  fi
 fi
 
 
 # Install Ente Auth
-echo "\nChecking last Ente Auth version..."
-DEB_URL=$(curl -s https://api.github.com/repos/ente/ente/releases | jq -r '.[] | select(.prerelease == false and (.tag_name | startswith("auth-v"))) | .assets[] | select(.name | endswith("x86_64.deb")) | .browser_download_url' | head -1)
-DEB_FILE="/tmp/$(basename "$DEB_URL")"
-DEB_VERSION=$(echo "${DEB_FILE}" | sed -E 's/.*v(.*)-.*$/\\1/')
-DEB_CURRENT_VERSION=$(dpkg-query -s enteauth 2>/dev/null | grep "Version:" | awk -F ": " '{print $2}' || echo "0.0.0")
+echo "Checking last Ente Auth version..."
+if DEB_URL=$(fetch_json "https://api.github.com/repos/ente/ente/releases" | jq -r '.[] | select(.prerelease == false and (.tag_name | startswith("auth-v"))) | .assets[] | select(.name | endswith("x86_64.deb")) | .browser_download_url' | head -1) \
+   && [ -n "${DEB_URL}" ] ; then
+  DEB_FILE="/tmp/$(basename "$DEB_URL")"
+  DEB_VERSION=$(echo "${DEB_FILE}" | sed -E 's/.*v(.*)-.*$/\\1/')
+  DEB_CURRENT_VERSION=$(dpkg-query -s enteauth 2>/dev/null | grep "Version:" | awk -F ": " '{print $2}' || echo "0.0.0")
 
-if [ "${DEB_CURRENT_VERSION}" != "${DEB_VERSION}" ] ; then
-  echo "Last Ente Auth version is '${DEB_CURRENT_VERSION}', installing new version '${DEB_VERSION}'..."
-  curl -L -o "${DEB_FILE}" "${DEB_URL}"
-  sudo apt install "${DEB_FILE}" -y
-else
-  echo "Last Ente Auth version '${DEB_CURRENT_VERSION}' already installed, nothing to do."
+  if [ "${DEB_CURRENT_VERSION}" != "${DEB_VERSION}" ] ; then
+    echo "Last Ente Auth version is '${DEB_CURRENT_VERSION}', installing new version '${DEB_VERSION}'..."
+    curl -L -o "${DEB_FILE}" "${DEB_URL}"
+    sudo apt install "${DEB_FILE}" -y
+  else
+    echo "Last Ente Auth version '${DEB_CURRENT_VERSION}' already installed, nothing to do."
+  fi
 fi
 
 
 # Install Vivaldi
-echo "\nChecking last Vivaldi version..."
+echo "Checking last Vivaldi version..."
 DEB_URL=$(curl -s https://vivaldi.com/fr/download/ | grep "amd64.deb" | sed -E 's/^.*(https:\\/\\/.*amd64\\.deb).*$/\\1/')
 DEB_FILE="/tmp/$(basename "$DEB_URL")"
 DEB_VERSION=$(echo "${DEB_FILE}" | sed -E 's/.*_(.*)_.*$/\\1/')
@@ -202,6 +269,7 @@ on_change = "reload_or_restart"
 "apt:ristretto" = "latest"             # XFCE image viewer
 "apt:thunar" = "latest"                # XFCE file manager
 "apt:thunar-archive-plugin" = "latest" # Archive support for Thunar
+# "apt:thunar-dropbox-plugin" = "latest" # Dropbox support for Thunar FIXME: Requires the 'contrib' Debian repo
 "apt:webp-pixbuf-loader" = "latest"    # WebP image format support for Ristretto
 "apt:wl-clipboard" = "latest"
 "apt:xclip" = "latest"
